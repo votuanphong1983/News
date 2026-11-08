@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#16161a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Personal Intel">
+<title>Personal Intel</title>
+<style>
+:root{--bg:#f4f4f1;--card:#fff;--ink:#16161a;--ink2:#4a4a52;--mute:#8a8a91;--line:#e6e5e0;--soft:#f0efeb;
+--g:#16794a;--gb:#e3f2e9;--w:#94620a;--wb:#faefd4;--b:#b3261e;--bb:#fbe8e6;--i:#2353a4;--ib:#e6edfa;--acc:#16161a}
+@media (prefers-color-scheme:dark){:root{--bg:#101012;--card:#1a1a1d;--ink:#f0efea;--ink2:#bab9b4;--mute:#85848a;--line:#2b2b2f;--soft:#222226;
+--g:#5bc58f;--gb:#14301f;--w:#e3b24c;--wb:#372b0f;--b:#f2786c;--bb:#391816;--i:#86aef0;--ib:#17243b;--acc:#f0efea}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.45 Inter,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:16px 16px 40px}
+.grid{display:grid;gap:10px}.c2{grid-template-columns:1.25fr 1fr}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:920px){.c2,.c3,.c4{grid-template-columns:1fr}}
+section{margin-top:10px}
+@media(max-width:600px){#posture{grid-template-columns:1fr 1fr}.pos{padding:8px 10px}.pos .d{display:none}.wrap{padding:12px 10px 32px}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 14px}
+.h{font-size:10.5px;font-weight:700;color:var(--mute);text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.p{font-size:10.5px;font-weight:650;padding:1px 8px;border-radius:99px;white-space:nowrap;display:inline-block}
+.g{color:var(--g);background:var(--gb)}.w{color:var(--w);background:var(--wb)}.b{color:var(--b);background:var(--bb)}.i{color:var(--i);background:var(--ib)}.n{color:var(--ink2);background:var(--soft)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.sub{color:var(--mute);font-size:11.5px}
+/* header */
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.brand{display:flex;gap:10px;align-items:center}.logo{width:28px;height:28px;border-radius:7px;background:var(--acc);color:var(--card);display:grid;place-items:center;font-weight:800;font-size:12px}
+h1{font-size:17px;margin:0}
+/* posture */
+.pos{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:10px 12px}
+.pos .k{font-size:11px;color:var(--mute)}.pos .v{font-weight:750;font-size:14px}.pos .d{font-size:11.5px;color:var(--ink2)}
+/* decisions */
+.dec{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.dec:first-child{border-top:0;padding-top:0}
+.dec input{width:16px;height:16px;accent-color:var(--acc);cursor:pointer;margin:0}
+.dec b{font-size:13.5px}.dec .why{color:var(--ink2);font-size:12px}
+.dec .gain{text-align:right}.dec .amt{font-weight:750;color:var(--g);font-size:14px}.dec .dl{font-size:11px;color:var(--mute)}
+.dec.done b,.dec.done .why{opacity:.4;text-decoration:line-through}
+/* calendar */
+.ev{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:6px 0;border-top:1px solid var(--line);align-items:center}
+.ev:first-child{border-top:0;padding-top:0}
+.ev .dt{font-weight:750;font-size:12px;text-align:center;border-radius:7px;padding:3px 0;background:var(--soft)}
+.ev .t{font-weight:600}.ev .x{font-size:11.5px;color:var(--ink2)}
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(10,1fr);gap:8px}
+@media(max-width:1100px){.tiles{grid-template-columns:repeat(5,1fr)}}@media(max-width:600px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.tile .k{font-size:10.5px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile .v{font-size:17px;font-weight:750;letter-spacing:-.01em}.tile .v small{font-size:10px;font-weight:500;color:var(--mute)}
+.tile .d{font-size:11px;white-space:nowrap}
+.up{color:var(--b)}.dn{color:var(--g)}
+/* geo */
+.geo .st{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.geo .st b{font-size:14px}
+.geo ul{margin:0;padding-left:16px;color:var(--ink2);font-size:12px}.geo li{margin:2px 0}
+.geo .you{margin-top:8px;font-size:12px;background:var(--soft);border-radius:7px;padding:6px 8px}
+.scen{display:flex;height:6px;border-radius:3px;overflow:hidden;margin-top:8px;gap:2px}
+.scl{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mute);margin-top:3px}
+/* watch */
+table{width:100%;border-collapse:collapse;font-size:12px}
+td{padding:6px 4px;border-top:1px solid var(--line);vertical-align:middle}
+tr:first-child td{border-top:0}
+.prog{height:5px;background:var(--soft);border-radius:3px;overflow:hidden;width:70px;display:inline-block;vertical-align:middle;margin-right:6px}.prog i{display:block;height:100%}
+/* career */
+.gauge{height:7px;border-radius:4px;background:linear-gradient(90deg,var(--g),var(--w),var(--b));position:relative;margin:6px 0 2px}
+.gauge i{position:absolute;top:-4px;width:3px;height:15px;background:var(--ink);border-radius:2px}
+.cs{display:flex;gap:8px;align-items:baseline;padding:4px 0;font-size:12px}
+/* details */
+details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-marker{display:none}
+.more{font-size:11.5px;color:var(--i);margin-top:6px}
+.plan{margin:6px 0 0;padding:0;list-style:none}.plan li{display:grid;grid-template-columns:48px 1fr;font-size:12px;padding:4px 0;border-top:1px dashed var(--line)}.plan li span{color:var(--mute);font-weight:700;font-size:11px}
+/* calc */
+.calc label{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink2);margin:4px 0}
+.calc input{width:96px;padding:4px 7px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;text-align:right}
+.calc .out{margin-top:6px;padding:7px 9px;border-radius:7px;background:var(--soft);font-size:12px}.calc .out b{font-size:14px}
+/* feed */
+.filters{display:flex;gap:5px;flex-wrap:wrap}
+.filters button{border:1px solid var(--line);background:var(--card);color:var(--ink2);border-radius:99px;padding:2px 9px;cursor:pointer;font:inherit;font-size:11.5px}
+.filters button.on{background:var(--acc);color:var(--card);border-color:var(--acc)}
+.it{border-top:1px solid var(--line)}
+.it summary{display:grid;grid-template-columns:38px 1fr auto 14px;gap:10px;align-items:center;padding:7px 0}
+.it .sc{font-weight:800;font-size:12.5px;text-align:center;border-radius:6px;padding:2px 0}
+.it .t{font-weight:600}.it .t span{font-weight:400;color:var(--ink2)}
+.it .chev{color:var(--mute);transition:transform .15s}.it[open] .chev{transform:rotate(90deg)}
+.it .body{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 0 10px 48px;font-size:12px;color:var(--ink2)}
+.it .body h4{margin:0 0 2px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.it .body .src{grid-column:1/-1;font-size:11px}.src a{color:var(--i);text-decoration:none;margin-right:8px}
+@media(max-width:920px){.it .body{grid-template-columns:1fr;padding-left:0}.it summary{grid-template-columns:38px 1fr 14px}.it .hz{display:none}}
+.foot{margin-top:12px;color:var(--mute);font-size:11px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+.gd>summary{display:none}
+@media(max-width:600px){
+ body{font-size:13.5px}
+ .wrap{padding:10px 10px calc(28px + env(safe-area-inset-bottom))}
+ .top h1{font-size:16px}.top .sub#who{display:none}.top>div:last-child{text-align:left}
+ #posture{grid-template-columns:1fr 1fr;gap:8px}.pos{padding:8px 10px}.pos .d{display:none}
+ .tiles{grid-template-columns:repeat(3,1fr);gap:6px}.tile{padding:7px 8px}.tile .v{font-size:15px}.tile .d{font-size:10.5px;overflow:hidden;text-overflow:ellipsis}
+ .legend{display:none}
+ .gd>summary{display:block;margin:0 0 4px}
+ .geo .you{margin-top:6px}
+ .fh{flex-direction:column;align-items:flex-start}
+ .filters{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px;-webkit-overflow-scrolling:touch}
+ .filters button{flex:none;padding:5px 11px}
+ .it summary{padding:9px 0}
+ .dec{grid-template-columns:20px 1fr}.dec .gain{grid-column:2;text-align:left;display:flex;gap:10px;align-items:baseline}
+ .dec input{width:20px;height:20px}
+ .calc input{width:110px;font-size:16px}
+ .foot{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+ <div class="brand"><div class="logo">PI</div><div><h1>Personal Intel</h1><div class="sub" id="who"></div></div></div>
+ <div style="text-align:right"><span class="p n" id="stamp"></span><div class="sub" id="next" style="margin-top:3px"></div></div>
+</div>
+
+<div class="grid c4" id="posture"></div>
+
+<section class="grid c2">
+ <div class="card"><div class="h"><span>Làm ngay</span><span id="donecount"></span></div><div id="decisions"></div></div>
+ <div class="card"><div class="h"><span>Lịch sự kiện ảnh hưởng tới bạn</span></div><div id="cal"></div></div>
+</section>
+
+<section><div class="tiles" id="tiles"></div></section>
+
+<section>
+ <div class="h" style="margin:4px 2px 6px"><span>Địa chính trị → túi tiền của bạn</span><span class="sub legend" style="text-transform:none;letter-spacing:0">thanh xác suất kịch bản: <span class="dot" style="background:var(--g)"></span> dịu <span class="dot" style="background:var(--w)"></span> giằng co <span class="dot" style="background:var(--b)"></span> leo thang</span></div>
+ <div class="grid c3" id="geo"></div>
+</section>
+
+<section class="grid c2">
+ <div class="card"><div class="h"><span>Tín hiệu kích hoạt</span><span class="sub" style="text-transform:none;letter-spacing:0">chạm ngưỡng thì làm ngay</span></div><table id="watch"></table></div>
+ <div class="card" id="career"></div>
+</section>
+
+<section class="card">
+ <details id="calcbox"><summary class="h" style="margin:0"><span>Máy tính lợi thế · tự nhập số của bạn</span><span class="more">mở ›</span></summary><div class="grid c3" id="calcs" style="margin-top:10px"></div></details>
+</section>
+
+<section class="card">
+ <div class="h fh"><span>Tin đã phân tích <span class="legend">· điểm = tác động × lợi thế sớm × độ tin cậy</span></span><div class="filters" id="filters"></div></div>
+ <div id="feed"></div>
+</section>
+
+<div class="foot"><span id="src"></span><span>Tham khảo, không phải lời khuyên tài chính.</span></div>
+</div>
+
+<script>
+/* ===== DATA – mỗi lần chạy bản tin chỉ thay object này ===== */
+const DATA={
+ run:{id:2,date:"08/11/2026",asof:"tin tới 15h 08/11 · giá chốt T6 06/11",next:"Tự chạy 7h sáng hằng ngày · thêm 1 lần trước 15h thứ Năm"},
+ profile:"Kỹ sư IT · dịch vụ IT có khách châu Âu · thu nhập VND · chưa nắm giữ tài sản",
+ posture:[
+  {k:"Ví tiền",v:"Thuận lợi",c:"g",d:"USD 25.780, xăng ~21.000"},
+  {k:"Nghề nghiệp",v:"Cảnh giác",c:"b",d:"Ngân sách AI chững, khách soi chi phí"},
+  {k:"Địa chính trị",v:"Leo thang",c:"b",d:"Mỹ siết thêm đường bộ của Iran"},
+  {k:"Thị trường",v:"Biến động",c:"w",d:"Fed 80% tăng lãi, định giá AI bị hạ"}
+ ],
+ decisions:[
+  {id:"d1",t:"Khoá tiền gửi 12 tháng tuần này",why:"NHNN yêu cầu hạ lãi kỳ ≥6 tháng ≥0,5 điểm %; ngân hàng chưa áp hết",gain:"calc:dep",dl:"≤ 14/11"},
+  {id:"d2",t:"Mua trước USD cần dùng 3–6 tháng",why:"25.780 = đáy 21 tháng; Fed 80% tăng lãi tháng 12 sẽ đẩy USD lên",gain:"calc:usd",dl:"trước 08/12"},
+  {id:"d3",t:"Case study AI-agent: đo cả chi phí token",why:"Khách đang cắt ngân sách AI; ai chứng minh được ‘nhanh hơn VÀ rẻ hơn’ sẽ được giữ",gain:"Bảo vệ thu nhập",dl:"30 ngày"}
+ ],
+ cal:[
+  {d:"Bất kỳ",c:"b",t:"Trump quyết định mở lại chiến dịch lớn với Iran",x:"Nếu có: Brent 110–120, xăng VN +1.500–3.000đ/l"},
+  {d:"10–11/11",c:"w",t:"Đàm phán Mỹ–Nga–Ukraine",x:"Nga cử cố vấn Putin + trùm GRU; khó ngừng bắn nhanh"},
+  {d:"T5 12/11",c:"i",t:"Kỳ điều hành giá xăng (15h)",x:"Brent < 105 → giảm nhẹ/đi ngang; Brent > 105 → đổ đầy trước 15h"},
+  {d:"Tuần 9/11",c:"n",t:"Anthropic roadshow IPO (Nasdaq: ANT)",x:"Định giá thấp = thêm bằng chứng ‘bong bóng AI’ hạ nhiệt → Big Tech càng siết chi"},
+  {d:"8–9/12",c:"w",t:"Fed họp: 80% khả năng tăng lãi",x:"USD mạnh lên, áp lực lên vàng và cổ phiếu tech"},
+  {d:"3/2027",c:"n",t:"Hết thuế TTĐB xăng 0%",x:"Xăng tăng lại ~1.600–1.800đ/l"}
+ ],
+ tiles:[
+  {k:"Xăng E5",v:"20.890",u:"đ",d:"−2.310 (kỳ 05/11)",dir:"dn"},
+  {k:"Xăng E10 RON95",v:"21.150",u:"đ",d:"−2.080",dir:"dn"},
+  {k:"Brent",v:"~98",u:"$",d:"chốt T6, chưa đổi",dir:"dn"},
+  {k:"USD/VND",v:"25.780",d:"−2,8% / 3 tháng",dir:"dn"},
+  {k:"Vàng miếng",v:"~141",u:"tr",d:"−3,5tr / 24h",dir:"dn"},
+  {k:"Chênh lệch vàng",v:"13,5",u:"tr",d:"≈11% so TG",dir:"up"},
+  {k:"Vàng TG",v:"4.100",u:"$",d:"TQ mua 24 tháng liền",dir:"up"},
+  {k:"VN-Index",v:"~1.700",d:"ngoại −$4,7 tỷ YTD",dir:"up"},
+  {k:"Nasdaq",v:"−5,2%",d:"tệ nhất 19 tháng",dir:"up"},
+  {k:"Fed T12",v:"80",u:"%",d:"tăng lãi (từ 67%)",dir:"up"}
+ ],
+ geo:[
+  {n:"Mỹ – Iran / Hormuz",st:"Leo thang",c:"b",sc:[20,45,35],
+   pts:["MỚI 8/11: Mỹ lập Task Force Iron Gate chặn đường bộ và biển Caspi của Iran, nối dài phong toả cảng.","Nổ ở Qeshm, Jask, Sirik, Bandar Abbas; thêm 2 tàu dầu trúng thuỷ lôi; Houthi nhận tấn công Riyadh.","Trump gọi đòn đánh là “nhỏ”, nói Tehran vẫn muốn thoả thuận; Thủ tướng Qatar: Mỹ sẵn sàng tìm giải pháp."],
+   you:"Bị phong toả kéo dài thì Brent khó về dưới 90. Mỗi ±10$/thùng ≈ ±1.700đ/l xăng.",tag:"Xăng · Vàng · USD"},
+  {n:"Nga – Ukraine",st:"Đàm phán",c:"w",sc:[20,65,15],
+   pts:["Đàm phán ba bên 10–11/11; Nga cử cố vấn Putin và trùm GRU.","Nga lại bắn tên lửa vào hạ tầng năng lượng Kiev; Zaporizhzhia bị drone tấn công dày.","Putin bác ngừng bắn ngắn hạn."],
+   you:"Gián tiếp: giá năng lượng châu Âu → lạm phát → ngân sách IT của khách EU (Anh vừa tăng lãi).",tag:"Khách hàng EU"},
+  {n:"Mỹ – Trung",st:"Đình chiến mong manh",c:"w",sc:[35,50,15],
+   pts:["Mỹ hối Trung Quốc thực hiện thoả thuận Busan ngay.","Đảng Dân chủ nắm Quốc hội: Trump vẫn quyết thuế nhưng bị mặc cả nhiều hơn.","Trung Quốc mua vàng 24 tháng liền, 129 tấn trong 10 tháng."],
+   you:"Đổ vỡ → thuế quan và chuỗi cung ứng biến động; VN hưởng FDI (TP HCM FDI ×4,2) nhưng xuất khẩu rủi ro.",tag:"FDI · Việc làm"}
+ ],
+ watch:[
+  {n:"Brent",cur:98,th:105,f:"$",dir:"up",act:"Đổ đầy xăng trước 15h thứ Năm"},
+  {n:"USD/VND",cur:25780,th:26300,f:"n",dir:"up",act:"Hết cửa sổ mua USD rẻ"},
+  {n:"Fed tăng T12",cur:80,th:90,f:"%",dir:"up",act:"Chốt mua USD ngay"},
+  {n:"Lãi 12T đã giảm",cur:0,th:0.3,f:"đ%",dir:"up",act:"Cửa sổ khoá lãi đã đóng"},
+  {n:"Chênh lệch vàng",cur:13.5,th:8,f:"tr",dir:"down",act:"Hợp lý nếu cần mua vàng"},
+  {n:"Nasdaq từ đỉnh",cur:10,th:20,f:"%",dir:"up",act:"Thị trường gấu → chuẩn bị cho cắt giảm IT"}
+ ],
+ career:{level:74,
+  sig:[["b","Ngân sách AI doanh nghiệp chững (Ramp: +1,5% T8–T9); OpenAI, Anthropic bị hạ định giá"],["b","Microsoft mời 60k người nghỉ; đóng nhóm nghiên cứu AI Frontiers"],["g","Khách cần người tối ưu chi phí: chọn model rẻ, đo token/giờ công tiết kiệm"],["g","Hiện đại hoá code cũ bằng AI vẫn có cầu (Cisco viết lại 98% code)"]],
+  plan:[["T1","Chọn 1 module cũ, cho agent viết test; ghi số giờ"],["T2","Cho agent refactor; đo trước/sau + chi phí token"],["T3","Case study 1 trang: giờ tiết kiệm, € tiết kiệm cho khách EU"],["T4","Đưa vào CV và buổi 1:1: đề xuất vai trò AI delivery lead"]]},
+ calcs:{dep:{amount:200,rate:6.0,cut:0.5},usd:{need:2000,now:25780,base:26300,bad:27000},gold:{qty:1,dom:141,world:4100,fair:8},fuel:{liters:40}},
+ feed:[
+  {cat:"So với #1",t:"Chưa ngưỡng nào kích hoạt; 3 thay đổi đáng chú ý",y:"giữ nguyên 3 việc làm ngay",imp:3,lead:3,conf:4,h:"tuần này",c:"i",
+   what:"(1) Mỹ lập Task Force chặn đường bộ Iran – leo thang chuyển từ không kích sang phong toả toàn diện. (2) Định giá OpenAI/Anthropic bị hạ, chi tiêu AI chững. (3) USD 25.800 → 25.780.",you:"Kịch bản Iran: leo thang 40% → 35%, giằng co 40% → 45%. Rủi ro nghề nghiệp 72 → 74.",act:"Tiếp tục d1, d2; sửa d3 thành case study có số chi phí.",
+   src:[["Al Jazeera","https://www.aljazeera.com/news/2026/11/8/us-launches-task-force-to-disrupt-irans-land-based-supply-routes"],["TechCrunch","https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/"]]},
+  {cat:"Nghề nghiệp",t:"Chi tiêu AI doanh nghiệp chững, định giá AI bị hạ",y:"khách sẽ đòi ‘rẻ hơn’, không chỉ ‘nhanh hơn’",imp:4,lead:5,conf:4,h:"1–6 th",c:"b",
+   what:"Ramp: chi token chỉ +1,5% T8–T9 (T7 +42%), T10 +8,9%. Anthropic có thể về 1–1,3 nghìn tỷ USD (từ 2 nghìn tỷ); OpenAI 1,25 nghìn tỷ. Anthropic IPO roadshow tuần tới.",you:"Khách EU sẽ kiểm soát ngân sách AI chặt hơn. Người biết đo ROI và chọn model rẻ có lợi thế.",act:"Thêm chỉ số chi phí token vào case study; học routing giữa model rẻ/đắt.",
+   src:[["TechCrunch","https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/"],["VnExpress","https://vnexpress.net/nha-dau-tu-ngo-vuc-muc-dinh-gia-2-000-ty-usd-cua-anthropic-5142087.html"]]},
+  {cat:"Nghề nghiệp",t:"Big Tech cắt người để dồn tiền cho AI",y:"khách hàng IT sẽ ép giá",imp:5,lead:4,conf:4,h:"3–12 th",c:"b",
+   what:"Microsoft mời 60k người (25%) nghỉ, cắt R&D tại VN, đóng nhóm AI Frontiers. Alphabet mất $500 tỷ vốn hoá trong một ngày.",you:"Hợp đồng tính theo đầu người sẽ thu hẹp; junior chịu áp lực trước.",act:"Hỏi quản lý về kế hoạch của khách hàng; xung phong dẫn thử nghiệm AI.",
+   src:[["VnExpress","https://vnexpress.net/microsoft-de-xuat-60-000-nhan-vien-tu-nguyen-nghi-viec-5137242.html"],["HN","https://hunch.net/?p=13764006"]]},
+  {cat:"Nghề nghiệp",t:"AI tăng tốc chính việc làm phần mềm",y:"giá trị chuyển sang điều phối agent",imp:5,lead:5,conf:4,h:"6–24 th",c:"b",
+   what:"METR: Anthropic cải tiến model nhanh gấp 1,9 lần. Cisco: 1 người viết lại 98% code cũ. Anthropic công bố nghiên cứu bộ nhớ cho agent.",you:"Hiện đại hoá code cũ là mảng có tiền ngay.",act:"Làm theo kế hoạch 30 ngày.",
+   src:[["METR","https://vnexpress.net/mo-hinh-anthropic-cai-tien-nhanh-gap-doi-nho-ai-5141690.html"],["Cisco","https://vnexpress.net/cisco-giao-mot-nhan-vien-gen-z-viet-lai-98-ma-nguon-cu-5140846.html"]]},
+  {cat:"Địa chính trị",t:"Mỹ mở rộng phong toả Iran sang đường bộ",y:"Brent khó giảm sâu",imp:4,lead:4,conf:4,h:"0–4 tuần",c:"b",
+   what:"Task Force Iron Gate (8/11) chặn biên giới đất liền và Caspi. Nổ ở Qeshm, Jask, Bandar Abbas; 2 tàu dầu trúng thuỷ lôi. Trump: đòn đánh “nhỏ”, Tehran muốn thoả thuận.",you:"Brent 98 là nhịp lắng có rủi ro. Leo thang thì xăng, vàng, USD cùng tăng.",act:"Theo dõi Brent > 105 trước 15h thứ Năm; mua USD sớm.",
+   src:[["Al Jazeera","https://www.aljazeera.com/news/liveblog/2026/11/8/iran-war-live-explosions-hit-qeshm-us-moves-to-block-land-supply-routes"],["VnExpress","https://vnexpress.net/iran-tuyen-bo-go-rao-tam-ban-ten-lua-5141969.html"]]},
+  {cat:"Ví tiền",t:"Fed: 80% tăng lãi tháng 12",y:"USD rẻ không kéo dài",imp:4,lead:4,conf:4,h:"4 tuần",c:"w",
+   what:"Việc làm T10 +165k (gấp đôi dự báo), thất nghiệp 4,1%, lương +3,1% < lạm phát 3,7%. Xác suất tăng lãi 67% → 80%. Anh, Canada, Úc đã tăng.",you:"USD/VND đang ở đáy 21 tháng (25.780) – cửa sổ có thể đóng trước 08/12.",act:"Mua phần USD cần dùng qua ngân hàng; chốt nếu xác suất ≥ 90%.",
+   src:[["VnExpress","https://vnexpress.net/quan-chuc-fed-can-nhac-tang-lai-sau-bao-cao-viec-lam-kha-quan-5141851.html"]]},
+  {cat:"Ví tiền",t:"Lãi tiền gửi kỳ dài sắp bị hạ",y:"khoá ngay",imp:4,lead:4,conf:4,h:"1–2 tuần",c:"g",
+   what:"NHNN yêu cầu giảm ≥0,5 điểm % với kỳ ≥6 tháng. Lãi cho vay mới đã giảm 0,2–0,5 điểm %.",you:"Người gửi biết muộn hơn ngân hàng.",act:"So sánh 3 app ngân hàng, gửi kỳ 12 tháng.",
+   src:[["VnExpress","https://vnexpress.net/pho-thong-doc-lai-suat-cho-vay-moi-giam-0-2-0-5-5140740.html"]]},
+  {cat:"Địa chính trị",t:"Đàm phán Nga–Ukraine 10–11/11",y:"khó có ngừng bắn nhanh",imp:2,lead:3,conf:3,h:"1–2 tuần",c:"w",
+   what:"Nga cử cố vấn Putin và trùm GRU. Nga vẫn đánh hạ tầng năng lượng Kiev.",you:"Ảnh hưởng gián tiếp qua năng lượng và ngân sách châu Âu.",act:"Không cần hành động.",
+   src:[["VnExpress","https://vnexpress.net/nga-cu-co-van-dien-kremlin-trum-tinh-bao-hop-voi-my-ukraine-5141913.html"]]},
+  {cat:"Thị trường",t:"Tech Mỹ và VN-Index cùng bị bán",y:"bạn chưa có vị thế, chưa vội",imp:3,lead:2,conf:4,h:"1–6 th",c:"w",
+   what:"Nasdaq −5,2% ngày 5/11, tệ nhất 19 tháng. 206 mã HoSE giảm; khối ngoại rút $4,7 tỷ từ đầu năm.",you:"Tech giảm thì Big Tech càng cắt chi phí.",act:"Quỹ dự phòng 6 tháng trước, DCA sau.",
+   src:[["VnExpress","https://vnexpress.net/ap-luc-ban-bao-phu-hon-200-co-phieu-5141621.html"]]},
+  {cat:"Ví tiền",t:"Vàng miếng đắt hơn thế giới 11%",y:"chưa nên mua",imp:2,lead:3,conf:3,h:"1–3 th",c:"w",
+   what:"Vàng miếng ~141tr, quy đổi thế giới ~127,5tr. Trung Quốc mua vàng 24 tháng liền đỡ giá TG.",you:"Mua lúc này là trả dư ~13,5tr/lượng.",act:"Chờ chênh lệch < 8tr.",
+   src:[["Vàng","https://vnexpress.net/gia-vang-giam-3-5-trieu-ve-sat-141-trieu-dong-5141437.html"],["TQ","https://vnexpress.net/trung-quoc-mua-vang-24-thang-lien-tiep-5142073.html"]]},
+  {cat:"Ví tiền",t:"Xăng về sát 21.000đ",y:"kỳ 12/11 giảm nhẹ hoặc đi ngang",imp:2,lead:3,conf:3,h:"4 ngày",c:"i",
+   what:"E5 20.890đ. Thuế TTĐB 0% đến 3/2027.",you:"Chi phí đi lại về mức tháng 3.",act:"Đổ đầy trước 15h thứ Năm nếu Brent > 105.",
+   src:[["Giá xăng","https://vnexpress.net/gia-xang-dau-moi-nhat-hom-nay-5-11-5141125.html"]]},
+  {cat:"An toàn",t:"Hack ngân hàng Pháp $110tr, Binance $6,3 tỷ",y:"mùa lừa đảo ‘đền bù’",imp:1,lead:2,conf:4,h:"ngay",c:"i",
+   what:"Crédit Mutuel Arkéa mất >$110tr. Bộ Công an và NHNN sắp thí điểm hệ thống truy vết tiền lừa đảo.",you:"Chiêu lừa nhắm vào người thân lớn tuổi.",act:"Cảnh báo bố mẹ; bật xác thực sinh trắc cho app ngân hàng.",
+   src:[["VnExpress","https://vnexpress.net/ngan-hang-phap-bi-tin-tac-danh-cap-hon-110-trieu-usd-5141067.html"],["Truy vết","https://vnexpress.net/se-thi-diem-he-thong-truy-vet-thu-hoi-tien-lua-dao-truc-tuyen-5141607.html"]]},
+  {cat:"Ví tiền",t:"Điện −2%; Green SM giảm cước 25%",y:"tiết kiệm nhỏ",imp:1,lead:2,conf:4,h:"1 th",c:"i",
+   what:"Giá điện còn 5 bậc. Green SM giảm cước đến 28/02/2027.",you:"Nhà dùng trên 903 kWh có thể trả nhiều hơn.",act:"Ưu tiên đi Green SM.",
+   src:[["Điện","https://vnexpress.net/gia-dien-sinh-hoat-theo-5-bac-cao-nhat-3-844-dong-mot-kwh-5139227.html"]]}
+ ],
+ sources:"Nguồn: VnExpress, Al Jazeera, TechCrunch, Hacker News · bản #2 · 08/11/2026"
+};
+
+/* ===== RENDER ===== */
+const $=s=>document.querySelector(s),fmt=n=>Math.round(n).toLocaleString("vi-VN");
+const CC={g:"var(--g)",w:"var(--w)",b:"var(--b)",i:"var(--i)",n:"var(--mute)"};
+const store={get(k){try{return JSON.parse(localStorage.getItem("pi_"+k))}catch(e){return null}},set(k,v){try{localStorage.setItem("pi_"+k,JSON.stringify(v))}catch(e){}}};
+$("#who").textContent=DATA.profile;$("#stamp").textContent=`#${DATA.run.id} · ${DATA.run.date} · ${DATA.run.asof}`;$("#next").textContent=DATA.run.next;
+$("#posture").innerHTML=DATA.posture.map(p=>`<div class="pos"><span class="dot" style="background:${CC[p.c]};width:10px;height:10px"></span><div><div class="k">${p.k}</div><div class="v">${p.v}</div><div class="d">${p.d}</div></div></div>`).join("");
+$("#cal").innerHTML=DATA.cal.map(e=>`<div class="ev"><div class="dt" style="color:${CC[e.c]}">${e.d}</div><div><div class="t">${e.t}</div><div class="x">${e.x}</div></div></div>`).join("");
+$("#tiles").innerHTML=DATA.tiles.map(t=>`<div class="tile"><div class="k">${t.k}</div><div class="v">${t.v}<small> ${t.u||""}</small></div><div class="d ${t.dir}">${t.dir=="dn"?"▼":"▲"} ${t.d}</div></div>`).join("");
+$("#geo").innerHTML=DATA.geo.map(g=>`<div class="card geo"><div class="st"><b>${g.n}</b><span class="p ${g.c}">${g.st}</span></div>
+ <details class="gd" open><summary class="more">Diễn biến ›</summary><ul>${g.pts.map(p=>`<li>${p}</li>`).join("")}</ul></details>
+ <div class="scen"><i style="flex:${g.sc[0]};background:var(--g)"></i><i style="flex:${g.sc[1]};background:var(--w)"></i><i style="flex:${g.sc[2]};background:var(--b)"></i></div>
+ <div class="scl"><span>dịu ${g.sc[0]}%</span><span>giằng co ${g.sc[1]}%</span><span>leo thang ${g.sc[2]}%</span></div>
+ <div class="you"><b>→ Bạn:</b> ${g.you} <span class="p n">${g.tag}</span></div></div>`).join("");
+$("#watch").innerHTML=DATA.watch.map(w=>{const f=x=>w.f=="$"?"$"+x:w.f=="n"?fmt(x):w.f=="đ%"?x+" điểm":x+w.f;
+ let r=w.dir=="up"?(w.th?w.cur/w.th:0):(w.cur?w.th/w.cur:0);r=Math.max(0,Math.min(1,r));const hit=w.dir=="up"?w.cur>=w.th:w.cur<=w.th,near=!hit&&r>=.9;
+ const st=hit?`<span class="p b">KÍCH HOẠT</span>`:near?`<span class="p w">GẦN</span>`:`<span class="p n">chờ</span>`;
+ return `<tr><td><b>${w.n}</b> <span class="sub">${f(w.cur)} → ${w.dir=="up"?"≥":"≤"}${f(w.th)}</span><div class="sub">${w.act}</div></td><td style="text-align:right;white-space:nowrap"><span class="prog"><i style="width:${r*100}%;background:${hit?"var(--b)":near?"var(--w)":"var(--mute)"}"></i></span>${st}</td></tr>`}).join("");
+const K=DATA.career;
+$("#career").innerHTML=`<div class="h"><span>Rủi ro nghề nghiệp</span><b style="color:var(--b);font-size:13px">${K.level}/100</b></div><div class="gauge"><i style="left:calc(${K.level}% - 1px)"></i></div><div class="scl" style="margin-bottom:6px"><span>an toàn</span><span>nguy hiểm</span></div>
+${K.sig.map(s=>`<div class="cs"><span class="dot" style="background:${CC[s[0]]}"></span><span>${s[1]}</span></div>`).join("")}
+<details><summary class="more">Kế hoạch 30 ngày ›</summary><ul class="plan">${K.plan.map(p=>`<li><span>${p[0]}</span>${p[1]}</li>`).join("")}</ul></details>`;
+
+/* calculators */
+const C=DATA.calcs,R={};
+$("#calcs").innerHTML=`
+<div class="calc"><b>Khoá lãi tiết kiệm</b><label>Số tiền (tr)<input id="dA" type="number" value="${C.dep.amount}"></label><label>Lãi 12T (%)<input id="dR" type="number" step=".1" value="${C.dep.rate}"></label><label>Mức giảm (điểm %)<input id="dC" type="number" step=".1" value="${C.dep.cut}"></label><div class="out" id="dO"></div></div>
+<div class="calc"><b>Mua USD sớm</b><label>USD cần<input id="uN" type="number" value="${C.usd.need}"></label><label>Giá hôm nay<input id="uP" type="number" value="${C.usd.now}"></label><label>Dự báo cơ sở / xấu<span><input id="uB" type="number" value="${C.usd.base}" style="width:66px"> <input id="uX" type="number" value="${C.usd.bad}" style="width:66px"></span></label><div class="out" id="uO"></div></div>
+<div class="calc"><b>Vàng · chênh lệch</b><label>Số lượng<input id="gQ" type="number" step=".5" value="${C.gold.qty}"></label><label>Vàng miếng (tr)<input id="gD" type="number" step=".1" value="${C.gold.dom}"></label><label>Vàng TG ($/oz)<input id="gW" type="number" value="${C.gold.world}"></label><div class="out" id="gO"></div></div>`;
+const v=id=>parseFloat(document.getElementById(id).value)||0;
+function calc(){
+ R.dep=v("dA")*1e6*v("dC")/100;$("#dO").innerHTML=`Giữ thêm <b>${fmt(R.dep)}đ</b>/năm`;
+ R.usd=v("uN")*(v("uB")-v("uP"));$("#uO").innerHTML=`Tiết kiệm <b>${fmt(R.usd)}đ</b> (cơ sở) – <b>${fmt(v("uN")*(v("uX")-v("uP")))}đ</b> (xấu)`;
+ const fair=v("gW")*37.5/31.1035*v("uP")/1e6,gap=v("gD")-fair;
+ $("#gO").innerHTML=`Chênh lệch <b>${gap.toFixed(1)}tr</b> (${(gap/fair*100).toFixed(0)}%) · trả dư ${fmt(gap*v("gQ")*1e6)}đ <span class="p ${gap>C.gold.fair?"b":"g"}">${gap>C.gold.fair?"CHỜ":"OK"}</span>`;
+ decisions();}
+document.querySelectorAll("#calcs input").forEach(i=>i.oninput=calc);
+function decisions(){const done=store.get("done_"+DATA.run.id)||{};
+ $("#decisions").innerHTML=DATA.decisions.map(d=>{const g=d.gain.startsWith("calc:")?"+"+fmt(R[d.gain.slice(5)]||0)+"đ":d.gain;
+  return `<div class="dec ${done[d.id]?"done":""}"><input type="checkbox" data-id="${d.id}" ${done[d.id]?"checked":""}><div><b>${d.t}</b><div class="why">${d.why}</div></div><div class="gain"><div class="amt">${g}</div><div class="dl">⏱ ${d.dl}</div></div></div>`}).join("");
+ $("#donecount").textContent=`${Object.values(done).filter(Boolean).length}/${DATA.decisions.length} xong`;
+ document.querySelectorAll("#decisions input").forEach(cb=>cb.onchange=()=>{const s=store.get("done_"+DATA.run.id)||{};s[cb.dataset.id]=cb.checked;store.set("done_"+DATA.run.id,s);decisions()});}
+calc();
+
+/* feed */
+const cats=["Tất cả",...new Set(DATA.feed.map(x=>x.cat))];let cur="Tất cả";const pr=x=>x.imp*x.lead*x.conf;
+function feed(){
+ $("#filters").innerHTML=cats.map(c=>`<button class="${c==cur?"on":""}" data-c="${c}">${c}</button>`).join("");
+ document.querySelectorAll("#filters button").forEach(b=>b.onclick=()=>{cur=b.dataset.c;feed()});
+ $("#feed").innerHTML=DATA.feed.filter(x=>cur=="Tất cả"||x.cat==cur).sort((a,b)=>pr(b)-pr(a)).map(x=>`<details class="it"><summary>
+  <span class="sc ${x.c}">${pr(x)}</span><span class="t">${x.t} <span>· ${x.y}</span></span><span class="p n hz">${x.h}</span><span class="chev">›</span></summary>
+  <div class="body"><div><h4>Chuyện gì</h4>${x.what}</div><div><h4>Nghĩa là gì với bạn</h4>${x.you}</div><div><h4>Làm gì</h4><b style="color:var(--ink)">${x.act}</b></div>
+  <div class="src">Tác động ${x.imp} · Lợi thế sớm ${x.lead} · Độ tin cậy ${x.conf} · ${x.src.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${s[0]} ↗</a>`).join("")}</div></div></details>`).join("");}
+if(matchMedia("(max-width:600px)").matches)document.querySelectorAll(".gd").forEach(d=>d.open=false);
+feed();$("#src").textContent=DATA.sources;
+</script>
+</body>
+</html>
