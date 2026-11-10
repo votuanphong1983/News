@@ -69,11 +69,50 @@ export async function run(){
   D.ghsa=g.filter(x=>new Date(x.published_at)>now-2*day).map(x=>({id:x.ghsa_id,s:x.summary,pk:(x.vulnerabilities||[]).map(v=>v.package?.ecosystem+":"+v.package?.name).slice(0,3).join(", ")}));M.ghsa_crit_48h=D.ghsa.length;
   D.ghsa.filter(x=>/npm|pypi|nuget|maven/i.test(x.pk)).slice(0,3).forEach(x=>alert("w","GitHub Advisory",`Lỗ hổng nghiêm trọng ${x.pk}: ${x.s}`,"https://github.com/advisories/"+x.id));})
  ]);
+ // 7b. Thời tiết – thiên tai
+ await step("weather",async()=>{const w=await weather();D.weather=w.weather;A.push(...w.alerts);Object.assign(E,w.errors);const h=w.weather.storms.map(x=>x.dVN_min);M.storm_min_km_vn=h.length?Math.min(...h):9999;});
  // 8. So với nền (14 lần chạy gần nhất): |z|≥2.5 → bất thường
  const hist=H.slice(-14);for(const[k,v]of Object.entries(M)){if(typeof v!="number")continue;const xs=hist.map(h=>h.m?.[k]).filter(x=>typeof x=="number");if(xs.length<5)continue;
   const mu=xs.reduce((a,b)=>a+b)/xs.length,sd=Math.sqrt(xs.reduce((a,b)=>a+(b-mu)**2,0)/xs.length)||1e-9,z=(v-mu)/sd;if(Math.abs(z)>=2.5)alert("w","Nền 14 lần",`${k}=${v} lệch ${z.toFixed(1)}σ so với trung bình ${r2(mu)}`,"")}
  return {ts:new Date().toISOString(),metrics:M,alerts:A,detail:D,errors:E,histN:H.length};
 }
+
+// Thời tiết – thiên tai (JMA bão, GDACS, Open-Meteo dự báo + không khí + lũ sông)
+const CITIES=[["Hà Nội",21.03,105.85],["TP HCM",10.82,106.63],["Đà Nẵng",16.05,108.2],["Huế",16.46,107.59]];
+const km=(a,b,c,d)=>{const R=6371,t=x=>x*Math.PI/180,dl=t(c-a),dn=t(d-b);return 2*R*Math.asin(Math.sqrt(Math.sin(dl/2)**2+Math.cos(t(a))*Math.cos(t(c))*Math.sin(dn/2)**2))};
+const VN=[[21,106],[16,108],[11,107],[13,109.3],[9.5,105.5]];const dVN=(la,lo)=>Math.min(...VN.map(p=>km(la,lo,p[0],p[1])));
+export async function weather(){
+ const W={storms:[],gdacs:[],cities:[],air:[],rivers:[]},A=[],E={};const alert=(sev,src,msg,url)=>A.push({sev,src,msg,url});
+ const step=async(n,f)=>{try{await f()}catch(e){E[n]=String(e.message||e).slice(0,120)}};
+ await Promise.all([
+ step("jma",async()=>{const t=await J("https://www.jma.go.jp/bosai/typhoon/data/targetTc.json");
+  for(const x of t){const s=await J(`https://www.jma.go.jp/bosai/typhoon/data/${x.tropicalCyclone}/specifications.json`),f=await J(`https://www.jma.go.jp/bosai/typhoon/data/${x.tropicalCyclone}/forecast.json`);
+   const now0=s.find(p=>p.advancedHours===0)||s[1],nm=s[0].name?.en||x.typhoonNumber,pos=now0.position.deg;
+   const fc=f.filter(p=>p.center).map(p=>({h:p.advancedHours,c:p.center,d:Math.round(dVN(p.center[0],p.center[1]))}));const near=fc.reduce((a,b)=>b.d<a.d?b:a,fc[0]);
+   const o={name:nm,cat:s[0].category?.en,lat:pos[0],lon:pos[1],wind_ms:+now0.maximumWind?.sustained?.["m/s"],gust_ms:+now0.maximumWind?.gust?.["m/s"],hpa:+now0.pressure,course:now0.course,kmh:+now0.speed?.["km/h"],dVN_now:Math.round(dVN(pos[0],pos[1])),dVN_min:near.d,dVN_min_h:near.h};W.storms.push(o);
+   if(o.dVN_min<=600)alert("b","JMA bão",`Bão ${nm} (gió ${o.wind_ms}m/s, ${o.hpa}hPa) dự báo cách bờ Việt Nam ~${o.dVN_min}km sau ${o.dVN_min_h}h`,"https://www.jma.go.jp/bosai/map.html#contents=typhoon");
+   else if(o.dVN_min<=1500||(o.lon<125&&o.lat<25))alert("w","JMA bão",`Bão ${nm} vào Biển Đông/gần VN: hiện cách ${o.dVN_now}km, gần nhất ${o.dVN_min}km sau ${o.dVN_min_h}h`,"https://www.jma.go.jp/bosai/map.html#contents=typhoon");}}),
+ step("gdacs",async()=>{const from=new Date(Date.now()-7*day).toISOString().slice(0,10);
+  for(const ty of ["TC","FL","EQ","VO","DR","WF"]){let g;try{g=await J(`https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=${ty}&fromdate=${from}`)}catch(e){continue}
+   (g.features||[]).forEach(ft=>{const p=ft.properties,[lo,la]=ft.geometry.coordinates;const o={t:ty,n:p.name,lvl:p.alertlevel,c:p.country,from:(p.fromdate||"").slice(0,10),to:(p.todate||"").slice(0,10),dVN:Math.round(dVN(la,lo)),u:p.url?.report};
+    if(o.lvl!="Green"||o.dVN<1500||/viet/i.test(o.c||""))W.gdacs.push(o);
+    if((/viet/i.test(o.c||"")||o.dVN<400)&&o.lvl!="Green")alert(o.lvl=="Red"?"b":"w","GDACS",`${o.n} (${o.lvl}) – ${o.c||""}`,o.u||"https://www.gdacs.org");
+    else if(o.lvl=="Red")alert("w","GDACS",`Thảm hoạ cấp ĐỎ: ${o.n} – ${o.c||""}`,o.u||"https://www.gdacs.org")})}}),
+ step("meteo",async()=>{const q=CITIES.map(c=>c[1]).join(",")+"&longitude="+CITIES.map(c=>c[2]).join(",");
+  const r=await J("https://api.open-meteo.com/v1/forecast?latitude="+q+"&daily=precipitation_sum,wind_gusts_10m_max,temperature_2m_max,temperature_2m_min,weather_code&forecast_days=7&timezone=Asia%2FBangkok");
+  r.forEach((x,i)=>{const d=x.daily,c=CITIES[i][0];const mx=Math.max(...d.precipitation_sum),gi=Math.max(...d.wind_gusts_10m_max),tx=Math.max(...d.temperature_2m_max),tn=Math.min(...d.temperature_2m_min);
+   const o={city:c,rain7_mm:Math.round(d.precipitation_sum.reduce((a,b)=>a+b,0)),rainmax_mm:Math.round(mx),rainmax_day:d.time[d.precipitation_sum.indexOf(mx)],gust_max_kmh:Math.round(gi),tmax:tx,tmin:tn,today:{rain:d.precipitation_sum[0],tmax:d.temperature_2m_max[0],tmin:d.temperature_2m_min[0]}};W.cities.push(o);
+   if(mx>=100)alert(mx>=200?"b":"w","Open-Meteo",`${c}: mưa lớn ${o.rainmax_mm}mm ngày ${o.rainmax_day} (7 ngày ${o.rain7_mm}mm)`,"https://open-meteo.com");
+   if(gi>=70)alert("w","Open-Meteo",`${c}: gió giật ${o.gust_max_kmh}km/h trong 7 ngày`,"https://open-meteo.com");
+   if(tx>=38)alert("w","Open-Meteo",`${c}: nắng nóng ${tx}°C`,"https://open-meteo.com");if(tn<=10)alert("w","Open-Meteo",`${c}: rét ${tn}°C`,"https://open-meteo.com");})}),
+ step("air",async()=>{const r=await J("https://air-quality-api.open-meteo.com/v1/air-quality?latitude=21.03,10.82&longitude=105.85,106.63&current=pm2_5,us_aqi&hourly=us_aqi&forecast_days=2");
+  r.forEach((x,i)=>{const c=["Hà Nội","TP HCM"][i],mx=Math.max(...x.hourly.us_aqi.filter(v=>v!=null));W.air.push({city:c,aqi:x.current.us_aqi,pm25:x.current.pm2_5,aqi_max48h:mx});if(mx>=150)alert(mx>=200?"b":"w","Open-Meteo AQ",`${c}: AQI tới ${mx} trong 48h (hiện ${x.current.us_aqi}) – hạn chế ra ngoài, đeo khẩu trang N95`,"https://open-meteo.com")})}),
+ step("flood",async()=>{const R=[["Thu Bồn (Quảng Nam)",15.88,108.33],["Hương (Huế)",16.47,107.58],["Hồng (Hà Nội)",21.05,105.86],["Mekong (Cần Thơ)",10.03,105.78]];
+  const r=await J("https://flood-api.open-meteo.com/v1/flood?latitude="+R.map(x=>x[1]).join(",")+"&longitude="+R.map(x=>x[2]).join(",")+"&daily=river_discharge,river_discharge_max&past_days=7&forecast_days=7");
+  r.forEach((x,i)=>{const q=x.daily.river_discharge,med=[...q.slice(0,7)].sort((a,b)=>a-b)[3]||1,fmax=Math.max(...q.slice(7));const o={river:R[i][0],now:Math.round(q[7]),fmax:Math.round(fmax),ratio:Math.round(fmax/med*10)/10};W.rivers.push(o);
+   if(o.ratio>=3)alert(o.ratio>=6?"b":"w","GloFAS",`Lũ: ${o.river} lưu lượng dự báo gấp ${o.ratio} lần mức tuần qua (${o.fmax} m³/s)`,"https://open-meteo.com/en/docs/flood-api")})})
+ ]);
+ return {weather:W,alerts:A,errors:E};}
 
 // Máy bay quân sự (ADS-B công khai). Gọi khi tab đang mở https://api.adsb.lol/v2/mil
 export function flights(){
