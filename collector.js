@@ -16,7 +16,8 @@ export async function run(){
  // 1. Polymarket: watchlist + "smart money" movers
  step("poly",async()=>{
   const ms=await J("https://gamma-api.polymarket.com/markets?active=true&closed=false&order=volume24hr&ascending=false&limit=500");
-  D.polyMovers=ms.filter(m=>KW.test(m.question)&&!NOISE.test(m.question)&&(+m.volume24hr||0)>=20000&&(Math.abs(+m.oneDayPriceChange||0)>=0.05||Math.abs(+m.oneWeekPriceChange||0)>=0.12))
+  const today=new Date().toISOString().slice(0,10);
+  D.polyMovers=ms.filter(m=>(m.endDate||"9").slice(0,10)>=today&&KW.test(m.question)&&!NOISE.test(m.question)&&(+m.volume24hr||0)>=20000&&(Math.abs(+m.oneDayPriceChange||0)>=0.05||Math.abs(+m.oneWeekPriceChange||0)>=0.12))
    .map(m=>({q:m.question,yes:r2(JSON.parse(m.outcomePrices||"[0]")[0]*100),d1:r2((+m.oneDayPriceChange||0)*100),d7:r2((+m.oneWeekPriceChange||0)*100),v24:Math.round(+m.volume24hr),end:(m.endDate||"").slice(0,10),slug:m.slug}))
    .sort((a,b)=>Math.abs(b.d1)-Math.abs(a.d1)).slice(0,20);
   D.polyMovers.filter(m=>Math.abs(m.d1)>=8).forEach(m=>alert(Math.abs(m.d1)>=15?"b":"w","Polymarket",`${m.q}: ${m.yes}% (${m.d1>0?"+":""}${m.d1} điểm/24h, ${m.v24.toLocaleString()}$)`,"https://polymarket.com/market/"+m.slug));
@@ -73,3 +74,13 @@ export async function run(){
   const mu=xs.reduce((a,b)=>a+b)/xs.length,sd=Math.sqrt(xs.reduce((a,b)=>a+(b-mu)**2,0)/xs.length)||1e-9,z=(v-mu)/sd;if(Math.abs(z)>=2.5)alert("w","Nền 14 lần",`${k}=${v} lệch ${z.toFixed(1)}σ so với trung bình ${r2(mu)}`,"")}
  return {ts:new Date().toISOString(),metrics:M,alerts:A,detail:D,errors:E,histN:H.length};
 }
+
+// Máy bay quân sự (ADS-B công khai). Gọi khi tab đang mở https://api.adsb.lol/v2/mil
+export function flights(){
+ const j=JSON.parse(document.body.innerText),ac=j.ac||[];
+ const T=/^(K35R|K35E|KC46|KC10|KC30|A332|A3ST|MRTT)$/,I=/^(E3TF|E3CF|E3|E6|E7|R135|RC35|P8|P8A|U2|GLEX|RQ4|MQ9|Q4|E8|EP3|C30J)$/,B=/^(B52|B1|B2|B1B)$/,L=/^(C17|C5|C5M|A400|C130|IL76)$/;
+ const box={ME:[12,40,30,65],EEU:[43,60,20,42],SCS:[0,25,100,125],TWN:[18,30,115,130]};
+ const inb=(a,b)=>a.lat>=b[0]&&a.lat<=b[1]&&a.lon>=b[2]&&a.lon<=b[3];
+ const out={total:ac.length,ts:new Date((j.now||Date.now())).toISOString()};
+ for(const[k,b]of Object.entries(box)){const x=ac.filter(a=>a.lat!=null&&inb(a,b));out[k]={n:x.length,tanker:x.filter(a=>T.test(a.t||"")).length,isr:x.filter(a=>I.test(a.t||"")).length,bomber:x.filter(a=>B.test(a.t||"")).length,airlift:x.filter(a=>L.test(a.t||"")).length,list:x.filter(a=>T.test(a.t||"")||I.test(a.t||"")||B.test(a.t||"")).map(a=>(a.flight||"").trim()+"/"+a.t+"@"+a.lat.toFixed(1)+","+a.lon.toFixed(1)).slice(0,12)}}
+ return out;}
