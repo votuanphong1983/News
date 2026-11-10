@@ -75,6 +75,14 @@ details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-
 .calc label{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink2);margin:4px 0}
 .calc input{width:96px;padding:4px 7px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;text-align:right}
 .calc .out{margin-top:6px;padding:7px 9px;border-radius:7px;background:var(--soft);font-size:12px}.calc .out b{font-size:14px}
+/* radar */
+.radar .rg{margin-top:8px}.radar .rg h5{margin:6px 0 2px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.rr{display:grid;grid-template-columns:1.5fr .7fr 2.4fr 1fr;gap:10px;padding:6px 0;border-top:1px solid var(--line);align-items:baseline;font-size:12.5px}
+.rr .k{font-weight:600}.rr .v{font-weight:800;font-size:14px;white-space:nowrap}.rr .d{color:var(--ink2)}.rr .s{font-size:11px;text-align:right}.rr .s a{color:var(--i);text-decoration:none}
+.rr .l{display:block;color:var(--mute);font-size:10.5px}
+.tier{font-size:10px;font-weight:800;border:1px solid var(--line);border-radius:5px;padding:0 5px;margin-right:6px;color:var(--ink2)}
+.tier.t1,.tier.t2{border-color:var(--g);color:var(--g)}.tier.t3{border-color:var(--i);color:var(--i)}
+@media(max-width:700px){.rr{grid-template-columns:1fr auto}.rr .d,.rr .s{grid-column:1/-1;text-align:left}}
 /* feed */
 .filters{display:flex;gap:5px;flex-wrap:wrap}
 .filters button{border:1px solid var(--line);background:var(--card);color:var(--ink2);border-radius:99px;padding:2px 9px;cursor:pointer;font:inherit;font-size:11.5px}
@@ -128,6 +136,11 @@ details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-
 
 <section><div class="tiles" id="tiles"></div></section>
 
+<section class="card">
+ <div class="h fh"><span>Radar dữ liệu gốc · có trước khi lên báo</span><span class="sub legend" style="text-transform:none;letter-spacing:0">T1 dòng tiền/on-chain · T2 thị trường dự đoán (tiền thật) · T3 văn bản chính thống · T4 báo quốc tế · T5 báo Việt</span></div>
+ <div class="radar" id="radar"></div>
+</section>
+
 <section>
  <div class="h" style="margin:4px 2px 6px"><span>Địa chính trị → túi tiền của bạn</span><span class="sub legend" style="text-transform:none;letter-spacing:0">thanh xác suất kịch bản: <span class="dot" style="background:var(--g)"></span> dịu <span class="dot" style="background:var(--w)"></span> giằng co <span class="dot" style="background:var(--b)"></span> leo thang</span></div>
  <div class="grid c3" id="geo"></div>
@@ -153,105 +166,109 @@ details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-
 <script>
 /* ===== DATA – mỗi lần chạy bản tin chỉ thay object này ===== */
 const DATA={
- run:{id:4,date:"10/11/2026",asof:"tin tới 9h 10/11 · USD, vàng miếng chốt 14h36 09/11 · Brent, vàng TG chốt phiên 09/11",next:"Tự chạy 7h sáng hằng ngày · thêm 1 lần trước 15h thứ Năm"},
+ run:{id:5,date:"10/11/2026",asof:"dữ liệu gốc tới 18h 10/11 (VCB 17h58, Whale Alert, Polymarket, Kalshi) · Brent, vàng TG chốt phiên 09/11 · vàng miếng chốt 09/11",next:"Tự chạy 7h sáng hằng ngày · thêm 1 lần trước 15h thứ Năm"},
  profile:"Kỹ sư IT · dịch vụ IT có khách châu Âu · thu nhập VND · chưa nắm giữ tài sản",
  posture:[
-  {k:"Ví tiền",v:"Thuận lợi",c:"g",d:"USD 25.730, Brent 92,5 → xăng 12/11 nhiều khả năng giảm"},
-  {k:"Nghề nghiệp",v:"Cảnh giác",c:"b",d:"Chi AI chững lại; model mới mạnh hơn nhưng đắt ($40/1M token ra)"},
-  {k:"Địa chính trị",v:"Giằng co",c:"w",d:"Trump: chiến sự Iran ‘coi như kết thúc’; Rubio: chưa có đột phá"},
-  {k:"Thị trường",v:"Biến động",c:"w",d:"Fed 82% tăng lãi, Nvidia −6% vì bê bối CEO"}
+  {k:"Ví tiền",v:"Thuận lợi, sắp đổi",c:"w",d:"USD đảo chiều tăng 25.790 (VCB 17h58), báo chưa đưa"},
+  {k:"Nghề nghiệp",v:"Cảnh giác",c:"b",d:"SUSE (Đức) cắt 10% vì AI; 142k người IT mất việc năm 2026"},
+  {k:"Địa chính trị",v:"Giằng co",c:"w",d:"Polymarket: Hormuz bình thường trước 31/12 chỉ 9,5%"},
+  {k:"Dòng tiền",v:"Rút khỏi rủi ro",c:"b",d:"Stablecoin −10 tỷ $/30 ngày; thợ đào đẩy BTC lên sàn"}
  ],
  decisions:[
-  {id:"d1",t:"Khoá tiền gửi 12 tháng trước 14/11",why:"NHNN yêu cầu hạ lãi kỳ ≥6 tháng ≥0,5 điểm %; lãi cho vay mới đã giảm 0,2–0,5 điểm %",gain:"calc:dep",dl:"≤ 14/11"},
-  {id:"d2",t:"Mua trước USD cần dùng 3–6 tháng, chia 2 lần",why:"VCB bán 25.730 (thấp nhất ~1,5 năm, −50đ hôm 9/11); Fed 82% tăng lãi 8–9/12 sẽ kéo USD lên",gain:"calc:usd",dl:"trước 08/12"},
-  {id:"d3",t:"Playbook AI-agent: định tuyến model + quy tắc dữ liệu khách EU",why:"Fable 5.2 ra 9/11: $8/$40 mỗi 1M token, có chế độ Orchestrator giao việc cho model rẻ; tố cáo Gemini đưa email/Drive cho người gán nhãn",gain:"Bảo vệ thu nhập",dl:"2 tuần"}
+  {id:"d1",t:"Mua 50% USD cần dùng trong tuần này, không chờ",why:"Radar VCB: 25.730 (14h36 09/11) → 25.760 (9h10) → 25.790 (17h58 10/11). Báo vẫn viết ‘USD giảm’. Fed tăng lãi T12: 80,5% (Polymarket), 80% (Kalshi)",gain:"calc:usd",dl:"≤ 13/11"},
+  {id:"d2",t:"Khoá tiền gửi 12 tháng trước 14/11",why:"NHNN yêu cầu hạ lãi kỳ ≥6 tháng ≥0,5 điểm %; BCĐ giá 9/11: CPI 10 tháng 4,57% → lãi thực chỉ ~1,5%/năm, càng phải khoá mức cao",gain:"calc:dep",dl:"≤ 14/11"},
+  {id:"d3",t:"Gửi quản lý 1 trang ‘số liệu năng suất AI’ của anh",why:"SUSE (Nuremberg) cắt 10% nhân sự ‘vì AI’, Pipedrive (Tallinn) tái cấu trúc: khách EU đang tính lại chi phí người. Ai có số liệu giờ tiết kiệm + chi phí token sẽ được giữ",gain:"Bảo vệ thu nhập",dl:"≤ 20/11"}
  ],
  cal:[
-  {d:"T5 12/11",c:"g",t:"Kỳ điều hành giá xăng (15h)",x:"Brent 98 → 92,5: ước giảm ~900đ/l (ước tính). Chờ sau 15h mới đổ đầy"},
-  {d:"≤ 14/11",c:"g",t:"Hạn tự đặt: khoá lãi 12 tháng",x:"Trước khi ngân hàng áp đủ mức giảm ≥0,5 điểm %"},
-  {d:"Bất kỳ",c:"w",t:"Mỹ–Iran: Hormuz vẫn bị phong toả",x:"Trump lạc quan, Iran nói ‘không có đàm phán’; đổ vỡ → Brent > 105"},
-  {d:"Cuối 11",c:"n",t:"Anthropic niêm yết Nasdaq (ANT)",x:"Nhà đầu tư nghi mức 2.000 tỷ USD; IPO yếu → khách siết chi AI"},
-  {d:"8–9/12",c:"w",t:"Fed họp: 82% khả năng tăng lãi",x:"USD mạnh lên, áp lực lên vàng và cổ phiếu tech"},
-  {d:"10/01/2027",c:"i",t:"TQ hết hạn hoãn thuế trả đũa 24% với Mỹ",x:"Vừa gia hạn 2 tháng từ 10/11; không gia hạn tiếp → căng thẳng thuế quan"},
-  {d:"3/2027",c:"n",t:"Hết thuế TTĐB xăng 0%",x:"Xăng tăng lại ~1.600–1.800đ/l"}
+  {d:"T5 12/11",c:"g",t:"Kỳ giá xăng (15h)",x:"Brent 98 → 92,5: ước giảm ~900đ/l. Đổ đầy sau 15h; đừng chờ giảm tiếp vì Hormuz vẫn đóng"},
+  {d:"T6 13/11",c:"w",t:"Đáo hạn quyền chọn BTC mốc 70.000$",x:"~1.760 BTC hợp đồng đặt cược giảm (Deribit); BTC đang 74.153$"},
+  {d:"≤ 14/11",c:"g",t:"Hạn tự đặt: khoá lãi 12 tháng",x:"Trước khi ngân hàng áp đủ mức giảm"},
+  {d:"30/11",c:"n",t:"Mốc Polymarket: ngừng bắn Nga–Ukraine",x:"Chỉ 10,5%; tới 31/12: 17,5%"},
+  {d:"8–9/12",c:"w",t:"Fed họp: 80,5% tăng 0,25%",x:"Polymarket 5,1 triệu $ đặt cược; 73% không ai phản đối"},
+  {d:"31/12",c:"w",t:"Mốc Polymarket: Mỹ dỡ phong toả Iran",x:"39%; Hormuz bình thường lại: 9,5%"},
+  {d:"10/01/2027",c:"i",t:"TQ hết hạn hoãn thuế 24% với Mỹ",x:"Không gia hạn → căng thẳng thuế quan"}
  ],
  tiles:[
-  {k:"Xăng E5",v:"20.890",u:"đ",d:"kỳ 05/11; 12/11 dự báo giảm",dir:"dn"},
-  {k:"Xăng E10 RON95",v:"21.150",u:"đ",d:"kỳ 05/11",dir:"dn"},
+  {k:"USD VCB",v:"25.790",d:"17h58 10/11, +60đ",dir:"up"},
   {k:"Brent",v:"92,5",u:"$",d:"−5,8% phiên 09/11",dir:"dn"},
-  {k:"USD/VND",v:"25.730",d:"VCB bán 09/11, −50đ",dir:"dn"},
+  {k:"Xăng E5",v:"20.890",u:"đ",d:"kỳ 05/11; 12/11 giảm",dir:"dn"},
   {k:"Vàng miếng",v:"141,7",u:"tr",d:"SJC bán 09/11",dir:"up"},
-  {k:"Chênh lệch vàng",v:"13,3",u:"tr",d:"≈10% so TG",dir:"dn"},
+  {k:"Chênh lệch vàng",v:"13,0",u:"tr",d:"≈10% so TG",dir:"dn"},
   {k:"Vàng TG",v:"4.139",u:"$",d:"+69$ phiên 09/11",dir:"up"},
-  {k:"VN-Index",v:"~1.700",d:"ngoại −$4,7 tỷ YTD",dir:"dn"},
-  {k:"Fable 5.2",v:"40",u:"$",d:"/1M token ra (vào $8)",dir:"up"},
-  {k:"Fed T12",v:"82",u:"%",d:"tăng lãi (từ 80%)",dir:"up"}
+  {k:"BTC",v:"74.153",u:"$",d:"thử hỗ trợ 73,5k",dir:"dn"},
+  {k:"Stablecoin 30N",v:"−10,1",u:"tỷ$",d:"USDT+USDC −4%",dir:"dn"},
+  {k:"Sa thải IT 2026",v:"142k",d:"350 công ty",dir:"up"},
+  {k:"Fed T12 tăng",v:"80,5",u:"%",d:"Polymarket",dir:"up"}
+ ],
+ radar:[
+  {g:"Tỷ giá trực tiếp",k:"USD bán ra Vietcombank",at:"17h58 10/11",v:"25.790",d:"25.730 (14h36 09/11) → 25.760 (9h10) → 25.790. EUR bán 29.446 (9h10).",lead:"Báo 09/11 vẫn viết ‘tiếp tục hạ giá USD’; đảo chiều chưa lên báo",c:"w",tier:1,src:["VCB XML","https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"]},
+  {g:"Thị trường dự đoán (tiền thật đặt cược)",k:"Hormuz bình thường lại trước 31/12",at:"Polymarket ~18h 10/11",v:"9,5%",d:"Trước 30/11: 3,2%. Khả năng ≥10 tàu/ngày qua Hormuz trước 30/11: 28,5%. 17,5 triệu $ đặt cược.",lead:"Trái với tít ‘Trump: chiến sự coi như kết thúc’; Brent giảm có thể không bền",c:"b",tier:2,src:["Polymarket","https://gamma-api.polymarket.com/public-search?q=hormuz&events_status=active&limit_per_type=5"]},
+  {g:"Thị trường dự đoán (tiền thật đặt cược)",k:"Mỹ tuyên bố dỡ phong toả Iran trước 31/12",at:"Polymarket",v:"39%",d:"321k $ giao dịch 24h.",lead:"Xác suất định lượng thay cho lời nói chính trị",c:"w",tier:2,src:["Polymarket","https://gamma-api.polymarket.com/public-search?q=iran"]},
+  {g:"Thị trường dự đoán (tiền thật đặt cược)",k:"Fed tăng 0,25% ngày 9/12",at:"Polymarket / Kalshi",v:"80,5%",d:"Kalshi 80% (dữ liệu có thể chưa cập nhật). Giữ nguyên 17,5%. 73% không ai phản đối.",lead:"Cập nhật liên tục, báo Việt chỉ nhắc khi có bài Fed",c:"w",tier:2,src:["Polymarket","https://gamma-api.polymarket.com/public-search?q=fed%20december&events_status=active&limit_per_type=5"]},
+  {g:"Thị trường dự đoán (tiền thật đặt cược)",k:"Ngừng bắn Nga–Ukraine",at:"Polymarket",v:"17,5%",d:"Trước 30/11: 10,5%; trước 31/3/2027: 34%.",lead:"Đàm phán 10–11/11 chưa được tin là đột phá",c:"n",tier:2,src:["Polymarket","https://gamma-api.polymarket.com/public-search?q=ukraine%20ceasefire&events_status=active&limit_per_type=5"]},
+  {g:"On-chain / crypto",k:"Stablecoin lưu hành (30 ngày)",at:"DefiLlama 10/11",v:"−10,1 tỷ $",d:"USDT 184,0 → 176,7 tỷ (−4,0%); USDC 73,0 → 70,3 tỷ (−3,7%). 7 ngày: −3,9 tỷ.",lead:"Tiền rút khỏi crypto thường đi trước nhịp giảm tài sản rủi ro",c:"b",tier:1,src:["DefiLlama","https://stablecoins.llama.fi/stablecoins?includePrices=false"]},
+  {g:"On-chain / crypto",k:"Giao dịch lớn bất thường",at:"Whale Alert ~18h 10/11",v:"1.400 BTC",d:"Pool đào Antpool chuyển 2 lần × 700 BTC (~104 triệu $) lên Binance trong 20 phút. Bán chốt lỗ ròng 0,32 tỷ $/24h. Ngược lại: 500 triệu $ USDC vừa được phát hành mới.",lead:"Thợ đào đẩy coin lên sàn = áp lực bán; báo chưa đưa",c:"b",tier:1,src:["Whale Alert","https://whale-alert.io/"]},
+  {g:"On-chain / crypto",k:"Quyền chọn BTC",at:"Deribit 10/11",v:"70k / 40k",d:"Mốc đặt cược giảm lớn: 70.000$ (đáo hạn 13/11), 40.000$ (25/12). Mốc tăng lớn nhất: 80.000$ (25/12). Tỷ lệ put/call ~0,6 (dữ liệu một phần).",lead:"Cho biết vùng giá ‘tổ chức’ đang mua bảo hiểm",c:"w",tier:1,src:["Deribit","https://www.deribit.com/api/v2/public/get_book_summary_by_currency?currency=BTC&kind=option"]},
+  {g:"Việc làm IT",k:"Sa thải ngành công nghệ 2026",at:"layoffs.fyi 10/11",v:"142.432",d:"350 công ty. 10 ngày qua: Fiserv 3.000, Canva 1.271 (22%), Innodata 550 (Ấn Độ), Nice 500, SUSE 190 (10%, Đức, ‘vì AI’), Pipedrive 267 (Estonia), Block, Circle 5%.",lead:"Dữ liệu gốc từng công ty; báo Việt thường chỉ đưa khi là Big Tech",c:"b",tier:1,src:["layoffs.fyi","https://layoffs.fyi/"]},
+  {g:"Văn bản chính thống",k:"Ban chỉ đạo điều hành giá (9/11)",at:"baochinhphu.vn",v:"giữ giá",d:"Giữ giá hàng hoá, dịch vụ Nhà nước quản lý đến hết 2026; tránh điều chỉnh dịp Tết; giảm cước vận tải khi xăng giảm. CPI 10 tháng +4,57%, lõi +4,24%; dự báo cả năm 4,5–4,7%.",lead:"Văn bản gốc trước khi báo diễn giải",c:"g",tier:3,src:["Báo Chính phủ","https://baochinhphu.vn/pho-thu-tuong-nguyen-van-thang-chu-tri-cuoc-hop-ban-chi-dao-dieu-hanh-gia-102261109155253844.htm"]}
  ],
  geo:[
-  {n:"Mỹ – Iran / Hormuz",st:"Giằng co, nghiêng dịu",c:"w",sc:[30,45,25],
-   pts:["MỚI 9/11: Trump gặp Thủ tướng Qatar, nói thấy ‘chuyển biến tích cực’, tấn công mới ‘rất khó xảy ra’; Al Jazeera: Trump nói chiến sự ‘coi như kết thúc’.","Rubio (8/11): yêu sách Iran ‘lố bịch’, không sớm có đột phá. Iran: Mỹ phát tin giả về đàm phán.","Hormuz vẫn bị Iran phong toả; Iran bỏ giới hạn tầm bắn tên lửa; tấn công tàu gần Hormuz chưa dứt."],
-   you:"Brent đã rơi về 92,5 → xăng kỳ 12/11 nhiều khả năng giảm. Nhưng nếu đàm phán đổ vỡ, Brent có thể bật lại nhanh. Mỗi ±10$/thùng ≈ ±1.700đ/l.",tag:"Xăng · Vàng · USD"},
+  {n:"Mỹ – Iran / Hormuz",st:"Giằng co",c:"w",sc:[25,50,25],
+   pts:["Trump (9/11): chiến sự ‘coi như kết thúc’, tấn công mới ‘rất khó’. Rubio: yêu sách Iran ‘lố bịch’, chưa đột phá.","Polymarket: Mỹ dỡ phong toả trước 31/12: 39%; Hormuz bình thường trước 31/12: 9,5%.","Iran vẫn phong toả Hormuz, dọa ‘mưa lửa’ nếu Mỹ leo thang."],
+   you:"Lời nói đã kéo Brent xuống 92,5, nhưng tiền thật cược Hormuz vẫn đóng → nguồn cung dầu chưa cải thiện. Xăng giảm kỳ 12/11 có thể là đáy ngắn hạn.",tag:"Xăng · USD"},
   {n:"Nga – Ukraine",st:"Bế tắc",c:"w",sc:[15,65,20],
-   pts:["Đàm phán ba bên dự kiến 10–11/11: chưa thấy tin kết quả trên VnExpress, Al Jazeera.","Trump: thù địch giữa hai tổng thống là trở ngại lớn nhất.","Đức hết Patriot để viện trợ; Iskander-M đánh trúng cầu ở Kiev."],
-   you:"Gián tiếp: năng lượng châu Âu → lạm phát → ngân sách IT của khách EU (Anh đã tăng lãi).",tag:"Khách hàng EU"},
+   pts:["Polymarket: ngừng bắn trước 30/11: 10,5%; trước 31/12: 17,5%.","Trump: thù địch giữa hai tổng thống là trở ngại lớn nhất.","Đức hết Patriot để viện trợ."],
+   you:"Năng lượng châu Âu đắt kéo dài → khách EU tiếp tục siết chi phí (SUSE, Pipedrive vừa cắt người).",tag:"Khách hàng EU"},
   {n:"Mỹ – Trung",st:"Đình chiến, có gai",c:"w",sc:[40,45,15],
-   pts:["MỚI 9/11: TQ hoãn thêm 2 tháng thuế trả đũa 24%, giữ thuế 10%; cảnh báo nếu Mỹ dùng Mục 301.","Mỹ nghi người tình CEO Nvidia là điệp viên TQ; Bắc Kinh bác bỏ. Nvidia mở điều tra.","TQ mua 25,8 tấn vàng tháng 10, nhiều nhất 3 năm."],
-   you:"Thuế quan tạm yên đến 10/01 → đơn hàng, FDI vào VN ổn định ngắn hạn. Vụ Nvidia có thể kéo theo siết xuất khẩu chip.",tag:"FDI · Việc làm"}
+   pts:["TQ hoãn thêm 2 tháng thuế trả đũa 24% (đến ~10/01/2027).","Mỹ nghi người tình CEO Nvidia là điệp viên TQ; Bắc Kinh bác bỏ.","TQ mua 25,8 tấn vàng tháng 10, nhiều nhất 3 năm."],
+   you:"Thuế quan tạm yên → FDI, đơn hàng vào VN ổn định ngắn hạn.",tag:"FDI · Việc làm"}
  ],
  watch:[
+  {n:"USD/VND (VCB bán)",cur:25790,th:26300,f:"n",dir:"up",act:"Hết cửa sổ mua USD rẻ"},
+  {n:"Fed tăng T12 (Polymarket)",cur:80.5,th:90,f:"%",dir:"up",act:"Mua nốt USD ngay"},
+  {n:"Hormuz bình thường trước 31/12",cur:9.5,th:30,f:"%",dir:"up",act:"Brent giảm bền → không cần tích xăng"},
   {n:"Brent",cur:92.5,th:105,f:"$",dir:"up",act:"Đổ đầy xăng trước 15h thứ Năm"},
-  {n:"USD/VND",cur:25730,th:26300,f:"n",dir:"up",act:"Hết cửa sổ mua USD rẻ"},
-  {n:"Fed tăng T12",cur:82,th:90,f:"%",dir:"up",act:"Chốt mua USD ngay"},
+  {n:"Stablecoin rút 30 ngày",cur:4.0,th:5,f:"%",dir:"up",act:"Risk-off mạnh → cổ phiếu tech yếu, khách hoãn dự án"},
   {n:"Lãi 12T đã giảm",cur:0,th:0.3,f:"đ%",dir:"up",act:"Cửa sổ khoá lãi đã đóng"},
-  {n:"Chênh lệch vàng",cur:13.3,th:8,f:"tr",dir:"down",act:"Hợp lý nếu cần mua vàng"},
-  {n:"Nasdaq từ đỉnh",cur:10,th:20,f:"%",dir:"up",act:"Thị trường gấu → chuẩn bị cho cắt giảm IT"}
+  {n:"Chênh lệch vàng",cur:13.0,th:8,f:"tr",dir:"down",act:"Hợp lý nếu cần mua vàng"}
  ],
- career:{level:75,
-  sig:[["b","Chi AI doanh nghiệp chững lại (Ramp); Apple hạ trần AI $300→$200/ngày/kỹ sư"],["b","Model đầu bảng đắt hơn: Fable 5.2 $8/$40 mỗi 1M token; chênh lệch chi phí giữa model rẻ/đắt ngày càng lớn"],["b","Rủi ro dữ liệu: cáo buộc Gemini (bản cá nhân) đưa email/Drive cho người gán nhãn → khách EU sẽ siết quy định"],["g","Fable 5.2 vượt Opus 5.5 trên FrontierSWE (69,9% vs 62,3%); người biết định tuyến model + kiểm soát chi phí có giá"]],
-  plan:[["T1","Đo chi phí token/tuần; thử 1 tác vụ với model rẻ vs đắt, ghi chất lượng/giá"],["T2","Quy tắc dữ liệu: không đưa dữ liệu khách vào AI bản cá nhân; chặn secret (pre-commit)"],["T3","Playbook 1 trang: bảng định tuyến model, trần token, checklist GDPR/secret"],["T4","Trình quản lý/khách EU; đề xuất vai trò AI delivery lead"]]},
- calcs:{dep:{amount:200,rate:6.0,cut:0.5},usd:{need:2000,now:25730,base:26300,bad:27000},gold:{qty:1,dom:141.7,world:4139,fair:8},fuel:{liters:40}},
+ career:{level:77,
+  sig:[["b","SUSE (Đức) cắt 10% ‘vì AI’, Pipedrive (Estonia) tái cấu trúc: khách EU cắt người vì AI đã thành thật"],["b","142.432 người IT mất việc năm 2026 (layoffs.fyi); 10 ngày qua thêm Fiserv 3.000, Canva 1.271"],["b","Chi AI doanh nghiệp chững lại (Ramp); Apple hạ trần AI $300→$200/ngày/kỹ sư"],["g","Fable 5.2 vượt Opus 5.5 trên FrontierSWE (69,9% vs 62,3%); người biết định tuyến model + kiểm soát chi phí có giá"]],
+  plan:[["T1","Ghi số giờ tiết kiệm + chi phí token 5 tác vụ gần nhất"],["T2","Gửi quản lý 1 trang số liệu (d3); đề xuất áp dụng cho dự án khách EU"],["T3","Quy tắc dữ liệu khách (GDPR) + bảng định tuyến model rẻ/đắt"],["T4","Đề xuất vai trò AI delivery lead với khách EU"]]},
+ calcs:{dep:{amount:200,rate:6.0,cut:0.5},usd:{need:2000,now:25790,base:26300,bad:27000},gold:{qty:1,dom:141.7,world:4139,fair:8},fuel:{liters:40}},
  feed:[
-  {cat:"So với #3",t:"Chưa ngưỡng nào kích hoạt; Brent rời xa ngưỡng, Fed nhích lên 82%",y:"giữ d1, d2; d3 thêm định tuyến model + dữ liệu",imp:3,lead:3,conf:4,h:"tuần này",c:"i",
-   what:"(1) Brent 98 → 92,5 (−5,8% phiên 9/11) sau khi Trump nói tấn công mới ‘rất khó’; ngưỡng 105 càng xa → không cần đổ xăng sớm. (2) USD VCB 25.780 → 25.730; vàng miếng 141 → 141,7; vàng TG 4.100 → 4.139; chênh lệch 13,5 → 13,3tr. (3) Fed 80% → 82%, vẫn dưới ngưỡng 90%. (4) Mới: TQ hoãn thuế 24% thêm 2 tháng; Fable 5.2 ra mắt. Iran sc dịu 20 → 30%. Nga–Ukraine: chưa có kết quả đàm phán.",you:"Ví tiền thuận hơn (xăng sắp giảm, USD rẻ thêm). Rủi ro nghề nghiệp giữ 75.",act:"Làm d1 trước 14/11; chờ sau 15h thứ Năm mới đổ xăng.",
-   src:[["Vàng–dầu","https://vnexpress.net/gia-vang-the-gioi-tang-manh-gia-dau-lao-doc-5142686.html"],["USD","https://vnexpress.net/ngan-hang-tiep-tuc-ha-gia-usd-ve-sat-25-700-dong-5142468.html"]]},
-  {cat:"Ví tiền",t:"Brent rơi về 92,5: xăng kỳ 12/11 nhiều khả năng giảm",y:"đừng đổ đầy trước thứ Năm",imp:3,lead:4,conf:4,h:"2 ngày",c:"g",
-   what:"Phiên 9/11: Brent −5,8% (gần 6$) còn 92,5$/thùng, có lúc −7$; WTI 86,8$. Lý do: Trump giảm khả năng tấn công Iran, USD yếu. Xăng hiện E5 20.890đ, E10 21.150đ (kỳ 05/11).",you:"Theo quy tắc ±10$ ≈ ±1.700đ/l, kỳ 12/11 có thể giảm ~900đ/l (ước tính, còn phụ thuộc giá Singapore và quỹ bình ổn).",act:"Đổ xăng vừa đủ đến thứ Năm, đổ đầy sau 15h 12/11.",
-   src:[["VnExpress","https://vnexpress.net/gia-vang-the-gioi-tang-manh-gia-dau-lao-doc-5142686.html"],["Giá xăng","https://vnexpress.net/gia-xang-dau-moi-nhat-hom-nay-5-11-5141125.html"]]},
-  {cat:"Ví tiền",t:"USD ngân hàng xuống 25.730, tự do 25.950–26.000",y:"cửa sổ mua USD rẻ vẫn mở",imp:4,lead:4,conf:5,h:"4 tuần",c:"g",
-   what:"14h36 9/11: VCB 25.320–25.730 (−50đ), Techcombank 25.332–25.730, ACB 25.310–25.700; tỷ giá trung tâm 25.610. Thị trường tự do cao hơn ~300đ. Techcombank dự báo tỷ giá quanh 26.000.",you:"Nếu cần USD (học phí, thiết bị, du lịch) trong 3–6 tháng, mua ở ngân hàng rẻ hơn chợ tự do ~250đ/USD và có thể rẻ hơn sau Fed.",act:"Mua 50% nhu cầu tuần này, 50% còn lại trước 08/12 hoặc ngay khi Fed ≥90%.",
-   src:[["VnExpress","https://vnexpress.net/ngan-hang-tiep-tuc-ha-gia-usd-ve-sat-25-700-dong-5142468.html"]]},
-  {cat:"Nghề nghiệp",t:"Claude Fable 5.2: mạnh hơn, đắt hơn, có chế độ điều phối model rẻ",y:"kỹ năng định tuyến model thành lợi thế",imp:4,lead:5,conf:5,h:"1–3 th",c:"g",
-   what:"Ra mắt 9/11. FrontierSWE v2 69,9% (Opus 5.5: 62,3%; GPT-6 Astra: 65,5%). Giá $8 vào/$40 ra mỗi 1M token; fast mode $16/$80. Có thể làm Orchestrator giao việc đơn giản cho Haiku/Sonnet/Opus. HN: 823 điểm; song song có chủ đề ‘Opus 5.5 bị giảm chất lượng?’ (693 điểm).",you:"Khách EU đang soi chi phí AI. Người biết khi nào dùng model đắt, khi nào dùng model rẻ sẽ tiết kiệm tiền thật cho khách.",act:"Chạy thử 1 tác vụ thực tế với 2 mức model, ghi giá/chất lượng vào playbook d3.",
+  {cat:"So với #4",tier:1,early:"cùng ngày",t:"Bản mới dùng dữ liệu gốc: USD đã đảo chiều, Hormuz vẫn bị thị trường cược là đóng",y:"đưa mua USD lên d1",imp:4,lead:5,conf:4,h:"tuần này",c:"i",
+   what:"(1) VCB: 25.730 → 25.790 trong một ngày (#4 ghi 25.730). (2) Thêm mục Radar: Polymarket, Kalshi, Whale Alert, DefiLlama, Deribit, layoffs.fyi, văn bản Chính phủ. (3) Chưa ngưỡng nào kích hoạt; gần nhất: stablecoin rút 4,0%/30 ngày (ngưỡng 5%), Fed 80,5% (ngưỡng 90%). (4) Rủi ro nghề nghiệp 75 → 77 vì làn sóng cắt giảm ở châu Âu.",you:"Hành động về USD nên làm trong tuần, không chờ tới tháng 12.",act:"d1 mua 50% USD ≤13/11; d2 khoá lãi ≤14/11.",
+   src:[["VCB","https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"],["Polymarket","https://polymarket.com"]]},
+  {cat:"Ví tiền",tier:1,early:"~1 ngày trước báo",t:"USD đảo chiều tăng: 25.790 lúc 17h58",y:"cửa sổ USD rẻ bắt đầu khép",imp:4,lead:5,conf:5,h:"1–4 tuần",c:"w",
+   what:"VCB bán: 25.730 (14h36 9/11) → 25.760 (9h10 10/11) → 25.790 (17h58). Bài báo mới nhất (9/11) vẫn là ‘tiếp tục hạ giá USD’. Fed tăng lãi T12: 80,5–80%.",you:"Nếu cần USD trong 3–6 tháng (thiết bị, học phí, du lịch), mỗi ngày chờ có thể mất 30–60đ/USD.",act:"Mua 50% nhu cầu trước 13/11; nửa còn lại khi Fed ≥90% hoặc trước 8/12.",
+   src:[["VCB XML","https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"],["Polymarket","https://gamma-api.polymarket.com/public-search?q=fed%20december&events_status=active&limit_per_type=5"]]},
+  {cat:"Địa chính trị",tier:2,early:"định lượng trước tin",t:"Tiền thật không tin chiến sự Iran ‘đã xong’",y:"Brent giảm có thể không bền",imp:4,lead:5,conf:4,h:"0–6 tuần",c:"w",
+   what:"Polymarket: Hormuz bình thường lại trước 31/12: 9,5% (17,5 triệu $ cược); trước 30/11: 3,2%. Mỹ dỡ phong toả trước 31/12: 39%. Trong khi đó báo đưa ‘Trump: chiến sự coi như kết thúc’, Brent −5,8%.",you:"Xăng kỳ 12/11 sẽ giảm, nhưng nếu Hormuz vẫn đóng, giá dầu dễ bật lại → kỳ sau có thể tăng.",act:"Đổ đầy sau 15h thứ Năm; không trông chờ giảm thêm.",
+   src:[["Polymarket","https://gamma-api.polymarket.com/public-search?q=hormuz&events_status=active&limit_per_type=5"],["VnExpress","https://vnexpress.net/ong-trump-thay-tin-hieu-tich-cuc-trong-xung-dot-voi-iran-5142700.html"]]},
+  {cat:"Nghề nghiệp",tier:1,early:"báo Việt chưa đưa",t:"Khách châu Âu cắt người ‘vì AI’: SUSE −10%, Pipedrive tái cấu trúc",y:"ngân sách IT EU đang bị tính lại",imp:4,lead:4,conf:4,h:"1–6 th",c:"b",
+   what:"layoffs.fyi (10 ngày qua): SUSE (Nuremberg) 190 người, 10%, lý do AI; Pipedrive (Tallinn) 267; Canva 1.271 (22%); Fiserv 3.000; Innodata 550 ở Ấn Độ (nhóm outsourcing dữ liệu). Năm 2026: 142.432 người, 350 công ty.",you:"Công ty dịch vụ IT có khách EU sẽ bị ép giá/giảm headcount. Người chứng minh được năng suất bằng số sẽ được giữ.",act:"d3: gửi quản lý 1 trang số liệu năng suất AI trước 20/11.",
+   src:[["layoffs.fyi","https://layoffs.fyi/"],["The Register","https://www.theregister.com/software/2026/11/02/suse-to-cut-one-in-ten-employees-because-of-ai/5306950"]]},
+  {cat:"Dòng tiền",tier:1,early:"on-chain, trước tin giá",t:"Tiền rút khỏi crypto: stablecoin −10 tỷ $/tháng, thợ đào đẩy BTC lên sàn",y:"tín hiệu risk-off",imp:3,lead:5,conf:3,h:"1–4 tuần",c:"b",
+   what:"DefiLlama: USDT −7,3 tỷ, USDC −2,7 tỷ trong 30 ngày. Whale Alert: Antpool chuyển 1.400 BTC (~104 triệu $) lên Binance trong 20 phút; chốt lỗ ròng 0,32 tỷ $/24h; BTC 74.153$, thử hỗ trợ 73,5k. Deribit: mốc cược giảm lớn 70k (13/11). Tín hiệu ngược: 500 triệu $ USDC mới phát hành.",you:"Anh chưa giữ tài sản → không bắt đáy crypto. Risk-off kéo cổ phiếu tech yếu → khách EU dễ hoãn dự án mới.",act:"Chỉ theo dõi; nếu stablecoin rút >5%/30 ngày thì chuẩn bị kịch bản dự án bị hoãn.",
+   src:[["DefiLlama","https://stablecoins.llama.fi/stablecoins?includePrices=false"],["Whale Alert","https://whale-alert.io/"],["Deribit","https://www.deribit.com/api/v2/public/get_book_summary_by_currency?currency=BTC&kind=option"]]},
+  {cat:"Ví tiền",tier:3,early:"văn bản gốc",t:"BCĐ giá: giữ giá dịch vụ công đến hết 2026, CPI 4,57%",y:"chi phí sống ổn, lãi thực thấp",imp:3,lead:4,conf:5,h:"đến Tết",c:"g",
+   what:"Họp 9/11 (PTT Nguyễn Văn Thắng): giữ giá hàng hoá, dịch vụ Nhà nước quản lý đến hết 2026, tránh điều chỉnh dịp Tết; giảm cước vận tải khi xăng giảm; kiểm tra phí giáo dục. CPI 10 tháng +4,57%, lõi +4,24%; dự báo cả năm 4,5–4,7%. Thuế TTĐB xăng 0% và giá điện −2% đến 31/3/2027.",you:"Không có cú tăng giá điện, học phí, dịch vụ công trước Tết. Gửi tiết kiệm 6%/năm chỉ còn ~1,5% lãi thực.",act:"Khoá lãi 12 tháng (d2); hỏi lại giá cước xe/giao hàng sau 12/11.",
+   src:[["Báo Chính phủ","https://baochinhphu.vn/pho-thu-tuong-nguyen-van-thang-chu-tri-cuoc-hop-ban-chi-dao-dieu-hanh-gia-102261109155253844.htm"]]},
+  {cat:"Ví tiền",tier:2,early:"cập nhật liên tục",t:"Fed 9/12: 80,5% tăng 0,25%",y:"USD mạnh lên trong 4 tuần tới",imp:4,lead:3,conf:4,h:"4 tuần",c:"w",
+   what:"Polymarket: tăng 0,25%: 80,5% (5,1 triệu $), giữ nguyên 17,5%; 73% không có ai phản đối. Kalshi: 80%. Việc làm T10 tốt, lương chưa theo kịp lạm phát.",you:"Thêm lý do mua USD sớm.",act:"Theo ngưỡng 90%.",
+   src:[["Polymarket","https://gamma-api.polymarket.com/public-search?q=fed%20december&events_status=active&limit_per_type=5"],["Kalshi","https://kalshi.com"]]},
+  {cat:"Nghề nghiệp",tier:4,early:"trong ngày",t:"Claude Fable 5.2: mạnh hơn, đắt hơn, có chế độ điều phối model rẻ",y:"kỹ năng định tuyến model thành lợi thế",imp:4,lead:4,conf:5,h:"1–3 th",c:"g",
+   what:"Ra mắt 9/11. FrontierSWE v2 69,9% (Opus 5.5: 62,3%). Giá $8 vào / $40 ra mỗi 1M token; có thể làm Orchestrator giao việc đơn giản cho model rẻ.",you:"Khách EU soi chi phí AI; biết dùng model nào cho việc nào = tiết kiệm tiền thật cho khách.",act:"Đưa vào trang số liệu d3: so sánh 1 tác vụ với 2 mức model.",
    src:[["Anthropic","https://www.anthropic.com/claude-fable-and-mythos-5-2"],["HN","https://news.ycombinator.com"]]},
-  {cat:"An toàn",t:"Cáo buộc Gemini đưa email, file Drive cho người gán nhãn",y:"dữ liệu khách không được vào AI bản cá nhân",imp:3,lead:4,conf:2,h:"ngay",c:"b",
-   what:"Một repo GitHub (HN 247 điểm) cho rằng Gemini bản cá nhân có Connected Apps tự lấy email/file và có thể bị người duyệt xem; dẫn trang trợ giúp Google và bản sửa blog 16/10. Chưa có kiểm chứng độc lập; không nói về tài khoản Workspace doanh nghiệp.",you:"Một lần dán dữ liệu khách EU vào AI cá nhân có thể là vi phạm GDPR và mất hợp đồng.",act:"Chỉ dùng tài khoản AI doanh nghiệp cho việc khách; tắt Connected Apps trên tài khoản cá nhân.",
-   src:[["GitHub","https://github.com/thisisme6598/gemini_files/"],["HN","https://news.ycombinator.com"]]},
-  {cat:"Địa chính trị",t:"Trump: chiến sự Iran ‘coi như kết thúc’, Rubio: chưa đột phá",y:"dịu trên lời nói, Hormuz vẫn đóng",imp:4,lead:3,conf:4,h:"0–4 tuần",c:"w",
-   what:"Sau gặp Thủ tướng Qatar (9/11), Trump thấy ‘chuyển biến tích cực’, thừa nhận chiến sự là một lý do Cộng hòa thua giữa kỳ. Rubio: yêu sách Iran ‘lố bịch’. Iran yêu cầu chấm dứt chiến sự, giải phóng tài sản, dỡ trừng phạt dầu để mở Hormuz; dọa ‘mưa lửa’ nếu Mỹ leo thang.",you:"Áp lực chính trị trong nước Mỹ đẩy về phía hạ nhiệt → tốt cho giá xăng, USD. Rủi ro: một vụ tấn công tàu có thể đảo chiều trong một ngày.",act:"Không hành động thêm; theo dõi ngưỡng Brent 105.",
-   src:[["VnExpress","https://vnexpress.net/ong-trump-thay-tin-hieu-tich-cuc-trong-xung-dot-voi-iran-5142700.html"],["VnExpress","https://vnexpress.net/ngoai-truong-my-iran-ra-yeu-sach-lo-bich-trong-dam-phan-5142635.html"],["Al Jazeera","https://www.aljazeera.com/news/liveblog/2026/11/9/iran-war-live-trump-says-land-blockade-in-effect-drone-cuts-power-in-iraq"]]},
-  {cat:"Ví tiền",t:"Fed: 82% khả năng tăng lãi tháng 12",y:"USD rẻ không kéo dài",imp:4,lead:4,conf:4,h:"4 tuần",c:"w",
-   what:"Xác suất tăng lãi 80% → 82%. Việc làm T10 tốt hơn dự kiến, lương chưa theo kịp lạm phát. Anh, Úc đã tăng lãi. Dầu giảm có thể làm Fed bớt gắt.",you:"Ngưỡng 90% chưa chạm; còn thời gian mua USD từ từ.",act:"Giữ kế hoạch d2.",
-   src:[["VnExpress","https://vnexpress.net/gia-vang-the-gioi-tang-manh-gia-dau-lao-doc-5142686.html"],["Fed","https://vnexpress.net/quan-chuc-fed-can-nhac-tang-lai-sau-bao-cao-viec-lam-kha-quan-5141851.html"]]},
-  {cat:"Ví tiền",t:"Lãi tiền gửi kỳ dài sắp bị hạ",y:"khoá trước 14/11",imp:4,lead:4,conf:4,h:"1 tuần",c:"g",
-   what:"NHNN yêu cầu giảm ≥0,5 điểm % với kỳ ≥6 tháng. Lãi cho vay mới cuối tháng 10 đã giảm 0,2–0,5 điểm %. NHNN bơm tối đa 48.800 tỷ qua hoán đổi ngoại tệ 182 ngày. Chưa có số liệu lãi tiết kiệm mới.",you:"Người gửi biết muộn hơn ngân hàng.",act:"So sánh 3 app ngân hàng, gửi kỳ 12 tháng trước 14/11.",
-   src:[["VnExpress","https://vnexpress.net/pho-thong-doc-lai-suat-cho-vay-moi-giam-0-2-0-5-5140740.html"],["NHNN","https://vnexpress.net/ngan-hang-nha-nuoc-du-kien-bom-gan-49-000-ty-qua-kenh-hoan-doi-ngoai-te-5140710.html"]]},
-  {cat:"Thị trường",t:"Nvidia −6% vì bê bối CEO, nghi liên quan tình báo TQ",y:"rủi ro chính sách chip Mỹ–Trung",imp:3,lead:3,conf:4,h:"1–3 th",c:"w",
-   what:"Nvidia mất hơn 300 tỷ USD vốn hoá đầu phiên 9/11; hãng điều tra CEO Jensen Huang, chưa có người kế nhiệm. Mỹ nghi người tình là điệp viên TQ; Bắc Kinh bác bỏ.",you:"Biến động Big Tech và nguy cơ siết xuất khẩu chip → khách có thể hoãn dự án AI/hạ tầng.",act:"Theo dõi; không cần hành động.",
-   src:[["VnExpress","https://vnexpress.net/co-phieu-nvidia-lao-doc-sau-be-boi-ngoai-tinh-cua-jensen-huang-5142650.html"],["VnExpress","https://vnexpress.net/my-nghi-ceo-nvidia-co-quan-he-tinh-cam-voi-diep-vien-trung-quoc-5142179.html"]]},
-  {cat:"Địa chính trị",t:"TQ hoãn thuế trả đũa 24% thêm 2 tháng",y:"đình chiến thương mại kéo dài tới 10/01",imp:2,lead:3,conf:5,h:"2 th",c:"g",
-   what:"Từ 10/11, hoãn thêm 2 tháng thuế 24% với hàng Mỹ, giữ thuế 10%, theo thoả thuận thượng đỉnh tháng 9. Bắc Kinh cảnh báo nếu Mỹ dùng Mục 301 thay các thuế bị Toà Tối cao bác.",you:"Ít cú sốc thuế quan trước Tết → việc làm, đơn hàng ổn định.",act:"Không cần hành động.",
-   src:[["VnExpress","https://vnexpress.net/trung-quoc-tiep-tuc-hoan-ap-thue-tra-dua-my-5142393.html"]]},
-  {cat:"Ví tiền",t:"Vàng miếng 141,7tr, đắt hơn thế giới ~13,3tr",y:"chưa nên mua",imp:2,lead:3,conf:4,h:"1–3 th",c:"w",
-   what:"SJC 138,7–141,7tr (14h36 9/11); nhẫn 137,3–141,3tr. Vàng TG 4.139$ (+69$), quy đổi ~128,4tr. TQ mua 25,8 tấn tháng 10.",you:"Mua lúc này là trả dư ~13tr/lượng.",act:"Chờ chênh lệch < 8tr.",
-   src:[["VnExpress","https://vnexpress.net/ngan-hang-tiep-tuc-ha-gia-usd-ve-sat-25-700-dong-5142468.html"],["Vàng TG","https://vnexpress.net/gia-vang-the-gioi-tang-manh-gia-dau-lao-doc-5142686.html"]]},
-  {cat:"Nghề nghiệp",t:"Chi tiêu AI doanh nghiệp chững lại trước IPO Anthropic",y:"‘dùng AI có kiểm soát’ mới là điểm cộng",imp:3,lead:4,conf:4,h:"1–6 th",c:"b",
-   what:"Dữ liệu Ramp (6/11): chi AI doanh nghiệp đi ngang. Apple hạ trần AI $300 → $200/ngày/kỹ sư; Goldman thu hẹp Claude Code. Nhà đầu tư nghi mức định giá 2.000 tỷ USD của Anthropic.",you:"Khách EU sẽ hỏi chi bao nhiêu token, tiết kiệm bao nhiêu giờ.",act:"Ghi chi phí/giờ tiết kiệm từ nay; đưa vào playbook d3.",
-   src:[["TechCrunch","https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/"],["VnExpress","https://vnexpress.net/nha-dau-tu-ngo-vuc-muc-dinh-gia-2-000-ty-usd-cua-anthropic-5142087.html"]]},
-  {cat:"Địa chính trị",t:"Nga–Ukraine: chưa thấy kết quả đàm phán",y:"khó có ngừng bắn nhanh",imp:2,lead:2,conf:3,h:"1–2 tuần",c:"w",
-   what:"Không thấy tin kết quả vòng 10–11/11. Trump cho rằng thù địch cá nhân cản trở hoà bình. Đức hết Patriot để viện trợ.",you:"Ảnh hưởng gián tiếp qua năng lượng và ngân sách châu Âu.",act:"Không cần hành động.",
-   src:[["VnExpress","https://vnexpress.net/ong-trump-chi-ra-su-thu-dich-can-tro-hoa-binh-ukraine-5142377.html"],["VnExpress","https://vnexpress.net/duc-can-sach-ten-lua-patriot-de-vien-tro-ukraine-5142206.html"]]}
+  {cat:"Địa chính trị",tier:2,early:"định lượng",t:"Ngừng bắn Nga–Ukraine trước 31/12: 17,5%",y:"năng lượng EU đắt kéo dài",imp:2,lead:3,conf:4,h:"1–2 th",c:"w",
+   what:"Polymarket: trước 30/11: 10,5%; trước 31/12: 17,5%; trước 31/3/2027: 34%. Chưa thấy tin kết quả đàm phán 10–11/11.",you:"Gián tiếp qua ngân sách IT của khách EU.",act:"Không cần hành động.",
+   src:[["Polymarket","https://gamma-api.polymarket.com/public-search?q=ukraine%20ceasefire&events_status=active&limit_per_type=5"]]},
+  {cat:"Ví tiền",tier:5,early:"không sớm",t:"Vàng miếng 141,7tr, đắt hơn thế giới ~13tr",y:"chưa nên mua",imp:2,lead:2,conf:4,h:"1–3 th",c:"w",
+   what:"SJC 138,7–141,7tr (9/11). Vàng TG 4.139$, quy đổi theo VCB 25.790 ≈ 128,7tr. TQ mua 25,8 tấn tháng 10.",you:"Mua lúc này là trả dư ~13tr/lượng.",act:"Chờ chênh lệch < 8tr.",
+   src:[["VnExpress","https://vnexpress.net/ngan-hang-tiep-tuc-ha-gia-usd-ve-sat-25-700-dong-5142468.html"],["Vàng TG","https://vnexpress.net/gia-vang-the-gioi-tang-manh-gia-dau-lao-doc-5142686.html"]]}
  ],
- sources:"Nguồn: VnExpress, Al Jazeera, TechCrunch, Hacker News, Anthropic · bản #4 · 10/11/2026"
+ sources:"Nguồn: Vietcombank XML, Polymarket, Kalshi, DefiLlama, Whale Alert, Deribit, layoffs.fyi, Báo Chính phủ, VnExpress, Al Jazeera, TechCrunch, Hacker News · bản #5 · 10/11/2026"
 };
 
 /* ===== RENDER ===== */
@@ -297,15 +314,19 @@ function decisions(){const done=store.get("done_"+DATA.run.id)||{};
  document.querySelectorAll("#decisions input").forEach(cb=>cb.onchange=()=>{const s=store.get("done_"+DATA.run.id)||{};s[cb.dataset.id]=cb.checked;store.set("done_"+DATA.run.id,s);decisions()});}
 calc();
 
+/* radar */
+const TN={1:"T1 dòng tiền",2:"T2 dự đoán",3:"T3 văn bản",4:"T4 báo QT",5:"T5 báo Việt"};
+if(DATA.radar){const gs=[...new Set(DATA.radar.map(r=>r.g))];
+$("#radar").innerHTML=gs.map(g=>`<div class="rg"><h5>${g}</h5>${DATA.radar.filter(r=>r.g==g).map(r=>`<div class="rr"><div class="k"><span class="dot" style="background:${CC[r.c]}"></span> ${r.k}<span class="l">${r.at||""}</span></div><div class="v">${r.v}</div><div class="d">${r.d}<span class="l">→ ${r.lead}</span></div><div class="s"><span class="tier t${r.tier}">T${r.tier}</span><a href="${r.src[1]}" target="_blank" rel="noopener">${r.src[0]} ↗</a></div></div>`).join("")}</div>`).join("");}
 /* feed */
 const cats=["Tất cả",...new Set(DATA.feed.map(x=>x.cat))];let cur="Tất cả";const pr=x=>x.imp*x.lead*x.conf;
 function feed(){
  $("#filters").innerHTML=cats.map(c=>`<button class="${c==cur?"on":""}" data-c="${c}">${c}</button>`).join("");
  document.querySelectorAll("#filters button").forEach(b=>b.onclick=()=>{cur=b.dataset.c;feed()});
  $("#feed").innerHTML=DATA.feed.filter(x=>cur=="Tất cả"||x.cat==cur).sort((a,b)=>pr(b)-pr(a)).map(x=>`<details class="it"><summary>
-  <span class="sc ${x.c}">${pr(x)}</span><span class="t">${x.t} <span>· ${x.y}</span></span><span class="p n hz">${x.h}</span><span class="chev">›</span></summary>
+  <span class="sc ${x.c}">${pr(x)}</span><span class="t">${x.tier?`<span class="tier t${x.tier}">T${x.tier}</span>`:""}${x.t} <span>· ${x.y}</span></span><span class="p n hz">${x.h}</span><span class="chev">›</span></summary>
   <div class="body"><div><h4>Chuyện gì</h4>${x.what}</div><div><h4>Nghĩa là gì với bạn</h4>${x.you}</div><div><h4>Làm gì</h4><b style="color:var(--ink)">${x.act}</b></div>
-  <div class="src">Tác động ${x.imp} · Lợi thế sớm ${x.lead} · Độ tin cậy ${x.conf} · ${x.src.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${s[0]} ↗</a>`).join("")}</div></div></details>`).join("");}
+  <div class="src">${x.tier?`Nguồn ${TN[x.tier]}${x.early?" · sớm: "+x.early:""} · `:""}Tác động ${x.imp} · Lợi thế sớm ${x.lead} · Độ tin cậy ${x.conf} · ${x.src.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${s[0]} ↗</a>`).join("")}</div></div></details>`).join("");}
 if(matchMedia("(max-width:600px)").matches)document.querySelectorAll(".gd").forEach(d=>d.open=false);
 feed();$("#src").textContent=DATA.sources;
 </script>
