@@ -166,16 +166,16 @@ details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-
 <script>
 /* ===== DATA – mỗi lần chạy bản tin chỉ thay object này ===== */
 const DATA={
- run:{id:5,date:"10/11/2026",asof:"dữ liệu gốc tới 18h 10/11 (VCB 17h58, Whale Alert, Polymarket, Kalshi) · Brent, vàng TG chốt phiên 09/11 · vàng miếng chốt 09/11",next:"Tự chạy 7h sáng hằng ngày · thêm 1 lần trước 15h thứ Năm"},
+ run:{id:6,date:"10/11/2026",asof:"collector tự động 18h18 10/11 (Polymarket, DefiLlama, ADS-B quân sự, US Treasury, ECB, CNN F&G, HN) · VCB 17h58 · Brent, vàng TG chốt phiên 09/11 · vàng miếng chốt 09/11",next:"Tự chạy 7h sáng hằng ngày · thêm 1 lần trước 15h thứ Năm"},
  profile:"Kỹ sư IT · dịch vụ IT có khách châu Âu · thu nhập VND · chưa nắm giữ tài sản",
  posture:[
   {k:"Ví tiền",v:"Thuận lợi, sắp đổi",c:"w",d:"USD đảo chiều tăng 25.790 (VCB 17h58), báo chưa đưa"},
   {k:"Nghề nghiệp",v:"Cảnh giác",c:"b",d:"SUSE (Đức) cắt 10% vì AI; 142k người IT mất việc năm 2026"},
   {k:"Địa chính trị",v:"Giằng co",c:"w",d:"Polymarket: Hormuz bình thường trước 31/12 chỉ 9,5%"},
-  {k:"Dòng tiền",v:"Rút khỏi rủi ro",c:"b",d:"Stablecoin −10 tỷ $/30 ngày; thợ đào đẩy BTC lên sàn"}
+  {k:"Tripwire",v:"1 KÍCH HOẠT",c:"b",d:"Fed tăng lãi 2026: 91% (+15,5 điểm/24h) – vượt ngưỡng 90%"}
  ],
  decisions:[
-  {id:"d1",t:"Mua 50% USD cần dùng trong tuần này, không chờ",why:"Radar VCB: 25.730 (14h36 09/11) → 25.760 (9h10) → 25.790 (17h58 10/11). Báo vẫn viết ‘USD giảm’. Fed tăng lãi T12: 80,5% (Polymarket), 80% (Kalshi)",gain:"calc:usd",dl:"≤ 13/11"},
+  {id:"d1",t:"Mua TOÀN BỘ USD cần dùng 3–6 tháng ngay ngày mai",why:"TRIPWIRE: Polymarket ‘Fed tăng lãi trong 2026’ nhảy 75,5% → 91% trong 24h (tăng 0,25% ngày 9/12: 86,5%, +10 điểm). VCB đã lên 25.790. Báo Việt chưa có tin",gain:"calc:usd",dl:"11/11"},
   {id:"d2",t:"Khoá tiền gửi 12 tháng trước 14/11",why:"NHNN yêu cầu hạ lãi kỳ ≥6 tháng ≥0,5 điểm %; BCĐ giá 9/11: CPI 10 tháng 4,57% → lãi thực chỉ ~1,5%/năm, càng phải khoá mức cao",gain:"calc:dep",dl:"≤ 14/11"},
   {id:"d3",t:"Gửi quản lý 1 trang ‘số liệu năng suất AI’ của anh",why:"SUSE (Nuremberg) cắt 10% nhân sự ‘vì AI’, Pipedrive (Tallinn) tái cấu trúc: khách EU đang tính lại chi phí người. Ai có số liệu giờ tiết kiệm + chi phí token sẽ được giữ",gain:"Bảo vệ thu nhập",dl:"≤ 20/11"}
  ],
@@ -184,7 +184,7 @@ const DATA={
   {d:"T6 13/11",c:"w",t:"Đáo hạn quyền chọn BTC mốc 70.000$",x:"~1.760 BTC hợp đồng đặt cược giảm (Deribit); BTC đang 74.153$"},
   {d:"≤ 14/11",c:"g",t:"Hạn tự đặt: khoá lãi 12 tháng",x:"Trước khi ngân hàng áp đủ mức giảm"},
   {d:"30/11",c:"n",t:"Mốc Polymarket: ngừng bắn Nga–Ukraine",x:"Chỉ 10,5%; tới 31/12: 17,5%"},
-  {d:"8–9/12",c:"w",t:"Fed họp: 80,5% tăng 0,25%",x:"Polymarket 5,1 triệu $ đặt cược; 73% không ai phản đối"},
+  {d:"8–9/12",c:"b",t:"Fed họp: 86,5% tăng 0,25% (+10 điểm/24h)",x:"‘Giữ nguyên’ rơi 22,5% → 8,5%; tăng 0,5%: 5,7%"},
   {d:"31/12",c:"w",t:"Mốc Polymarket: Mỹ dỡ phong toả Iran",x:"39%; Hormuz bình thường lại: 9,5%"},
   {d:"10/01/2027",c:"i",t:"TQ hết hạn hoãn thuế 24% với Mỹ",x:"Không gia hạn → căng thẳng thuế quan"}
  ],
@@ -198,9 +198,16 @@ const DATA={
   {k:"BTC",v:"74.153",u:"$",d:"thử hỗ trợ 73,5k",dir:"dn"},
   {k:"Stablecoin 30N",v:"−10,1",u:"tỷ$",d:"USDT+USDC −4%",dir:"dn"},
   {k:"Sa thải IT 2026",v:"142k",d:"350 công ty",dir:"up"},
-  {k:"Fed T12 tăng",v:"80,5",u:"%",d:"Polymarket",dir:"up"}
+  {k:"Fed tăng 2026",v:"91",u:"%",d:"+15,5 điểm/24h",dir:"up"}
  ],
  radar:[
+  {g:"Tripwire tự động (collector)",k:"Polymarket: Fed tăng lãi trong 2026",at:"18h18 10/11",v:"91%",d:"+15,5 điểm trong 24h, +18,5 trong 7 ngày. Tăng 0,25% ngày 9/12: 86,5% (+10); giữ nguyên: 8,5% (−14).",lead:"Tiền thật đổi hướng trước khi có tin; báo Việt chưa đưa",c:"b",tier:2,src:["Polymarket","https://polymarket.com/market/another-fed-rate-hike-in-2026"]},
+  {g:"Tripwire tự động (collector)",k:"Polymarket: Israel–Iran giữ ngừng bắn tới 31/12",at:"18h18 10/11",v:"68,5%",d:"+8 điểm/24h, +35 điểm/7 ngày. Nhưng ‘Mỹ dỡ phong toả trước 30/11’ −7 còn 15,5%.",lead:"Tiền cược: hết đánh nhau nhưng phong toả vẫn kéo dài",c:"w",tier:2,src:["Polymarket","https://polymarket.com/market/israel-x-iran-ceasefire-continues-through-december-31-415"]},
+  {g:"Tripwire tự động (collector)",k:"Sàn Binance sau vụ hack 29/10",at:"DefiLlama 10/11",v:"−9,8 tỷ $",d:"DefiLlama ghi Binance bị hack 6,36 tỷ $ ngày 29/10 (lộ khoá qua hạ tầng). Tiền ròng rời Binance 30 ngày: −9,8 tỷ $; 7 ngày: +2,3 tỷ (đang quay lại); 24h: −0,09%. Hack sàn khác: Mercado Bitcoin 40 triệu $ (2/11), CoinDCX 16 triệu $ (21/10).",lead:"Bộ dò mới: sàn nào rút ròng >3%/24h sẽ báo động ngay",c:"w",tier:1,src:["DefiLlama","https://defillama.com/hacks"]},
+  {g:"Tripwire tự động (collector)",k:"Máy bay quân sự phát ADS-B (ngày đầu lập nền)",at:"adsb.lol 18h18 10/11",v:"ME 14 · Đông Âu 2",d:"Trung Đông 14 chiếc (1 tiếp dầu A332 Anh, 3 vận tải C17/A400/C130, đội PC21 UAE huấn luyện). Biển Đông 2, quanh Đài Loan 1. Từ mai so với trung bình 14 lần chạy.",lead:"Tiếp dầu + trinh sát dồn về một vùng thường đi trước không kích vài giờ–vài ngày",c:"n",tier:1,src:["adsb.lol","https://api.adsb.lol/v2/mil"]},
+  {g:"Tripwire tự động (collector)",k:"OFAC (Bộ Tài chính Mỹ)",at:"9/11",v:"3 đợt Iran/7 ngày",d:"Trừng phạt liên quan Iran ngày 4/11, 6/11 và cập nhật 9/11 – cùng ngày Trump nói chiến sự ‘coi như kết thúc’.",lead:"Hành động pháp lý trái với lời nói: phong toả kinh tế chưa nới",c:"w",tier:3,src:["OFAC","https://ofac.treasury.gov/recent-actions"]},
+  {g:"Tripwire tự động (collector)",k:"Tin tuyển dụng phần mềm (Indeed)",at:"30/10",v:"Đức −15%/năm",d:"Chỉ số tin tuyển phần mềm: Đức 48,8 (1 năm trước 57,1); Pháp 51,5 (55,5); Anh 61,3 (59,4); Mỹ 81,6 (65,9).",lead:"Nhu cầu người làm phần mềm ở Đức/Pháp giảm trước khi khách cắt hợp đồng",c:"b",tier:1,src:["Indeed Hiring Lab","https://github.com/hiring-lab/job_postings_tracker"]},
+  {g:"Tripwire tự động (collector)",k:"Tâm lý & lãi suất Mỹ",at:"9–10/11",v:"F&G 33",d:"CNN Fear&Greed 33 (sợ hãi; 1 tuần trước 23,5). Lợi suất 2 năm 4,56% (+5bp), 10 năm 4,88%. EUR/USD 1,1193 (−0,2%/5 ngày).",lead:"Lãi suất ngắn hạn Mỹ đi trước tỷ giá USD/VND",c:"w",tier:1,src:["US Treasury","https://home.treasury.gov/"]},
   {g:"Tỷ giá trực tiếp",k:"USD bán ra Vietcombank",at:"17h58 10/11",v:"25.790",d:"25.730 (14h36 09/11) → 25.760 (9h10) → 25.790. EUR bán 29.446 (9h10).",lead:"Báo 09/11 vẫn viết ‘tiếp tục hạ giá USD’; đảo chiều chưa lên báo",c:"w",tier:1,src:["VCB XML","https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"]},
   {g:"Thị trường dự đoán (tiền thật đặt cược)",k:"Hormuz bình thường lại trước 31/12",at:"Polymarket ~18h 10/11",v:"9,5%",d:"Trước 30/11: 3,2%. Khả năng ≥10 tàu/ngày qua Hormuz trước 30/11: 28,5%. 17,5 triệu $ đặt cược.",lead:"Trái với tít ‘Trump: chiến sự coi như kết thúc’; Brent giảm có thể không bền",c:"b",tier:2,src:["Polymarket","https://gamma-api.polymarket.com/public-search?q=hormuz&events_status=active&limit_per_type=5"]},
   {g:"Thị trường dự đoán (tiền thật đặt cược)",k:"Mỹ tuyên bố dỡ phong toả Iran trước 31/12",at:"Polymarket",v:"39%",d:"321k $ giao dịch 24h.",lead:"Xác suất định lượng thay cho lời nói chính trị",c:"w",tier:2,src:["Polymarket","https://gamma-api.polymarket.com/public-search?q=iran"]},
@@ -225,7 +232,7 @@ const DATA={
  ],
  watch:[
   {n:"USD/VND (VCB bán)",cur:25790,th:26300,f:"n",dir:"up",act:"Hết cửa sổ mua USD rẻ"},
-  {n:"Fed tăng T12 (Polymarket)",cur:80.5,th:90,f:"%",dir:"up",act:"Mua nốt USD ngay"},
+  {n:"Fed tăng 2026 (Polymarket)",cur:91,th:90,f:"%",dir:"up",act:"Mua nốt USD ngay"},
   {n:"Hormuz bình thường trước 31/12",cur:9.5,th:30,f:"%",dir:"up",act:"Brent giảm bền → không cần tích xăng"},
   {n:"Brent",cur:92.5,th:105,f:"$",dir:"up",act:"Đổ đầy xăng trước 15h thứ Năm"},
   {n:"Stablecoin rút 30 ngày",cur:4.0,th:5,f:"%",dir:"up",act:"Risk-off mạnh → cổ phiếu tech yếu, khách hoãn dự án"},
@@ -237,8 +244,8 @@ const DATA={
   plan:[["T1","Ghi số giờ tiết kiệm + chi phí token 5 tác vụ gần nhất"],["T2","Gửi quản lý 1 trang số liệu (d3); đề xuất áp dụng cho dự án khách EU"],["T3","Quy tắc dữ liệu khách (GDPR) + bảng định tuyến model rẻ/đắt"],["T4","Đề xuất vai trò AI delivery lead với khách EU"]]},
  calcs:{dep:{amount:200,rate:6.0,cut:0.5},usd:{need:2000,now:25790,base:26300,bad:27000},gold:{qty:1,dom:141.7,world:4139,fair:8},fuel:{liters:40}},
  feed:[
-  {cat:"So với #4",tier:1,early:"cùng ngày",t:"Bản mới dùng dữ liệu gốc: USD đã đảo chiều, Hormuz vẫn bị thị trường cược là đóng",y:"đưa mua USD lên d1",imp:4,lead:5,conf:4,h:"tuần này",c:"i",
-   what:"(1) VCB: 25.730 → 25.790 trong một ngày (#4 ghi 25.730). (2) Thêm mục Radar: Polymarket, Kalshi, Whale Alert, DefiLlama, Deribit, layoffs.fyi, văn bản Chính phủ. (3) Chưa ngưỡng nào kích hoạt; gần nhất: stablecoin rút 4,0%/30 ngày (ngưỡng 5%), Fed 80,5% (ngưỡng 90%). (4) Rủi ro nghề nghiệp 75 → 77 vì làn sóng cắt giảm ở châu Âu.",you:"Hành động về USD nên làm trong tuần, không chờ tới tháng 12.",act:"d1 mua 50% USD ≤13/11; d2 khoá lãi ≤14/11.",
+  {cat:"So với #5",tier:2,early:"vài giờ",t:"TRIPWIRE kích hoạt: Fed tăng lãi 2026 lên 91% (+15,5 điểm/24h)",y:"mua nốt USD ngay",imp:4,lead:5,conf:4,h:"tuần này",c:"i",
+   what:"Collector tự động (18h18) bắt được: Polymarket ‘Fed tăng lãi 2026’ 75,5% → 91% trong 24h; tăng 0,25% ngày 9/12: 76,5% → 86,5%. Bản #5 vài giờ trước còn ghi 80,5%. Thêm: OFAC vẫn trừng phạt Iran 9/11; tin tuyển phần mềm ở Đức −15%/năm; Binance mất 9,8 tỷ $ tiền ròng 30 ngày sau vụ hack 6,36 tỷ $ (29/10).",you:"USD/VND thường đi theo kỳ vọng Fed với độ trễ vài ngày; VCB đã tăng 60đ hôm nay.",act:"d1: mua toàn bộ USD cần dùng ngày 11/11.",
    src:[["VCB","https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"],["Polymarket","https://polymarket.com"]]},
   {cat:"Ví tiền",tier:1,early:"~1 ngày trước báo",t:"USD đảo chiều tăng: 25.790 lúc 17h58",y:"cửa sổ USD rẻ bắt đầu khép",imp:4,lead:5,conf:5,h:"1–4 tuần",c:"w",
    what:"VCB bán: 25.730 (14h36 9/11) → 25.760 (9h10 10/11) → 25.790 (17h58). Bài báo mới nhất (9/11) vẫn là ‘tiếp tục hạ giá USD’. Fed tăng lãi T12: 80,5–80%.",you:"Nếu cần USD trong 3–6 tháng (thiết bị, học phí, du lịch), mỗi ngày chờ có thể mất 30–60đ/USD.",act:"Mua 50% nhu cầu trước 13/11; nửa còn lại khi Fed ≥90% hoặc trước 8/12.",
@@ -268,7 +275,7 @@ const DATA={
    what:"SJC 138,7–141,7tr (9/11). Vàng TG 4.139$, quy đổi theo VCB 25.790 ≈ 128,7tr. TQ mua 25,8 tấn tháng 10.",you:"Mua lúc này là trả dư ~13tr/lượng.",act:"Chờ chênh lệch < 8tr.",
    src:[["VnExpress","https://vnexpress.net/ngan-hang-tiep-tuc-ha-gia-usd-ve-sat-25-700-dong-5142468.html"],["Vàng TG","https://vnexpress.net/gia-vang-the-gioi-tang-manh-gia-dau-lao-doc-5142686.html"]]}
  ],
- sources:"Nguồn: Vietcombank XML, Polymarket, Kalshi, DefiLlama, Whale Alert, Deribit, layoffs.fyi, Báo Chính phủ, VnExpress, Al Jazeera, TechCrunch, Hacker News · bản #5 · 10/11/2026"
+ sources:"Nguồn: Vietcombank XML, Polymarket, Kalshi, DefiLlama, Whale Alert, Deribit, layoffs.fyi, Báo Chính phủ, VnExpress, Al Jazeera, TechCrunch, Hacker News + OFAC, adsb.lol, Indeed Hiring Lab, US Treasury, ECB, CNN · bản #6 · 10/11/2026"
 };
 
 /* ===== RENDER ===== */
