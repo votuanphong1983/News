@@ -75,6 +75,12 @@ details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-
 .calc label{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink2);margin:4px 0}
 .calc input{width:96px;padding:4px 7px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;text-align:right}
 .calc .out{margin-top:6px;padding:7px 9px;border-radius:7px;background:var(--soft);font-size:12px}.calc .out b{font-size:14px}
+/* brief */
+.brief{border-left:4px solid var(--acc)}.brief ol{margin:4px 0 0;padding:0;list-style:none;counter-reset:b}
+.brief li{counter-increment:b;display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:baseline;padding:5px 0;border-top:1px solid var(--line);font-size:13.5px;line-height:1.45}
+.brief li:first-child{border-top:0}.brief li::before{content:counter(b);font-weight:800;color:var(--mute);font-size:12px;text-align:right}
+.brief li b{font-weight:700}.brief .tg{font-size:10.5px;color:var(--mute);white-space:nowrap}
+@media(max-width:600px){.brief li{grid-template-columns:18px 1fr;font-size:13px}.brief .tg{display:none}}
 /* radar */
 .radar .rg{margin-top:8px}.radar .rg h5{margin:6px 0 2px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
 .rr{display:grid;grid-template-columns:1.5fr .7fr 2.4fr 1fr;gap:10px;padding:6px 0;border-top:1px solid var(--line);align-items:baseline;font-size:12.5px}
@@ -127,6 +133,8 @@ details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-
  <div style="text-align:right"><span class="p n" id="stamp"></span><div class="sub" id="next" style="margin-top:3px"></div></div>
 </div>
 
+<section class="card brief" id="briefbox"><div class="h"><span>10 dòng cần đọc</span><span class="sub" id="briefat" style="text-transform:none;letter-spacing:0"></span></div><ol id="brief"></ol></section>
+
 <div class="grid c4" id="posture"></div>
 
 <section class="grid c2">
@@ -166,13 +174,25 @@ details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-
 <script>
 /* ===== DATA – mỗi lần chạy bản tin chỉ thay object này ===== */
 const DATA={
- run:{id:6,date:"10/11/2026",asof:"collector tự động 18h18 10/11 (Polymarket, DefiLlama, ADS-B quân sự, US Treasury, ECB, CNN F&G, HN) · VCB 17h58 · Brent, vàng TG chốt phiên 09/11 · vàng miếng chốt 09/11",next:"Tự chạy 7h sáng hằng ngày · thêm 1 lần trước 15h thứ Năm"},
+ run:{id:7,date:"10/11/2026",asof:"collector + thời tiết/thiên tai 18h45 10/11 · Polymarket 18h18 (Polymarket, DefiLlama, ADS-B quân sự, US Treasury, ECB, CNN F&G, HN) · VCB 17h58 · Brent, vàng TG chốt phiên 09/11 · vàng miếng chốt 09/11",next:"Tự chạy 7h sáng hằng ngày · thêm 1 lần trước 15h thứ Năm"},
  profile:"Kỹ sư IT · dịch vụ IT có khách châu Âu · thu nhập VND · chưa nắm giữ tài sản",
+ brief:[
+  {c:"b",tag:"Ví tiền",t:"<b>TRIPWIRE:</b> Polymarket – Fed tăng lãi 2026 lên <b>91%</b> (+15,5 điểm/24h). Mua toàn bộ USD cần dùng vào <b>11/11</b> (VCB 25.790)."},
+  {c:"b",tag:"Thiên tai",t:"<b>Lũ miền Trung:</b> sông Thu Bồn dự báo <b>6.530 m³/s, gấp 24 lần</b> tuần qua; Đà Nẵng mưa 95mm hôm nay, gió giật 77km/h. Tránh đi Đà Nẵng–Quảng Nam–Huế tuần này."},
+  {c:"w",tag:"Sức khoẻ",t:"<b>Hà Nội:</b> AQI dự báo lên <b>152</b> trong 48h (hiện 50). Khẩu trang N95, tránh chạy bộ ngoài trời."},
+  {c:"g",tag:"Ví tiền",t:"<b>Xăng 15h thứ Năm 12/11</b> dự báo giảm ~900đ/l. Đổ đầy sau 15h; đừng chờ giảm thêm (Hormuz vẫn đóng, Polymarket 9,5%)."},
+  {c:"g",tag:"Ví tiền",t:"<b>Khoá tiền gửi 12 tháng trước 14/11</b> – NHNN yêu cầu ngân hàng hạ lãi kỳ dài ≥0,5 điểm %."},
+  {c:"w",tag:"Địa chính trị",t:"<b>Iran:</b> Trump nói ‘chiến sự kết thúc’ nhưng OFAC vẫn trừng phạt Iran 9/11. Tiền cược: ngừng bắn tới 31/12 68,5%, dỡ phong toả trước 30/11 chỉ 15,5%."},
+  {c:"b",tag:"Nghề nghiệp",t:"<b>Khách EU:</b> tin tuyển phần mềm ở Đức −15%/năm, SUSE cắt 10% ‘vì AI’. Gửi quản lý số liệu năng suất AI trước 20/11."},
+  {c:"w",tag:"An ninh tài chính",t:"<b>Binance</b> bị hack 6,36 tỷ $ (29/10), tiền ròng rút 9,8 tỷ $/30 ngày, 7 ngày qua đã quay lại. Bộ dò rút tiền bất thường ở các sàn đang chạy."},
+  {c:"w",tag:"Thị trường",t:"Mỹ ở trạng thái <b>sợ hãi</b> (Fear&Greed 33), lợi suất 2 năm 4,56% → USD/VND có xu hướng tăng tiếp."},
+  {c:"n",tag:"Thiên tai",t:"Bão <b>Cempaka</b> (955hPa) gần Nhật, cách VN ~3.600km, đi hướng đông bắc – không ảnh hưởng."}
+ ],
  posture:[
   {k:"Ví tiền",v:"Thuận lợi, sắp đổi",c:"w",d:"USD đảo chiều tăng 25.790 (VCB 17h58), báo chưa đưa"},
   {k:"Nghề nghiệp",v:"Cảnh giác",c:"b",d:"SUSE (Đức) cắt 10% vì AI; 142k người IT mất việc năm 2026"},
   {k:"Địa chính trị",v:"Giằng co",c:"w",d:"Polymarket: Hormuz bình thường trước 31/12 chỉ 9,5%"},
-  {k:"Tripwire",v:"1 KÍCH HOẠT",c:"b",d:"Fed tăng lãi 2026: 91% (+15,5 điểm/24h) – vượt ngưỡng 90%"}
+  {k:"Tripwire",v:"3 KÍCH HOẠT",c:"b",d:"Fed 2026 91% · lũ Thu Bồn ×24 · AQI Hà Nội 152"}
  ],
  decisions:[
   {id:"d1",t:"Mua TOÀN BỘ USD cần dùng 3–6 tháng ngay ngày mai",why:"TRIPWIRE: Polymarket ‘Fed tăng lãi trong 2026’ nhảy 75,5% → 91% trong 24h (tăng 0,25% ngày 9/12: 86,5%, +10 điểm). VCB đã lên 25.790. Báo Việt chưa có tin",gain:"calc:usd",dl:"11/11"},
@@ -180,6 +200,7 @@ const DATA={
   {id:"d3",t:"Gửi quản lý 1 trang ‘số liệu năng suất AI’ của anh",why:"SUSE (Nuremberg) cắt 10% nhân sự ‘vì AI’, Pipedrive (Tallinn) tái cấu trúc: khách EU đang tính lại chi phí người. Ai có số liệu giờ tiết kiệm + chi phí token sẽ được giữ",gain:"Bảo vệ thu nhập",dl:"≤ 20/11"}
  ],
  cal:[
+  {d:"10–17/11",c:"b",t:"Lũ miền Trung (Thu Bồn ×24, Đà Nẵng 243mm)",x:"Tránh di chuyển Đà Nẵng–Quảng Nam–Huế; giá rau có thể tăng"},
   {d:"T5 12/11",c:"g",t:"Kỳ giá xăng (15h)",x:"Brent 98 → 92,5: ước giảm ~900đ/l. Đổ đầy sau 15h; đừng chờ giảm tiếp vì Hormuz vẫn đóng"},
   {d:"T6 13/11",c:"w",t:"Đáo hạn quyền chọn BTC mốc 70.000$",x:"~1.760 BTC hợp đồng đặt cược giảm (Deribit); BTC đang 74.153$"},
   {d:"≤ 14/11",c:"g",t:"Hạn tự đặt: khoá lãi 12 tháng",x:"Trước khi ngân hàng áp đủ mức giảm"},
@@ -201,6 +222,10 @@ const DATA={
   {k:"Fed tăng 2026",v:"91",u:"%",d:"+15,5 điểm/24h",dir:"up"}
  ],
  radar:[
+  {g:"Thời tiết – thiên tai",k:"Lũ sông Thu Bồn (Quảng Nam – Đà Nẵng)",at:"GloFAS 18h45 10/11",v:"6.530 m³/s",d:"Lưu lượng dự báo cao nhất 7 ngày tới, gấp 24 lần mức tuần qua (hiện 739 m³/s). Mekong ở Cần Thơ bình thường (9.660, ×0,9).",lead:"Mô hình lũ toàn cầu chạy trước khi đài khí tượng tỉnh ra cảnh báo cấp độ",c:"b",tier:1,src:["Open-Meteo Flood","https://open-meteo.com/en/docs/flood-api"]},
+  {g:"Thời tiết – thiên tai",k:"Mưa, gió 7 ngày tới",at:"Open-Meteo 10/11",v:"Đà Nẵng 243mm",d:"Đà Nẵng: 95mm hôm nay, gió giật tới 77km/h. Huế: 150mm, giật 69km/h. Hà Nội: 80mm, mưa nhiều nhất 13/11 (71mm), sáng nay 15–20°C. TP HCM: 39mm, 24–34°C.",lead:"Dự báo số theo giờ, có trước bản tin chiều",c:"w",tier:1,src:["Open-Meteo","https://open-meteo.com"]},
+  {g:"Thời tiết – thiên tai",k:"Chất lượng không khí",at:"Open-Meteo 10/11",v:"HN AQI 152",d:"Hà Nội: hiện 50 (PM2.5 28,9), dự báo đỉnh 152 trong 48h. TP HCM: 71, đỉnh 79.",lead:"Dự báo 48h, trước khi các app AQI chuyển đỏ",c:"w",tier:1,src:["Open-Meteo AQ","https://open-meteo.com/en/docs/air-quality-api"]},
+  {g:"Thời tiết – thiên tai",k:"Bão đang hoạt động (Cơ quan Khí tượng Nhật – JMA)",at:"19h45 JST 10/11",v:"Cempaka",d:"Bão số 32 Cempaka: 26,1°N 141,2°E, gió 45m/s (giật 60), 955hPa, đi đông bắc 35km/h. Cách VN ~3.600km. GDACS: không có cảnh báo cam/đỏ quanh VN 7 ngày qua.",lead:"JMA là trung tâm khu vực chính thức cho bão Tây Thái Bình Dương",c:"g",tier:3,src:["JMA","https://www.jma.go.jp/bosai/map.html#contents=typhoon"]},
   {g:"Tripwire tự động (collector)",k:"Polymarket: Fed tăng lãi trong 2026",at:"18h18 10/11",v:"91%",d:"+15,5 điểm trong 24h, +18,5 trong 7 ngày. Tăng 0,25% ngày 9/12: 86,5% (+10); giữ nguyên: 8,5% (−14).",lead:"Tiền thật đổi hướng trước khi có tin; báo Việt chưa đưa",c:"b",tier:2,src:["Polymarket","https://polymarket.com/market/another-fed-rate-hike-in-2026"]},
   {g:"Tripwire tự động (collector)",k:"Polymarket: Israel–Iran giữ ngừng bắn tới 31/12",at:"18h18 10/11",v:"68,5%",d:"+8 điểm/24h, +35 điểm/7 ngày. Nhưng ‘Mỹ dỡ phong toả trước 30/11’ −7 còn 15,5%.",lead:"Tiền cược: hết đánh nhau nhưng phong toả vẫn kéo dài",c:"w",tier:2,src:["Polymarket","https://polymarket.com/market/israel-x-iran-ceasefire-continues-through-december-31-415"]},
   {g:"Tripwire tự động (collector)",k:"Sàn Binance sau vụ hack 29/10",at:"DefiLlama 10/11",v:"−9,8 tỷ $",d:"DefiLlama ghi Binance bị hack 6,36 tỷ $ ngày 29/10 (lộ khoá qua hạ tầng). Tiền ròng rời Binance 30 ngày: −9,8 tỷ $; 7 ngày: +2,3 tỷ (đang quay lại); 24h: −0,09%. Hack sàn khác: Mercado Bitcoin 40 triệu $ (2/11), CoinDCX 16 triệu $ (21/10).",lead:"Bộ dò mới: sàn nào rút ròng >3%/24h sẽ báo động ngay",c:"w",tier:1,src:["DefiLlama","https://defillama.com/hacks"]},
@@ -237,13 +262,18 @@ const DATA={
   {n:"Brent",cur:92.5,th:105,f:"$",dir:"up",act:"Đổ đầy xăng trước 15h thứ Năm"},
   {n:"Stablecoin rút 30 ngày",cur:4.0,th:5,f:"%",dir:"up",act:"Risk-off mạnh → cổ phiếu tech yếu, khách hoãn dự án"},
   {n:"Lãi 12T đã giảm",cur:0,th:0.3,f:"đ%",dir:"up",act:"Cửa sổ khoá lãi đã đóng"},
-  {n:"Chênh lệch vàng",cur:13.0,th:8,f:"tr",dir:"down",act:"Hợp lý nếu cần mua vàng"}
+  {n:"Chênh lệch vàng",cur:13.0,th:8,f:"tr",dir:"down",act:"Hợp lý nếu cần mua vàng"},
+  {n:"Lũ Thu Bồn (lần mức tuần)",cur:24.1,th:6,f:"×",dir:"up",act:"Hoãn đi miền Trung; nhắc người thân vùng lũ"},
+  {n:"AQI Hà Nội (đỉnh 48h)",cur:152,th:150,f:"",dir:"up",act:"Khẩu trang N95, máy lọc không khí"}
  ],
  career:{level:77,
   sig:[["b","SUSE (Đức) cắt 10% ‘vì AI’, Pipedrive (Estonia) tái cấu trúc: khách EU cắt người vì AI đã thành thật"],["b","142.432 người IT mất việc năm 2026 (layoffs.fyi); 10 ngày qua thêm Fiserv 3.000, Canva 1.271"],["b","Chi AI doanh nghiệp chững lại (Ramp); Apple hạ trần AI $300→$200/ngày/kỹ sư"],["g","Fable 5.2 vượt Opus 5.5 trên FrontierSWE (69,9% vs 62,3%); người biết định tuyến model + kiểm soát chi phí có giá"]],
   plan:[["T1","Ghi số giờ tiết kiệm + chi phí token 5 tác vụ gần nhất"],["T2","Gửi quản lý 1 trang số liệu (d3); đề xuất áp dụng cho dự án khách EU"],["T3","Quy tắc dữ liệu khách (GDPR) + bảng định tuyến model rẻ/đắt"],["T4","Đề xuất vai trò AI delivery lead với khách EU"]]},
  calcs:{dep:{amount:200,rate:6.0,cut:0.5},usd:{need:2000,now:25790,base:26300,bad:27000},gold:{qty:1,dom:141.7,world:4139,fair:8},fuel:{liters:40}},
  feed:[
+  {cat:"Thiên tai",tier:1,early:"trước cảnh báo cấp tỉnh",t:"Lũ lớn sắp về Quảng Nam – Đà Nẵng: Thu Bồn dự báo gấp 24 lần",y:"tránh đi miền Trung tuần này",imp:4,lead:4,conf:3,h:"0–7 ngày",c:"b",
+   what:"Mô hình lũ GloFAS (qua Open-Meteo): sông Thu Bồn dự báo đỉnh 6.530 m³/s trong 7 ngày tới, so với 739 hiện tại. Đà Nẵng mưa 95mm hôm nay, 243mm/7 ngày, gió giật 77km/h; Huế 150mm. Thủ tướng đã ra công điện ứng phó lũ miền Trung 7/11.",you:"Đi công tác/du lịch miền Trung dễ bị huỷ chuyến; giá rau, thực phẩm thường tăng sau lũ.",act:"Hoãn chuyến đi miền Trung đến sau 17/11; nhắc người thân ở vùng trũng.",
+   src:[["Open-Meteo Flood","https://open-meteo.com/en/docs/flood-api"],["Chính phủ","https://baochinhphu.vn/cong-dien-cua-thu-tuong-chinh-phu-ve-viec-chu-dong-ung-pho-voi-mua-lon-lu-ngap-lut-lu-quet-sat-lo-dat-tai-khu-vuc-trung-bo-10226110713343254.htm"]]},
   {cat:"So với #5",tier:2,early:"vài giờ",t:"TRIPWIRE kích hoạt: Fed tăng lãi 2026 lên 91% (+15,5 điểm/24h)",y:"mua nốt USD ngay",imp:4,lead:5,conf:4,h:"tuần này",c:"i",
    what:"Collector tự động (18h18) bắt được: Polymarket ‘Fed tăng lãi 2026’ 75,5% → 91% trong 24h; tăng 0,25% ngày 9/12: 76,5% → 86,5%. Bản #5 vài giờ trước còn ghi 80,5%. Thêm: OFAC vẫn trừng phạt Iran 9/11; tin tuyển phần mềm ở Đức −15%/năm; Binance mất 9,8 tỷ $ tiền ròng 30 ngày sau vụ hack 6,36 tỷ $ (29/10).",you:"USD/VND thường đi theo kỳ vọng Fed với độ trễ vài ngày; VCB đã tăng 60đ hôm nay.",act:"d1: mua toàn bộ USD cần dùng ngày 11/11.",
    src:[["VCB","https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"],["Polymarket","https://polymarket.com"]]},
@@ -275,7 +305,7 @@ const DATA={
    what:"SJC 138,7–141,7tr (9/11). Vàng TG 4.139$, quy đổi theo VCB 25.790 ≈ 128,7tr. TQ mua 25,8 tấn tháng 10.",you:"Mua lúc này là trả dư ~13tr/lượng.",act:"Chờ chênh lệch < 8tr.",
    src:[["VnExpress","https://vnexpress.net/ngan-hang-tiep-tuc-ha-gia-usd-ve-sat-25-700-dong-5142468.html"],["Vàng TG","https://vnexpress.net/gia-vang-the-gioi-tang-manh-gia-dau-lao-doc-5142686.html"]]}
  ],
- sources:"Nguồn: Vietcombank XML, Polymarket, Kalshi, DefiLlama, Whale Alert, Deribit, layoffs.fyi, Báo Chính phủ, VnExpress, Al Jazeera, TechCrunch, Hacker News + OFAC, adsb.lol, Indeed Hiring Lab, US Treasury, ECB, CNN · bản #6 · 10/11/2026"
+ sources:"Nguồn: Vietcombank XML, Polymarket, Kalshi, DefiLlama, Whale Alert, Deribit, layoffs.fyi, Báo Chính phủ, VnExpress, Al Jazeera, TechCrunch, Hacker News + OFAC, adsb.lol, Indeed Hiring Lab, US Treasury, ECB, CNN · JMA, GDACS, Open-Meteo (thời tiết, không khí, lũ GloFAS) · bản #7 · 10/11/2026"
 };
 
 /* ===== RENDER ===== */
@@ -321,6 +351,8 @@ function decisions(){const done=store.get("done_"+DATA.run.id)||{};
  document.querySelectorAll("#decisions input").forEach(cb=>cb.onchange=()=>{const s=store.get("done_"+DATA.run.id)||{};s[cb.dataset.id]=cb.checked;store.set("done_"+DATA.run.id,s);decisions()});}
 calc();
 
+/* brief */
+if(DATA.brief){$("#brief").innerHTML=DATA.brief.slice(0,10).map(b=>`<li><span><span class="dot" style="background:${CC[b.c]||CC.n}"></span> ${b.t}</span><span class="tg">${b.tag||""}</span></li>`).join("");$("#briefat").textContent=DATA.run.date;}else $("#briefbox").style.display="none";
 /* radar */
 const TN={1:"T1 dòng tiền",2:"T2 dự đoán",3:"T3 văn bản",4:"T4 báo QT",5:"T5 báo Việt"};
 if(DATA.radar){const gs=[...new Set(DATA.radar.map(r=>r.g))];
