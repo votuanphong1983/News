@@ -1,1 +1,35 @@
-[]
+[
+{
+"ts": "2026-11-10T11:18Z",
+"run": 5,
+"m": {
+"binance_tvl_b": 123.21,
+"btc": 74182,
+"btc_fee": 1,
+"eurusd": 1.1193,
+"fng": 33.23,
+"hacks7d_musd": 1.52,
+"stable_b": 246.5,
+"stable_d1_pct": -0.34,
+"stable_m1_pct": -4.13,
+"ust10y": 4.88,
+"ust2y": 4.56,
+"usd_vcb": 25790,
+"poly_fed_dec_hike": 86.5,
+"poly_fed_hike_2026": 91,
+"poly_hormuz_normal_dec31": 9.5,
+"poly_iran_blockade_end_dec31": 39,
+"poly_ukr_ceasefire_dec31": 17.5,
+"poly_isr_iran_ceasefire_dec31": 68.5,
+"mil_ME_n": 14,
+"mil_ME_tanker": 1,
+"mil_ME_isr": 0,
+"mil_EEU_n": 2,
+"mil_TWN_n": 1,
+"mil_SCS_n": 2,
+"brent": 92.5,
+"gold_world": 4139,
+"gold_sjc": 141.7
+}
+}
+]
