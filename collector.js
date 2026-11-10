@@ -97,7 +97,7 @@ export async function weather(){
    (g.features||[]).forEach(ft=>{const p=ft.properties,[lo,la]=ft.geometry.coordinates;const o={t:ty,n:p.name,lvl:p.alertlevel,c:p.country,from:(p.fromdate||"").slice(0,10),to:(p.todate||"").slice(0,10),dVN:Math.round(dVN(la,lo)),u:p.url?.report};
     if(o.lvl!="Green"||o.dVN<1500||/viet/i.test(o.c||""))W.gdacs.push(o);
     if((/viet/i.test(o.c||"")||o.dVN<400)&&o.lvl!="Green")alert(o.lvl=="Red"?"b":"w","GDACS",`${o.n} (${o.lvl}) – ${o.c||""}`,o.u||"https://www.gdacs.org");
-    else if(o.lvl=="Red")alert("w","GDACS",`Thảm hoạ cấp ĐỎ: ${o.n} – ${o.c||""}`,o.u||"https://www.gdacs.org")})}}),
+    else if(o.lvl=="Red"&&o.to>=new Date(Date.now()-3*day).toISOString().slice(0,10))alert("w","GDACS",`Thảm hoạ cấp ĐỎ: ${o.n} – ${o.c||""}`,o.u||"https://www.gdacs.org")})}}),
  step("meteo",async()=>{const q=CITIES.map(c=>c[1]).join(",")+"&longitude="+CITIES.map(c=>c[2]).join(",");
   const r=await J("https://api.open-meteo.com/v1/forecast?latitude="+q+"&daily=precipitation_sum,wind_gusts_10m_max,temperature_2m_max,temperature_2m_min,weather_code&forecast_days=7&timezone=Asia%2FBangkok");
   r.forEach((x,i)=>{const d=x.daily,c=CITIES[i][0];const mx=Math.max(...d.precipitation_sum),gi=Math.max(...d.wind_gusts_10m_max),tx=Math.max(...d.temperature_2m_max),tn=Math.min(...d.temperature_2m_min);
@@ -110,7 +110,7 @@ export async function weather(){
  step("flood",async()=>{const R=[["Thu Bồn (Quảng Nam)",15.88,108.33],["Hương (Huế)",16.47,107.58],["Hồng (Hà Nội)",21.05,105.86],["Mekong (Cần Thơ)",10.03,105.78]];
   const r=await J("https://flood-api.open-meteo.com/v1/flood?latitude="+R.map(x=>x[1]).join(",")+"&longitude="+R.map(x=>x[2]).join(",")+"&daily=river_discharge,river_discharge_max&past_days=7&forecast_days=7");
   r.forEach((x,i)=>{const q=x.daily.river_discharge,med=[...q.slice(0,7)].sort((a,b)=>a-b)[3]||1,fmax=Math.max(...q.slice(7));const o={river:R[i][0],now:Math.round(q[7]),fmax:Math.round(fmax),ratio:Math.round(fmax/med*10)/10};W.rivers.push(o);
-   if(o.ratio>=3)alert(o.ratio>=6?"b":"w","GloFAS",`Lũ: ${o.river} lưu lượng dự báo gấp ${o.ratio} lần mức tuần qua (${o.fmax} m³/s)`,"https://open-meteo.com/en/docs/flood-api")})})
+   if(o.ratio>=3&&o.fmax>=300)alert(o.ratio>=6?"b":"w","GloFAS",`Lũ: ${o.river} lưu lượng dự báo gấp ${o.ratio} lần mức tuần qua (${o.fmax} m³/s)`,"https://open-meteo.com/en/docs/flood-api")})})
  ]);
  return {weather:W,alerts:A,errors:E};}
 
