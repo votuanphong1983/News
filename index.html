@@ -24,26 +24,21 @@ section{margin-top:10px}
 .g{color:var(--g);background:var(--gb)}.w{color:var(--w);background:var(--wb)}.b{color:var(--b);background:var(--bb)}.i{color:var(--i);background:var(--ib)}.n{color:var(--ink2);background:var(--soft)}
 .dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
 .sub{color:var(--mute);font-size:11.5px}
-/* header */
 .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
 .brand{display:flex;gap:10px;align-items:center}.logo{width:28px;height:28px;border-radius:7px;background:var(--acc);color:var(--card);display:grid;place-items:center;font-weight:800;font-size:12px}
 h1{font-size:17px;margin:0}
-/* posture */
 .pos{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:10px 12px}
 .pos .k{font-size:11px;color:var(--mute)}.pos .v{font-weight:750;font-size:14px}.pos .d{font-size:11.5px;color:var(--ink2)}
-/* decisions */
 .dec{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
 .dec:first-child{border-top:0;padding-top:0}
 .dec input{width:16px;height:16px;accent-color:var(--acc);cursor:pointer;margin:0}
 .dec b{font-size:13.5px}.dec .why{color:var(--ink2);font-size:12px}
 .dec .gain{text-align:right}.dec .amt{font-weight:750;color:var(--g);font-size:14px}.dec .dl{font-size:11px;color:var(--mute)}
 .dec.done b,.dec.done .why{opacity:.4;text-decoration:line-through}
-/* calendar */
 .ev{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:6px 0;border-top:1px solid var(--line);align-items:center}
 .ev:first-child{border-top:0;padding-top:0}
 .ev .dt{font-weight:750;font-size:12px;text-align:center;border-radius:7px;padding:3px 0;background:var(--soft)}
 .ev .t{font-weight:600}.ev .x{font-size:11.5px;color:var(--ink2)}
-/* tiles */
 .tiles{display:grid;grid-template-columns:repeat(10,1fr);gap:8px}
 @media(max-width:1100px){.tiles{grid-template-columns:repeat(5,1fr)}}@media(max-width:600px){.tiles{grid-template-columns:repeat(2,1fr)}}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
@@ -51,37 +46,30 @@ h1{font-size:17px;margin:0}
 .tile .v{font-size:17px;font-weight:750;letter-spacing:-.01em}.tile .v small{font-size:10px;font-weight:500;color:var(--mute)}
 .tile .d{font-size:11px;white-space:nowrap}
 .up{color:var(--b)}.dn{color:var(--g)}
-/* geo */
 .geo .st{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .geo .st b{font-size:14px}
 .geo ul{margin:0;padding-left:16px;color:var(--ink2);font-size:12px}.geo li{margin:2px 0}
 .geo .you{margin-top:8px;font-size:12px;background:var(--soft);border-radius:7px;padding:6px 8px}
 .scen{display:flex;height:6px;border-radius:3px;overflow:hidden;margin-top:8px;gap:2px}
 .scl{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mute);margin-top:3px}
-/* watch */
 table{width:100%;border-collapse:collapse;font-size:12px}
 td{padding:6px 4px;border-top:1px solid var(--line);vertical-align:middle}
 tr:first-child td{border-top:0}
 .prog{height:5px;background:var(--soft);border-radius:3px;overflow:hidden;width:70px;display:inline-block;vertical-align:middle;margin-right:6px}.prog i{display:block;height:100%}
-/* career */
 .gauge{height:7px;border-radius:4px;background:linear-gradient(90deg,var(--g),var(--w),var(--b));position:relative;margin:6px 0 2px}
 .gauge i{position:absolute;top:-4px;width:3px;height:15px;background:var(--ink);border-radius:2px}
 .cs{display:flex;gap:8px;align-items:baseline;padding:4px 0;font-size:12px}
-/* details */
 details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-marker{display:none}
 .more{font-size:11.5px;color:var(--i);margin-top:6px}
 .plan{margin:6px 0 0;padding:0;list-style:none}.plan li{display:grid;grid-template-columns:48px 1fr;font-size:12px;padding:4px 0;border-top:1px dashed var(--line)}.plan li span{color:var(--mute);font-weight:700;font-size:11px}
-/* calc */
 .calc label{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink2);margin:4px 0}
 .calc input{width:96px;padding:4px 7px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;text-align:right}
 .calc .out{margin-top:6px;padding:7px 9px;border-radius:7px;background:var(--soft);font-size:12px}.calc .out b{font-size:14px}
-/* brief */
 .brief{border-left:4px solid var(--acc)}.brief ol{margin:4px 0 0;padding:0;list-style:none;counter-reset:b}
 .brief li{counter-increment:b;display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:baseline;padding:5px 0;border-top:1px solid var(--line);font-size:13.5px;line-height:1.45}
 .brief li:first-child{border-top:0}.brief li::before{content:counter(b);font-weight:800;color:var(--mute);font-size:12px;text-align:right}
 .brief li b{font-weight:700}.brief .tg{font-size:10.5px;color:var(--mute);white-space:nowrap}
 @media(max-width:600px){.brief li{grid-template-columns:18px 1fr;font-size:13px}.brief .tg{display:none}}
-/* radar */
 .radar .rg{margin-top:8px}.radar .rg h5{margin:6px 0 2px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
 .rr{display:grid;grid-template-columns:1.5fr .7fr 2.4fr 1fr;gap:10px;padding:6px 0;border-top:1px solid var(--line);align-items:baseline;font-size:12.5px}
 .rr .k{font-weight:600}.rr .v{font-weight:800;font-size:14px;white-space:nowrap}.rr .d{color:var(--ink2)}.rr .s{font-size:11px;text-align:right}.rr .s a{color:var(--i);text-decoration:none}
@@ -89,7 +77,6 @@ details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-
 .tier{font-size:10px;font-weight:800;border:1px solid var(--line);border-radius:5px;padding:0 5px;margin-right:6px;color:var(--ink2)}
 .tier.t1,.tier.t2{border-color:var(--g);color:var(--g)}.tier.t3{border-color:var(--i);color:var(--i)}
 @media(max-width:700px){.rr{grid-template-columns:1fr auto}.rr .d,.rr .s{grid-column:1/-1;text-align:left}}
-/* feed */
 .filters{display:flex;gap:5px;flex-wrap:wrap}
 .filters button{border:1px solid var(--line);background:var(--card);color:var(--ink2);border-radius:99px;padding:2px 9px;cursor:pointer;font:inherit;font-size:11.5px}
 .filters button.on{background:var(--acc);color:var(--card);border-color:var(--acc)}
@@ -103,7 +90,6 @@ details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-
 .it .body .src{grid-column:1/-1;font-size:11px}.src a{color:var(--i);text-decoration:none;margin-right:8px}
 @media(max-width:920px){.it .body{grid-template-columns:1fr;padding-left:0}.it summary{grid-template-columns:38px 1fr 14px}.it .hz{display:none}}
 .foot{margin-top:12px;color:var(--mute);font-size:11px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-
 .gd>summary{display:none}
 @media(max-width:600px){
  body{font-size:13.5px}
@@ -136,6 +122,7 @@ details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-
 <section class="card brief" id="briefbox"><div class="h"><span>10 dòng cần đọc</span><span class="sub" id="briefat" style="text-transform:none;letter-spacing:0"></span></div><ol id="brief"></ol></section>
 
 <div class="grid c4" id="posture"></div>
+<div id="holdings"></div>
 
 <section class="grid c2">
  <div class="card"><div class="h"><span>Làm ngay</span><span id="donecount"></span></div><div id="decisions"></div></div>
@@ -174,129 +161,150 @@ details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-
 <script>
 /* ===== DATA – mỗi lần chạy bản tin chỉ thay object này ===== */
 const DATA={
- run:{id:11,date:"13/11/2026",asof:"Collector 09h56 13/11 (Polymarket, DefiLlama, Treasury 12/11, ECB, CNN, USGS, Open-Meteo/GloFAS, JMA, HN, GitHub) · ADS-B 09h56 · Whale Alert ~10h · VCB 09h19 13/11 · Brent oilprice ~10h 13/11 · Kalshi 10h · Indeed 06/11 · vàng miếng 11/11",next:"Tự chạy 7h sáng hằng ngày · thêm 1 lần trước 15h thứ Năm"},
- profile:"Kỹ sư IT · dịch vụ IT có khách châu Âu · thu nhập VND · chưa nắm giữ tài sản", brief:[
-  {c:"b",tag:"Tripwire Iran",t:"<b>Lời nói ≠ tiền</b>: Trump ‘không cần thoả thuận Iran’ → <b>Brent 96,1$ (+3,6%)</b>; Polymarket ngừng bắn Mỹ–Iran trước 15/11 <b>41,5% (−8,5)</b>, Israel–Iran giữ tới 15/12 <b>70,5% (−9)</b>."},
-  {c:"b",tag:"Xăng 19/11",t:"Brent bật từ 91,3 lên <b>96,1$</b> sau kỳ giảm 12/11 → kỳ <b>19/11</b> nghiêng về <b>tăng</b> (60%). Đã đổ đầy hôm qua là đúng; không cần tích thêm. Ngưỡng 105 còn cách 8,9$."},
-  {c:"b",tag:"Dự án khách",t:"<b>Microsoft 365/Azure gián đoạn</b> (HN 553 + 401 điểm, Al Jazeera ‘hàng chục nghìn người’). Kiểm tra dịch vụ Azure của khách EU, ghi nhận sự cố <b>sáng 13/11</b>."},
-  {c:"b",tag:"Bảo mật .NET",t:"<b>CVE-2026-118740 Aspire.Dashboard</b> (NuGet, bỏ qua bảo mật) + 30 lỗ hổng critical/48h. Nâng Aspire trong repo khách trước <b>14/11</b>."},
-  {c:"b",tag:"Sức khoẻ",t:"<b>Hà Nội AQI đỉnh 162</b> trong 48h (hiện 91) → N95, không tập ngoài trời <b>13–14/11</b>. TP HCM 79. Hà Nội mưa 67mm/7 ngày, đỉnh 49mm ngày <b>18/11</b>."},
-  {c:"w",tag:"Thiên tai",t:"<b>Lũ Thu Bồn rút</b>: 6.011 → <b>3.672 m³/s</b> (vẫn ×9,5 mức tuần, Hương ×6,1). Đà Nẵng chỉ 18mm/7 ngày. Có thể đi miền Trung từ <b>17/11</b>. Không có bão quanh VN."},
-  {c:"b",tag:"Ví tiền – USD",t:"<b>Fed tăng trong 2026: 98%</b> (Polymarket T12 88,5%, Kalshi 86%); <b>Kalshi T1/2027 61% (+10)</b>; lợi suất 2 năm <b>4,86% (+13bp)</b>. VCB <b>25.870</b> (+20). Mua nốt USD cần dùng hôm nay."},
-  {c:"b",tag:"Nghề nghiệp",t:"<b>Jensen Huang từ chức CEO Nvidia</b>, Colette Kress kế nhiệm (HN 3.049 điểm). Kéo BTC −4,7%, tâm lý AI lung lay → chuẩn bị số liệu ROI AI cho khách trước <b>20/11</b>."},
-  {c:"w",tag:"Tiền mã hoá",t:"BTC <b>70.213$ (−4,7%)</b>, lỗ thực hiện <b>−0,51 tỷ $</b>/24h (bán tháo). <b>313 triệu USDT</b> Bitfinex trả về Tether, <b>104 triệu USDC</b> bị đốt; stablecoin −4,72%/30 ngày, sát ngưỡng 5%. Không hack lớn."},
-  {c:"w",tag:"Thị trường việc làm",t:"Indeed (06/11): <b>Đức 48,6</b> (−15%/năm, +1,6%/tháng – chững ở đáy), Pháp 51,1 (−7%), Anh 60,9, Mỹ 81,4 (+24%). layoffs.fyi không có mục mới."}
+ run:{id:16,date:"20/11/2026",asof:"chạy 08h50–09h30 20/11 · TPB chiều 19/11 · Kalshi/Polymarket sáng 20/11 (sau biên bản FOMC) · Brent oilprice sáng 20/11 · Treasury 19/11 · vàng BTMH 08h38 20/11 · met.no Đà Nẵng 08h16 20/11 · NCHMF tin lũ 15h30 19/11 · AQI HN 04h 20/11 · số cũ: USD VCB 25.920 (10h01 19/11, VCB chưa cập nhật 20/11), met.no Hà Nội (08h17 19/11), TP HCM (18h21 19/11), LNH 25.732 (13/11), giá xăng (17/11)",next:"Tự chạy 7h sáng hằng ngày"},
+ profile:"Kỹ sư IT · dịch vụ IT có khách châu Âu · thu nhập VND · có theo dõi cổ phiếu TPB",
+ brief:[
+  {c:"b",tag:"Miền Trung 🔔",t:"<b>NCHMF cảnh báo lũ (15h30 19/11): từ đêm 19/11 đến 22/11 sông ở Huế lên BĐ1–BĐ2</b>, Nam Quảng Trị – Đà Nẵng – Quảng Ngãi quanh BĐ1, rủi ro cấp 1. met.no (08h16 20/11): Đà Nẵng ~61mm từ 8h đến 24h hôm nay + ~55mm rạng sáng 21/11 (đỉnh ~12mm/giờ lúc ~2h)."},
+  {c:"b",tag:"Hormuz 🔔",t:"<b>Polymarket “Hormuz bình thường lại trước 31/12” rơi từ 11,5% xuống 3,15%</b>; Houthi đánh trúng tháp ở trung tâm tài chính Riyadh, liên quân Saudi không kích Yemen, thêm tàu cháy ở Hormuz (Al Jazeera 19/11). Brent 92,45$ (+0,5%) – vẫn chưa phản ánh."},
+  {c:"b",tag:"Fed 🔔",t:"<b>Sau biên bản FOMC (2h 20/11), Kalshi vẫn 98% Fed tăng ngày 9/12</b> (25bp 91%, >25bp 7%, giữ 4%). Tháng 1/2027: tăng thêm 25bp giảm 63% → 58%. Lợi suất 10 năm Mỹ 5,04% (19/11), 2 năm 4,76%."},
+  {c:"b",tag:"Nghề nghiệp – .NET",t:"<b>3 lỗ hổng critical NuGet: Refitter cho phép thực thi mã</b> qua path/header/content-type trong file OpenAPI (GitHub Advisory 18–20/11). Thêm <b>Ruby2Shell – RCE không cần đăng nhập trên Rails mặc định</b> (HN 331 điểm). Rà khách EU dùng Refitter/Refit trong tuần."},
+  {c:"w",tag:"Nghề nghiệp – AI",t:"<b>TechCrunch 18/11: Satya Nadella giải thích việc đề nghị 60.000 nhân viên Microsoft nghỉ việc</b>; ông cũng nói nhiều hạ tầng trọng yếu “không vá được” trước tấn công dùng AI. Anthropic đạt ~2.000 tỷ $ ngày chào sàn Nasdaq (HN 20/11)."},
+  {c:"b",tag:"Chứng khoán VN",t:"<b>VN-Index 1.689,62 (−0,79%) – thấp nhất 1 tháng</b>, thanh khoản ~15.580 tỷ (−15,8%), khối ngoại bán ròng ~1.000 tỷ (FPT −272 tỷ, ACB −101 tỷ); bán ròng 126.000 tỷ từ đầu năm – kỷ lục. Phố Wall 19/11: S&P 500 −1,09%, Nasdaq −1,58%, VIX 28,4."},
+  {c:"w",tag:"Ví tiền – USD",t:"<b>USD VCB bán 25.920</b> (10h01 19/11, +40đ so với 18/11); EUR 28.972. LNH chưa có số mới (25.732, 13/11). NHNN yêu cầu giữ ổn định lãi suất; lãi tiết kiệm giảm 0,5–1%/năm, trái phiếu ngân hàng 9–10%."},
+  {c:"g",tag:"Vàng",t:"<b>SJC 131,2–134,2 tr (−2 tr, 08h38 20/11)</b>; vàng thế giới ~3.600$/oz, mất ~11% trong 2 tuần, thấp nhất 14 tháng. Chênh trong nước – thế giới <b>19,25 tr</b> – rất cao, mua vàng miếng lúc này trả dư lớn."},
+  {c:"w",tag:"Thu nhập · Sức khoẻ",t:"<b>Quốc hội 20–21/11 biểu quyết các luật thuế TNCN, TNDN, thuế đất phi nông nghiệp</b> – có thể đổi lương thực nhận từ 2027. Hà Nội rét: 15–17°C sáng nay, ~15°C sáng 21/11 (NCHMF); AQI 11 (04h 20/11), tốt."},
+  {c:"n",tag:"TPB",t:"<b>TPB 12.350 (0,00%)</b> chiều 19/11, KL 7,26 triệu cp – giữ đáy mới sau phiên −2,37%; 5 phiên −5,7%. Không có công bố thông tin mới; nhóm ngân hàng tiếp tục giảm (CTG, ACB, TCB, MBB, VPB)."}
  ],
  posture:[
-  {k:"Ví tiền",v:"Dầu bật lại",c:"w",d:"Brent 96,1 (+3,6%); USD VCB 25.870; xăng kỳ 19/11 nghiêng tăng"},
-  {k:"Nghề nghiệp",v:"Cảnh giác",c:"b",d:"Huang từ chức; Azure/M365 sự cố; Aspire CVE; Đức tuyển IT −15%/năm"},
-  {k:"Địa chính trị",v:"Căng lại",c:"b",d:"Trump ‘không cần thoả thuận Iran’; Houthi đánh Saudi; tàu dầu cháy ở Hormuz"},
-  {k:"Tripwire",v:"4 KÍCH HOẠT",c:"b",d:"Fed 2026 98% · lũ Thu Bồn ×9,5 · AQI HN 162 · Polymarket Iran −8,5/−9 · Brent 96 < 105: KHÔNG"}
+  {k:"Danh mục TPB",v:"Đi ngang ở đáy mới",c:"w",d:"12.350 (0,00%); 5 phiên −5,7%; không có tin mới"},
+  {k:"Ví tiền",v:"USD nhích, vàng rơi",c:"w",d:"VCB 25.920 (19/11); Fed T12 98%; SJC 134,2"},
+  {k:"Nghề nghiệp",v:"Cảnh giác cao",c:"b",d:"Refitter NuGet RCE; Microsoft đề nghị 60K nghỉ; FPT bị bán"},
+  {k:"Tripwire",v:"1 KÍCH HOẠT · 3 GẦN",c:"b",d:"Fed ≥90% · lũ Huế dự báo BĐ1–2 · USD 25.920 · LNH (số cũ)"}
+ ],
+ holdings:[
+  {sym:"TPB",name:"TPBank · HOSE",qty:null,px:12350,chg:0.00,asof:"đóng cửa chiều 19/11/2026 (CafeF); phiên 20/11 chưa mở lúc chạy",cost:null,
+   stance:"Giữ được vùng 12.350 sau khi thủng đáy 12.450 (9/11). 5 phiên −5,7%, chưa chạm ngưỡng −7%. Áp lực đến từ cả nhóm ngân hàng và khối ngoại bán ròng toàn thị trường, không từ tin riêng của TPB.",c:"w",
+   news:[
+    {d:"19/11",c:"n",t:"TPB đóng cửa 12.350 (0,00%), KL 7,26 triệu cp, vốn hoá 39.398 tỷ",y:"Thanh khoản thấp hơn phiên 18/11 (8,96 tr) – lực bán chững lại.",src:["CafeF","https://cafef.vn/du-lieu/hose/tpb-ngan-hang-thuong-mai-co-phan-tien-phong.chn"]},
+    {d:"19/11",c:"b",t:"VN-Index mất mốc 1.700; nhóm ngân hàng LPB, STB, CTG, ACB, TCB, MBB, VPB đồng loạt giảm",y:"Tâm lý ngành yếu; không có dữ liệu khối ngoại riêng TPB.",src:["CafeF","https://cafef.vn/vn-index-mat-moc-1700-diem-thanh-khoan-xuong-thap-188261119175602007.chn"]},
+    {d:"19/11",c:"w",t:"Lãi suất ngân hàng: trái phiếu neo 9–10%, tiết kiệm hạ 0,5–1%",y:"Phù hợp với việc TPB chào bán trái phiếu ra công chúng – chi phí vốn dài hạn cao.",src:["CafeF","https://cafef.vn/lai-suat-ngan-hang-trai-phieu-neo-cao-tiet-kiem-ha-nhiet-188261119112330236.chn"]},
+    {d:"18/11",c:"g",t:"NHNN chấp thuận bổ sung dịch vụ bù trừ, thanh toán giao dịch chứng khoán cho TPBank",y:"Thêm nguồn thu phí trung hạn.",src:["CafeF","https://cafef.vn/tpbank-duoc-bo-sung-hoat-dong-bu-tru-thanh-toan-giao-dich-chung-khoan-1882611181743223.chn"]},
+    {d:"17/11",c:"n",t:"CBTT: Quyết định TGĐ thay đổi địa điểm PGD Bình Tân",y:"Thủ tục hành chính.",src:["CafeF","https://cafef.vn/du-lieu/tin-doanh-nghiep/tpb/event.chn"]},
+    {d:"13/11",c:"n",t:"Thông báo chào bán trái phiếu ra công chúng đợt 1 + Bản cáo bạch",y:"Vốn trung–dài hạn, không pha loãng cổ phiếu.",src:["CafeF","https://cafef.vn/du-lieu/TPB-3021301/tpb-thong-bao-chao-ban-trai-phieu-ra-cong-chung-dot-1-va-ban-cao-bach-kem-giay-chung-nhan.chn"]}
+   ],
+   watch:[["w","Đáy mới 12.350 (18–19/11)"],["w","5 phiên −5,7% (ngưỡng −7%)"],["w","LNH ≥ 25.800 (13/11: 25.732)"],["n","Không có CBTT mới từ 17/11"],["b","Khối ngoại bán ròng kỷ lục"]]}
  ],
  decisions:[
-  {id:"d1",t:"Kiểm tra sự cố Microsoft 365/Azure và vá Aspire.Dashboard trong dự án khách",why:"HN: ‘Service degradation on Microsoft 365’ 553 điểm + ‘Ask HN: Microsoft/Azure Outage?’ 401 điểm; Al Jazeera: hàng chục nghìn người bị ảnh hưởng. GitHub Advisory: CVE-2026-118740 Aspire Dashboard (NuGet linux-x64/arm64/musl) bỏ qua tính năng bảo mật. Khách EU sẽ hỏi trước khi báo Việt đưa tin",gain:"Chủ động báo cáo sự cố + vá, ghi điểm với khách EU",dl:"14/11"},
-  {id:"d2",t:"Mua nốt USD cần dùng 3–6 tháng trong hôm nay",why:"VCB 25.850 → 25.870. Fed tăng T12: Polymarket 88,5%, Kalshi 86%; Kalshi T1/2027 nhảy 51 → 61%. Lợi suất 2 năm 4,86% (+13bp/ngày), 10 năm 5,10%. Brent bật lại → áp lực lạm phát. NHNN sàn 25.500",gain:"calc:usd",dl:"13/11"},
-  {id:"d3",t:"Không tích xăng; theo dõi Brent 100–105 trước kỳ 19/11",why:"Đã đổ đầy ngày 12/11 với E5 19.740. Brent 91,3 → 96,1 sau khi Trump nói không cần thoả thuận Iran; Houthi đánh cơ sở năng lượng Saudi; Reuters: tàu dầu tiếp tục cháy ở Hormuz. Quỹ bình ổn trích 600đ/l → kỳ 19/11 dễ tăng nhẹ",gain:"Tránh mua hớ; đổ trước 15h 19/11 nếu Brent ≥100",dl:"19/11"}
+  {id:"d1",t:"Nhắc người thân ở Huế/Đà Nẵng/Quảng Nam: lũ BĐ1–BĐ2 đến 22/11, mưa rất to đêm nay",why:"NCHMF 15h30 19/11: sông ở Huế đỉnh BĐ1–BĐ2, Đà Nẵng/Quảng Ngãi quanh BĐ1, nguy cơ cao ngập vùng trũng, lũ quét, sạt lở sườn dốc. met.no 08h16 20/11: Đà Nẵng ~61mm từ 8h–24h hôm nay, ~55mm từ 0h–6h 21/11; đợt 2 ngày 25/11 (~75mm), đợt 3 chiều 27–28/11. Tránh đèo Hải Vân, vùng trũng ven sông; sạc dự phòng, nước uống.",gain:"An toàn gia đình",dl:"trưa 20/11"},
+  {id:"d2",t:"Rà khách EU: Refitter (NuGet) + Java4Shell/TeamCity + Rails – gửi cảnh báo, đề xuất vá",why:"GitHub Advisory critical 18–20/11: 3 lỗ hổng Refitter cho phép thực thi mã khi sinh client từ file OpenAPI độc hại (path, tên header, content-type). Đội .NET dùng Refitter/Refit trong pipeline build rất phổ biến. Kèm Ruby2Shell (pre-auth RCE Rails), Java4Shell đã được báo từ 9/2026 (PR OpenJDK), TeamCity RCE (bản #15). Nadella: nhiều hạ tầng ‘không vá được’ trước tấn công AI → khách sẽ chuộng dịch vụ vá nhanh.",gain:"Cơ hội bán dịch vụ",dl:"21/11"},
+  {id:"d3",t:"USD: nếu cần trong 3–6 tháng, chốt phần đầu khi VCB còn dưới 26.000",why:"VCB 25.880 (18/11) → 25.920 (19/11). Kalshi sau biên bản FOMC vẫn 98% Fed tăng 9/12; khả năng Hormuz bình thường lại trước 31/12 chỉ còn 3,15%; chứng khoán toàn cầu giảm, VIX 28,4 → USD trú ẩn có lợi. Chia 2–3 lần, không dồn một lúc.",gain:"calc:usd",dl:"21/11"},
+  {id:"d4",t:"Cập nhật hồ sơ năng lực ‘AI-first’: review code AI, bảo mật chuỗi cung ứng .NET/Azure",why:"Microsoft đề nghị 60.000 nhân viên nghỉ (TechCrunch 18/11); FPT đặt mục tiêu doanh thu dịch vụ AI-first từ 27% (2026) lên ≥40% (2027) và bị khối ngoại bán 272 tỷ phiên 19/11; HN: ‘AI biến việc làm thành gig work trả thấp’. Khách EU sẽ trả cao hơn cho kiểm chứng, bảo mật, không phải số dòng code.",gain:"Giữ giá dịch vụ",dl:"27/11"}
  ],
  cal:[
-  {d:"T6 13/11",c:"b",t:"Mua USD cần dùng · kiểm tra Azure/M365 của khách",x:"VCB 25.870; Kalshi T1/2027 61%"},
-  {d:"13–14/11",c:"b",t:"Hà Nội AQI đỉnh 162",x:"N95, không chạy bộ sáng"},
-  {d:"≤ 14/11",c:"b",t:"Vá Aspire.Dashboard (CVE-2026-118740)",x:"Kèm Fortinet/React RSC còn tồn từ #10"},
-  {d:"15/11",c:"w",t:"Mốc Polymarket: ngừng bắn Mỹ–Iran (41,5%) và năng lượng Nga–Ukraine",x:"Israel–Iran giữ tới 15/11: 95%"},
-  {d:"≥ 17/11",c:"g",t:"Lũ Thu Bồn rút, mưa Đà Nẵng thấp",x:"Có thể đi Quảng Nam – Đà Nẵng – Huế"},
-  {d:"18/11",c:"w",t:"Hà Nội mưa lớn nhất tuần (~49mm)",x:"Tránh đi lại giờ cao điểm"},
-  {d:"~18–20/11",c:"b",t:"Nvidia báo cáo quý – CEO mới Colette Kress",x:"Thước đo ngân sách AI"},
-  {d:"T5 19/11 15h",c:"b",t:"Kỳ giá xăng",x:"Nghiêng tăng; đổ trước 15h nếu Brent ≥100"},
-  {d:"8–9/12",c:"b",t:"Fed họp: tăng 0,25% 88,5%",x:"Kalshi 86%; ≥0,5% ~10%"},
-  {d:"27/01/2027",c:"w",t:"Fed họp tháng 1",x:"Kalshi tăng tiếp 61%"}
+  {d:"20–22/11",c:"b",t:"Lũ miền Trung: Huế BĐ1–BĐ2, Đà Nẵng ~BĐ1",x:"NCHMF 15h30 19/11 · rủi ro cấp 1"},
+  {d:"20–21/11",c:"w",t:"Quốc hội biểu quyết luật thuế TNCN, TNDN…",x:"Ảnh hưởng lương thực nhận 2027"},
+  {d:"sáng 21/11",c:"w",t:"Hà Nội rét ~15°C, sau đó nắng 20–24°C",x:"NCHMF 20/11 · met.no 19/11"},
+  {d:"đêm 23/11",c:"n",t:"Hà Nội mưa to ~13mm",x:"met.no 19/11"},
+  {d:"25/11",c:"w",t:"Đà Nẵng mưa to đợt 2 (~75mm); TP HCM vận hành hệ thống chống ngập 10.000 tỷ",x:"met.no 20/11 · CafeF"},
+  {d:"T5 26/11",c:"n",t:"Kỳ điều hành giá xăng",x:"Brent 92,45 · Hormuz xấu đi"},
+  {d:"27–28/11",c:"w",t:"Đà Nẵng mưa to đợt 3 (~70mm)",x:"Dự báo 7–8 ngày, độ tin cậy thấp"},
+  {d:"8–9/12",c:"b",t:"Fed họp",x:"Tăng 0,25%: 91% · >0,25%: 7% · giữ: 4%"},
+  {d:"1/2027",c:"w",t:"EU cấm nhập LNG Nga",x:"Giá khí châu Âu → ngân sách khách EU"},
+  {d:"27/1/2027",c:"w",t:"Fed họp tháng 1",x:"Tăng tiếp 0,25%: 58% (Kalshi)"},
+  {d:"Q1/2027",c:"w",t:"TPB: KQKD năm 2026 · kế hoạch cổ tức",x:"Mốc định giá lại"}
  ],
  tiles:[
-  {k:"Brent",v:"96,1",u:"$",d:"+3,6%; ngưỡng 105",dir:"up"},
-  {k:"USD VCB",v:"25.870",d:"9h19 13/11, +20",dir:"up"},
-  {k:"Fed tăng T12",v:"88,5",u:"%",d:"Kalshi 86%",dir:"up"},
-  {k:"Kalshi Fed T1/27",v:"61",u:"%",d:"+10 điểm",dir:"up"},
-  {k:"UST 2 năm",v:"4,86",u:"%",d:"+13bp 12/11",dir:"up"},
-  {k:"AQI Hà Nội",v:"162",d:"đỉnh 48h",dir:"up"},
-  {k:"Lũ Thu Bồn",v:"3.672",u:"m³/s",d:"từ 6.011, ×9,5",dir:"dn"},
-  {k:"BTC",v:"70.213",u:"$",d:"−4,7%/24h",dir:"dn"},
-  {k:"Stablecoin 30N",v:"−4,72",u:"%",d:"ngưỡng −5%",dir:"dn"},
-  {k:"Indeed Đức IT",v:"48,6",d:"−15%/năm",dir:"dn"}
+  {k:"TPB",v:"12.350",u:"đ",d:"0,00%; chiều 19/11",dir:"up"},
+  {k:"USD VCB (19/11)",v:"25.920",d:"+40đ, 10h01 19/11",dir:"up"},
+  {k:"VN-Index",v:"1.689,6",d:"−0,79%; thấp nhất 1 tháng",dir:"up"},
+  {k:"Brent",v:"92,45",u:"$",d:"+0,5% sáng 20/11",dir:"up"},
+  {k:"Fed tăng 9/12",v:"98",u:"%",d:"Kalshi 91% + 7%",dir:"up"},
+  {k:"UST 10 năm",v:"5,04",u:"%",d:"19/11; 2 năm 4,76",dir:"dn"},
+  {k:"Vàng SJC",v:"134,2",u:"tr",d:"−2 tr; chênh 19,25 tr",dir:"dn"},
+  {k:"Đà Nẵng 20–21/11",v:"~115",u:"mm",d:"8h 20/11–6h 21/11",dir:"up"},
+  {k:"HN sáng 21/11",v:"15",u:"°C",d:"NCHMF 15–17°C",dir:"up"},
+  {k:"AQI Hà Nội",v:"11",d:"04h 20/11, tốt",dir:"dn"}
  ],
  radar:[
-  {g:"Thời tiết – thiên tai",k:"Lũ sông (GloFAS)",at:"Open-Meteo Flood 09h56 13/11",v:"Thu Bồn 3.672 m³/s",d:"Thu Bồn 6.011 → 3.672 m³/s (×9,5 mức tuần, vẫn trên ngưỡng 6×). Hương ×6,1 (số tuyệt đối nhỏ 11 m³/s, lưới thô), Hồng ×3,5 (9 m³/s), Mekong ×1,0.",lead:"Đỉnh đã qua đúng như #10 dự báo; dự báo ‘<3.000 trước 16/11’ đang đi đúng hướng",c:"w",tier:1,src:["Open-Meteo Flood","https://open-meteo.com/en/docs/flood-api"]},
-  {g:"Thời tiết – thiên tai",k:"Chất lượng không khí",at:"Open-Meteo AQ 13/11",v:"HN AQI 162",d:"Hà Nội hiện 91 (PM2.5 28,8), đỉnh 162 trong 48h – cao nhất 4 lần chạy. TP HCM 62, đỉnh 79 (cao nhất nền).",lead:"Mô hình báo trước ~24–48h",c:"b",tier:1,src:["Open-Meteo AQ","https://open-meteo.com/en/docs/air-quality-api"]},
-  {g:"Thời tiết – thiên tai",k:"Mưa, gió 7 ngày",at:"Open-Meteo 13/11",v:"HN 67mm",d:"Hà Nội 18mm hôm nay, 67mm/7 ngày, đỉnh 49mm ngày 18/11, 16,6–30,9°C. TP HCM 34mm, 24–34°C. Đà Nẵng 18mm, Huế 8mm – miền Trung khô dần. Gió giật tối đa 39km/h.",lead:"Mưa dồn ra Bắc; miền Trung hết mưa lớn",c:"w",tier:1,src:["Open-Meteo","https://open-meteo.com"]},
-  {g:"Thời tiết – thiên tai",k:"Bão (JMA) và GDACS",at:"13/11",v:"Không có bão",d:"JMA không có xoáy thuận nhiệt đới hoạt động. GDACS: chỉ hạn hán cấp cam (châu Phi, Trung Mỹ, Nam Mỹ, châu Âu); nguồn GDACS trả lỗi JSON một phần. Động đất lớn nhất 24h: M5,8 Papua New Guinea; không có động đất nông ở Iran/Triều Tiên.",lead:"Không có rủi ro bão 7 ngày tới",c:"g",tier:1,src:["JMA","https://www.jma.go.jp/bosai/map.html#contents=typhoon"]},
-  {g:"Tripwire tự động (collector)",k:"Polymarket: Iran",at:"09h56 13/11",v:"−8,5 / −9 điểm",d:"Ngừng bắn hiệu lực Mỹ–Iran trước 15/11: 41,5% (−8,5/24h, 82.671$). Israel–Iran giữ tới 15/12: 70,5% (−9), tới 30/11: 78,5% (−7), tới 31/12: 64,5% (−5). Mỹ tuyên bố hết phong toả trước 31/12: 27,15% (−6,2); trước 30/11: 7,5%. Hormuz bình thường trước 31/12: 6,5% (−2, 17,8 triệu $).",lead:"Tiền cược rời kịch bản hoà dịu cùng lúc Brent bật – trước khi báo Việt đưa ‘căng thẳng trở lại’",c:"b",tier:2,src:["Polymarket","https://polymarket.com/market/us-x-iran-effective-ceasefire-by-november-15-20261108"]},
-  {g:"Tripwire tự động (collector)",k:"Fed: Polymarket, Kalshi, Treasury",at:"13/11",v:"T12 88,5% · T1 61%",d:"Polymarket T12: tăng 0,25% 88,5% (+3), ≥0,5% 9,65%, giữ 2,3% → tăng trong 2026 ~98%. Kalshi T12 86%/11%; T1/2027 tăng 0,25% 61% (từ 51% ở #9). Lợi suất 2 năm 4,86% (+13bp), 10 năm 5,10% – cao nhất nền (+3σ trên nền mỏng).",lead:"Tiền thật định giá chu kỳ tăng kéo sang 2027",c:"b",tier:2,src:["Kalshi","https://kalshi.com/markets/kxfeddecision"]},
-  {g:"Tripwire tự động (collector)",k:"Lỗ hổng critical (GitHub Advisory)",at:"48h tới 13/11",v:"30 critical",d:"Liên quan .NET: CVE-2026-118740 Aspire.Dashboard.Sdk (linux-x64/arm64/musl) – bỏ qua tính năng bảo mật. Khác: Rucio (giả mạo admin không xác thực), Rails Active Storage (đọc/ghi file tùy ý), XWEB EVO (chèn lệnh trước xác thực). HN: Humble Bundle ‘mất bảo mật vì vibecoding’ (372 điểm).",lead:"Báo Việt chưa đưa",c:"b",tier:1,src:["GitHub Advisory","https://github.com/advisories/GHSA-4g86-54fm-h9h8"]},
-  {g:"Tripwire tự động (collector)",k:"Máy bay quân sự ADS-B",at:"adsb.lol 09h56 13/11",v:"ME 0 · Biển Đông 3",d:"Tổng 216 chiếc (cao hơn 132 hôm qua – chủ yếu ngoài các vùng theo dõi). Trung Đông 0, Đông Âu 1 vận tải, Biển Đông 3, Đài Loan 2 (1 vận tải). Không tiếp dầu, trinh sát, ném bom trong 4 vùng.",lead:"Bầu trời ADS-B ME im ắng dù lời lẽ căng – chưa có dấu hiệu chuẩn bị không kích (lưu ý: máy bay tác chiến thường tắt ADS-B)",c:"g",tier:1,src:["adsb.lol","https://api.adsb.lol/v2/mil"]},
-  {g:"Tripwire tự động (collector)",k:"Sàn và hack",at:"DefiLlama 13/11",v:"4,3 triệu $/7N",d:"Hack mới: Edel 0,3 triệu $ (12/11). Không sàn nào rút ròng >3%/24h theo dòng tiền; Crypto.com TVL −5,4% nhưng BTC −4,7% → chủ yếu do giá. Binance 120,3 tỷ $ (−8,8 tỷ/tháng). Polymarket ‘BTC chạm 70k trong tháng 11’: 99,5% (+47).",lead:"Bộ dò rút ròng chưa báo",c:"g",tier:1,src:["DefiLlama","https://defillama.com/hacks"]},
-  {g:"Tỷ giá trực tiếp",k:"USD Vietcombank",at:"9h19 13/11",v:"25.870",d:"Bán: 25.730 (9/11) → 25.790 → 25.820 → 25.850 (12/11) → 25.870. Mua CK 25.490. EUR bán 29.116 (−83đ); EUR/USD 1,1081 (−1,27%/5 ngày).",lead:"Đi lên đều 5 phiên, ngược với giọng ‘hạ nhiệt’ trên báo",c:"w",tier:1,src:["VCB XML","https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"]},
-  {g:"Giá & điều hành",k:"Brent",at:"oilprice.com ~10h 13/11",v:"96,1$",d:"+3,31 (+3,57%); WTI 88,93 (+2,77%). Brent có lúc ~96 khi Trump nói Mỹ không cần thoả thuận với Iran. gCaptain/Reuters: tàu dầu tiếp tục cháy ở Hormuz, IMO yêu cầu siết SOLAS; Orlen huỷ hợp đồng LNG Qatar; Đức lập kho khí dự trữ 24 TWh.",lead:"Bật +5% trong 1 ngày (+17σ trên nền mỏng 3 điểm)",c:"b",tier:2,src:["oilprice.com","https://oilprice.com/"]},
-  {g:"On-chain / crypto",k:"Whale Alert",at:"~10h 13/11",v:"313 triệu USDT về Tether",d:"212 + 101 triệu USDT từ Bitfinex về Tether Treasury (sắp đốt = rút khỏi crypto); 104 triệu USDC bị đốt; 100 triệu USDC Coinbase Institutional → ví lạ; Galaxy Digital chuyển 966 BTC + 26 triệu $ HYPE ra ví mới. Lỗ thực hiện −0,51 tỷ $/24h. Không có dấu hiệu hack.",lead:"Rút stablecoin đi trước nhịp giảm tài sản rủi ro",c:"w",tier:1,src:["Whale Alert","https://whale-alert.io/"]},
-  {g:"On-chain / crypto",k:"Stablecoin (30 ngày)",at:"DefiLlama 13/11",v:"−4,72%",d:"Tổng 244,9 tỷ $; −0,25%/24h. Chuỗi −4,13 → −4,31 → −4,40 → −4,72%: còn 0,28 điểm tới ngưỡng 5%.",lead:"Có thể chạm ngưỡng trong 2–3 ngày",c:"w",tier:1,src:["DefiLlama","https://stablecoins.llama.fi/stablecoins?includePrices=false"]},
-  {g:"Việc làm IT",k:"Tin tuyển phần mềm (Indeed)",at:"06/11",v:"Đức 48,6",d:"Đức 48,6 (30 ngày trước 47,8; năm trước 57,2 → −15%); Pháp 51,1 (51,9; 55,1 → −7%); Anh 60,9 (60,1; 59,0 → +3%); Mỹ 81,4 (78,2; 65,9 → +24%).",lead:"Đức/Pháp chững ở đáy, chưa hồi; Mỹ mạnh",c:"w",tier:1,src:["Indeed Hiring Lab","https://github.com/hiring-lab/job_postings_tracker"]},
-  {g:"Việc làm IT",k:"Sa thải và sự cố công nghệ",at:"13/11",v:"Huang từ chức",d:"layoffs.fyi: không có mục mới (Abridge, ServiceNow, Bria, Heidi Health). HN: Jensen Huang từ chức (3.049 điểm); Anthropic IPO (839); M365 gián đoạn (553); Gemini 4 Hydrogen (476). Al Jazeera: tổ chức phi lợi nhuận Mỹ kiện các hãng AI đòi dừng phát triển mô hình tiên tiến.",lead:"Không có sa thải mới; rủi ro nằm ở tâm lý ngân sách AI",c:"w",tier:4,src:["Hacker News","https://news.ycombinator.com/"]},
-  {g:"Văn bản chính thống",k:"OFAC · Chính phủ",at:"9–12/11",v:"OFAC Iran 9/11",d:"OFAC: cập nhật danh sách Iran 9/11, chỉ định mới 6/11 – chưa có nới lỏng. Chính phủ 12/11: bảo đảm cân đối cung cầu, ổn định giá cuối năm; không có công điện thiên tai mới. Giá trần phát điện LNG 3.453đ/kWh (+126đ). SafeAirspace: không cảnh báo mới ở Trung Đông sau 29/10.",lead:"Văn bản trừng phạt vẫn siết dù có lời đàm phán",c:"n",tier:3,src:["OFAC","https://ofac.treasury.gov/recent-actions"]}
- ], geo:[
-  {n:"Mỹ – Iran / Vùng Vịnh",st:"Căng lại",c:"b",sc:[15,50,35],
-   pts:["Trump: Mỹ không cần thoả thuận với Iran → Brent +3,6% lên 96$. Polymarket ngừng bắn Mỹ–Iran trước 15/11 tụt 8,5 điểm còn 41,5%.","Houthi tấn công cơ sở năng lượng, quân sự Saudi; LHQ gia hạn trừng phạt Yemen; >320.000 người phải sơ tán.","Reuters: tàu dầu vẫn bị đánh ở Hormuz; IMO kêu gọi siết SOLAS. OFAC trừng phạt Iran 6 và 9/11. ADS-B: không có tiếp dầu/trinh sát ở ME."],
-   you:"Xăng kỳ 19/11 có thể tăng lại; USD và lạm phát nhập khẩu chịu sức ép. Không cần tích xăng, nhưng theo dõi mốc Brent 100.",tag:"Xăng · USD"},
-  {n:"Nga – Ukraine",st:"Đàm phán kéo dài",c:"w",sc:[12,63,25],
-   pts:["Witkoff và Kushner gặp Putin ở Moscow, hai bên đồng ý tiếp tục đàm phán.","Polymarket ngừng bắn trước 31/12: 8,25%; thoả thuận trước 31/12: 10,5%; trước 31/12/2027: 50,5%.","Đức lập kho khí dự trữ 24 TWh vì không đạt mục tiêu tích trữ; Orlen huỷ hợp đồng LNG Qatar."],
-   you:"Mùa đông năng lượng châu Âu đắt + EUR yếu (1,108) → khách EU siết ngân sách outsource quý 1.",tag:"Khách hàng EU"},
-  {n:"Mỹ – Trung / Công nghệ",st:"Bất định quanh Nvidia",c:"w",sc:[25,50,25],
-   pts:["Jensen Huang từ chức CEO Nvidia; Colette Kress (CFO) kế nhiệm. Quốc hội Mỹ định triệu tập Huang về nghi vấn gián điệp.","Polymarket Đài Loan: TQ phong toả 2026 1,9%, xung đột trước 2027 2,2% – thấp.","Bitcoin xuống dưới 72k ‘vì Nvidia đổi CEO và bán tháo công nghệ’."],
-   you:"Ngân sách AI của khách có thể bị soi kỹ 1–2 quý; dự án AI có ROI đo được sẽ được giữ.",tag:"FDI · Chi phí AI"}
+  {g:"Danh mục · TPB",k:"Giá & khối lượng",at:"CafeF chiều 19/11",v:"12.350",d:"Đóng cửa: 11–12/11 13.100 → 13/11 12.950 → 16/11 12.650 → 17/11 12.650 → 18/11 12.350 → 19/11 12.350 (0,00%, KL 7,26 tr). Vốn hoá 39.398 tỷ. 5 phiên: −5,7% (từ 13.100). Cách đỉnh gần 13.100 −5,7%; dưới đáy cũ 12.450 (9/11) −0,8%.",lead:"Chưa chạm −3%/phiên hay −7%/5 phiên",c:"w",tier:1,src:["CafeF","https://cafef.vn/du-lieu/hose/tpb-ngan-hang-thuong-mai-co-phan-tien-phong.chn"]},
+  {g:"Danh mục · TPB",k:"Công bố thông tin",at:"CafeF 20/11",v:"0 tin mới",d:"Tin gần nhất: 17/11 Quyết định TGĐ đổi địa điểm PGD Bình Tân; 13/11 chào bán trái phiếu đợt 1; 10/11 GCN chào bán trái phiếu; 9/11 NHNN bổ sung giấy phép. Khối ngoại: không có dữ liệu khối ngoại riêng TPB (bài phiên 19/11 chỉ nêu FPT, ACB, VIX, VIC, VCB, MBB, CTG).",lead:"Không có tin xấu riêng",c:"n",tier:3,src:["CafeF CBTT","https://cafef.vn/du-lieu/tin-doanh-nghiep/tpb/event.chn"]},
+  {g:"Tỷ giá & lãi suất",k:"USD Vietcombank",at:"10h01 19/11 (chưa có 20/11)",v:"25.920",d:"Bán 25.980 (17/11) → 25.880 (18/11) → 25.920 (19/11). Mua CK 25.540. EUR bán 28.972 (từ 28.964), GBP 34.367, JPY 166,13, CNY 3.920,77.",lead:"Nhích lại sau 1 phiên giảm; ngưỡng 26.300",c:"w",tier:1,src:["VCB XML","https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"]},
+  {g:"Tỷ giá & lãi suất",k:"NHNN, LNH & ngân hàng",at:"CafeF 19/11",v:"25.732",d:"LNH: chưa có số mới (25.732, 13/11). Phó Thống đốc Phạm Thanh Hà: NHNN yêu cầu TCTD giữ ổn định mặt bằng lãi suất, phấn đấu giảm lãi vay. Lãi tiết kiệm giảm 0,5–1%/năm; trái phiếu ngân hàng 9–10%/năm. NHNN đã bơm gần 50.000 tỷ qua FX swap 182 ngày.",lead:"Số LNH cũ 7 ngày – chưa đánh giá được ngưỡng 25.800",c:"w",tier:3,src:["CafeF","https://cafef.vn/lai-suat-ngan-hang-trai-phieu-neo-cao-tiet-kiem-ha-nhiet-188261119112330236.chn"]},
+  {g:"Fed & lợi suất",k:"Kalshi – Fed 9/12",at:"sáng 20/11 (sau biên bản)",v:"98%",d:"Tăng 0,25%: 91% (trước 91%); tăng >0,25%: 7% (trước 8%); giữ: 4% (trước 3%); cắt: 1%. Tháng 1/2027: tăng 0,25% 58% (trước 63%), giữ 39%, >0,25% 3%.",lead:"Biên bản không đổi kỳ vọng tháng 12; giảm nhẹ kỳ vọng tháng 1",c:"b",tier:2,src:["Kalshi","https://kalshi.com/markets/kxfeddecision"]},
+  {g:"Fed & lợi suất",k:"Polymarket + Treasury",at:"20/11 · 19/11",v:"98,25%",d:"Polymarket ‘không cắt lãi 2026’: 98,25%. Treasury 19/11: 2 năm 4,76%, 10 năm 5,04%, 30 năm 5,40% (18/11: 4,80 / 5,07 / 5,41). Lợi suất 1 tháng nhảy 4,10 → 4,20%.",lead:"Lợi suất dài hạ 4 phiên liên tiếp – thị trường lo tăng trưởng",c:"w",tier:3,src:["US Treasury","https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve"]},
+  {g:"Giá & hàng hoá",k:"Brent · xăng",at:"oilprice sáng 20/11 · CafeF 17/11",v:"92,45$",d:"Brent 92,45 (+0,51%), WTI 82,81 (+0,45%), Murban 91,10. Tin: ‘Oil Prices Steady as Hormuz Tanker Threats Offset Supply Glut Fears’; ‘Middle East War has wiped 2,8 tỷ thùng khỏi nguồn cung’; ‘Hormuz Oil Exports Could Decline amid Inbound Tanker Shortage’. Xăng (17/11): E5 19.390đ, E10 19.840đ/lít; không có bài kỳ 19/11.",lead:"Rủi ro nguồn cung tăng, giá chưa phản ánh",c:"w",tier:2,src:["oilprice.com","https://oilprice.com/"]},
+  {g:"Giá & hàng hoá",k:"Vàng",at:"BTMH/CafeF 08h38 20/11",v:"SJC 134,2",d:"SJC 131,2–134,2 tr (−2 tr); nhẫn 129,8–133,8 tr. Bài CafeF 07h25 ghi SJC 133,2–136,2 tr (giá niêm yết SJC). Vàng thế giới ~3.600$/oz, −11% trong 2 tuần, thấp nhất 14 tháng; SPDR bán 4,5 tấn. Chênh trong nước – thế giới 19,25 tr/lượng.",lead:"Chênh lệch nới rộng mạnh, > 8 tr",c:"n",tier:5,src:["CafeF","https://cafef.vn/du-lieu/gia-vang-hom-nay/trong-nuoc.chn"]},
+  {g:"Chứng khoán",k:"VN-Index · khối ngoại",at:"CafeF 19/11",v:"1.689,6",d:"VN-Index 1.689,62 (−13,39 điểm, −0,79%), VN30 1.788 (−1%); 194 mã giảm/104 tăng; GTGD ~15.580 tỷ (−15,8%), phiên đáo hạn phái sinh. Khối ngoại bán ròng ~996 tỷ trên HOSE (FPT 272 tỷ, ACB 101 tỷ, VIX 71 tỷ); lũy kế 2026: 126.000 tỷ – kỷ lục. Quốc tế 19/11: S&P −1,09%, Nasdaq −1,58%, DAX −1,64%, CAC −1,38%, Nikkei −2,51%.",lead:"Rủi ro toàn cầu tăng, dòng vốn ngoại rút",c:"b",tier:5,src:["CafeF","https://cafef.vn/vn-index-mat-moc-1700-diem-thanh-khoan-xuong-thap-188261119175602007.chn"]},
+  {g:"Địa chính trị",k:"Polymarket",at:"20/11",v:"3,15%",d:"Hormuz bình thường lại trước 31/12: 3,15% (19/11: 11,5%); trước 31/1/2027: 6,5%; trước 31/3/2027: 14,5%; trước 30/6/2027: 27%. ≥5 tàu/ngày tuần 16/11: 53%. Nga–Ukraine ngừng bắn trước 31/12: 9,5% (mốc 2027 chưa đọc được – số 19/11: 31/3 34,5%). Trung Quốc phong toả Đài Loan 2026: 2,15%.",lead:"Thị trường tiền thật đã bỏ kịch bản Hormuz bình thường trong năm nay",c:"b",tier:2,src:["Polymarket","https://polymarket.com/"]},
+  {g:"Địa chính trị",k:"Hàng hải · OFAC",at:"Al Jazeera/gCaptain 19/11 · OFAC 18/11",v:"Riyadh",d:"Houthi tấn công tháp ở trung tâm tài chính KAFD Riyadh (thiệt hại vật chất, không thương vong); liên quân Saudi không kích Yemen; tàu cháy ở Hormuz. TARA GAS vẫn cháy ngoài khơi Oman; Mỹ mở rộng phong toả Iran sang hoạt động sang mạn. Trump–Xi–Putin cam kết ‘dòng năng lượng ổn định’. OFAC: chưa có hành động mới sau 18/11.",lead:"Chiến sự lan sang Ả Rập Xê Út – rủi ro dầu tăng",c:"b",tier:4,src:["Al Jazeera","https://www.aljazeera.com/news/liveblog/2026/11/19/iran-war-live-saudi-led-coalition-strikes-yemen-ships-on-fire-in-hormuz"]},
+  {g:"Crypto / risk-off",k:"Stablecoin & hack",at:"DefiLlama 20/11",v:"−4,46%",d:"USDT 175,07 tỷ $ (−4,31%/30N), USDC 68,75 tỷ $ (−4,85%) → tổng 243,8 tỷ $, −4,46%/30 ngày (19/11: −4,60%, do mốc tháng trước dịch chuyển; số tuyệt đối vẫn giảm ~0,9 tỷ $/ngày). Whale Alert: IBIT rút 209,5 triệu $. Hack 2026 tới 27/10: 2,37 tỷ $/312 vụ (chưa cập nhật).",lead:"Dòng tiền vẫn rút nhưng tỷ lệ 30N dịu",c:"w",tier:1,src:["DefiLlama","https://defillama.com/stablecoins"]},
+  {g:"Thời tiết – sức khoẻ",k:"met.no",at:"ĐN 08h16 20/11 · HN 08h17 19/11 · HCM 18h21 19/11",v:"~115mm",d:"Đà Nẵng: 8h–24h 20/11 ~61mm, 0h–6h 21/11 ~55mm (đỉnh 11,6mm/h ~2h), cả ngày 21/11 ~70mm; gió ĐB tới 8,3 m/s; 25/11 ~75mm; 27–28/11 ~70mm. Hà Nội (bản 19/11): đêm nay ~14,7–15°C, 22–23/11 ấm lên 24–26°C, đêm 23/11 ~13mm. TP HCM: 33–34°C, mưa rào chiều ~3mm. Huế: met.no trả bản cũ (9/11) – không dùng.",lead:"Mưa cực lớn ngắn hạn tại Đà Nẵng",c:"b",tier:1,src:["met.no","https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=16.05&lon=108.20"]},
+  {g:"Thời tiết – sức khoẻ",k:"Lũ · AQI · bão",at:"NCHMF 15h30 19/11 · aqicn 04h 20/11 · JMA 20/11",v:"BĐ1–2",d:"NCHMF: hiện dưới BĐ1; từ đêm 19/11 đến 22/11 lũ trên sông từ Nam Quảng Trị đến Quảng Ngãi, đỉnh ở Huế BĐ1–BĐ2, nơi khác quanh BĐ1; rủi ro thiên tai cấp 1; nguy cơ cao ngập vùng trũng, lũ quét, sạt lở. Cảnh báo lũ quét Lai Châu – Điện Biên (19/11). AQI HN 11 (PM2.5), 16°C. JMA: không có bão; NCHMF: không có tin bão.",lead:"Ngưỡng lũ BĐ2 Huế có thể chạm",c:"b",tier:3,src:["NCHMF","https://www.nchmf.gov.vn/kttv/vi-VN/1/tin-canh-bao-lu-tren-cac-song-tu-quang-tri-den-quang-ngai-post55308.html"]},
+  {g:"Công nghệ – bảo mật",k:"GitHub Advisory critical",at:"18–20/11",v:"3 NuGet",d:"Refitter ×3 (thực thi mã qua OpenAPI path, tên header, content-type – NuGet); Etherpad đọc file trước xác thực (npm); Daptin SQLi không xác thực + IDOR (Go); Jupyter MCP Server DNS rebinding (pip); Flyto2 Core ghi file tuỳ ý; NLTK vượt sandbox JVM; IBM Guardium SQLi.",lead:"Lần đầu có critical NuGet trong tuần",c:"b",tier:3,src:["GitHub Advisory","https://github.com/advisories?query=severity%3Acritical+ecosystem%3Anuget"]},
+  {g:"Công nghệ – bảo mật",k:"Hacker News · TechCrunch",at:"20/11",v:"60K",d:"HN: Anthropic ~2.000 tỷ $ phiên đầu (300 điểm); Claude giải 2 bài toán mở về vật lý lỗ đen; Ruby2Shell RCE Rails (331); Java4Shell đã được báo từ 9/2026 (218); UK buộc thừa nhận lệnh mã hoá bí mật với Apple; Ủy ban châu Âu triển khai Matrix cho 40.000 nhân viên (577); ‘AI biến việc làm thành gig work’. TechCrunch: Nadella giải thích đề nghị 60.000 nhân viên nghỉ; ‘hạ tầng không vá được’; ngân hàng: khách dùng AI agent tự chịu nếu bị hack; Nvidia không nộp báo cáo SEC thường lệ.",lead:"Dịch chuyển lao động IT lớn + bảo mật AI",c:"b",tier:4,src:["TechCrunch","https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/"]}
+ ],
+ geo:[
+  {n:"Mỹ – Iran / Vùng Vịnh",st:"Lan sang Ả Rập Xê Út",c:"b",sc:[7,40,53],
+   pts:["Houthi đánh trúng tháp ở trung tâm tài chính Riyadh; liên quân Saudi không kích Yemen; thêm tàu cháy ở Hormuz (Al Jazeera 19/11).","Polymarket: Hormuz bình thường lại trước 31/12 rơi 11,5% → 3,15%; trước 30/6/2027 chỉ 27%.","Trump–Xi–Putin cam kết ‘dòng năng lượng ổn định’ tại APEC; Brent vẫn chỉ 92,45$ vì lo dư cung."],
+   you:"Xăng kỳ 26/11 khó giảm tiếp; nếu cơ sở dầu Saudi bị đánh, Brent có thể vọt >100$. USD và lợi suất Mỹ giữ cao → áp lực tỷ giá.",tag:"Xăng · USD"},
+  {n:"Nga – Ukraine",st:"Đàm phán + leo thang cục bộ",c:"w",sc:[20,52,28],
+   pts:["Kushner: Nga ‘thoải mái’ với bảo đảm an ninh kiểu NATO cho Ukraine; lãnh đạo châu Âu họp ở Berlin sau thượng đỉnh Trump–Xi–Putin.","Putin dọa trả đũa vụ tấn công cầu Kerch (cầu Crimea sập – oilprice); cân nhắc dự G20 theo lời mời của Trump.","Polymarket ngừng bắn trước 31/12: 9,5% (không đổi)."],
+   you:"Nếu có khung bảo đảm an ninh, khí châu Âu dịu → khách Đức/Pháp dễ mở ngân sách IT 2027; nếu trả đũa lớn, ngược lại.",tag:"Khách hàng EU"},
+  {n:"Mỹ – Trung / Công nghệ",st:"Bất định ở Nvidia",c:"b",sc:[18,50,32],
+   pts:["Nvidia không nộp báo cáo SEC thường lệ, rút khỏi Trung Quốc sau khi Jensen Huang bị phế truất; Musk, Altman, Luckey kêu gọi đưa ông trở lại.","Nadella: nhiều hạ tầng trọng yếu ‘không vá được’ trước tấn công AI; Microsoft đề nghị 60.000 nhân viên nghỉ.","Polymarket: Trung Quốc phong toả Đài Loan năm 2026: 2,15%."],
+   you:"Chi phí GPU/cloud khó giảm; khách EU ưu tiên bảo mật và chủ quyền dữ liệu (Ủy ban châu Âu chuyển sang Matrix) → cơ hội cho dịch vụ .NET/Azure có kiểm soát.",tag:"Chi phí AI · Chủ quyền số"}
  ],
  watch:[
-  {n:"Brent",cur:96.1,th:105,f:"$",dir:"up",act:"Đổ đầy xăng trước 15h thứ Năm"},
-  {n:"USD/VND (VCB bán)",cur:25870,th:26300,f:"n",dir:"up",act:"Hết cửa sổ mua USD rẻ"},
-  {n:"Fed tăng 2026 (Polymarket)",cur:98.2,th:90,f:"%",dir:"up",act:"Mua nốt USD ngay"},
-  {n:"Hormuz bình thường trước 31/12",cur:6.5,th:30,f:"%",dir:"up",act:"Brent giảm bền → không cần tích xăng"},
-  {n:"Stablecoin rút 30 ngày",cur:4.72,th:5,f:"%",dir:"up",act:"Risk-off mạnh → khách hoãn dự án"},
-  {n:"Lãi 12T đã giảm",cur:0,th:0.3,f:"đ%",dir:"up",act:"Cửa sổ khoá lãi đã đóng"},
-  {n:"Chênh lệch vàng",cur:15.4,th:8,f:"tr",dir:"down",act:"Hợp lý nếu cần mua vàng"},
-  {n:"Máy bay tiếp dầu ME (σ)",cur:0,th:2,f:"σ",dir:"up",act:"Nguy cơ không kích, dầu tăng"},
-  {n:"Lũ Thu Bồn (lần mức tuần)",cur:9.5,th:6,f:"×",dir:"up",act:"Hoãn đi miền Trung; nhắc người thân vùng lũ"},
-  {n:"AQI Hà Nội (đỉnh 48h)",cur:162,th:150,f:"",dir:"up",act:"Khẩu trang N95, máy lọc không khí"},
-  {n:"Bão cách VN",cur:9999,th:600,f:"km",dir:"down",act:"Chuẩn bị bão"}
+  {n:"Fed tăng 9/12 (Kalshi, 25 + >25bp)",cur:98,th:90,f:"%",dir:"up",act:"USD mạnh kéo dài → chốt nhu cầu USD, không kỳ vọng lãi vay giảm"},
+  {n:"Lũ Quảng Nam/Huế (dự báo NCHMF: Huế BĐ1–BĐ2)",cur:1.8,th:2,f:"",dir:"up",act:"Hoãn đi miền Trung đến sau 22/11, nhắc người thân"},
+  {n:"USD/VND (VCB bán, 19/11)",cur:25920,th:26300,f:"n",dir:"up",act:"Mua nốt USD cần cho 3–6 tháng"},
+  {n:"Tỷ giá LNH (13/11 – số cũ)",cur:25732,th:25800,f:"n",dir:"up",act:"Áp lực chi phí vốn ngân hàng tăng → theo dõi TPB"},
+  {n:"TPB biến động 5 phiên",cur:5.7,th:7,f:"%",dir:"up",act:"Rà lại luận điểm nắm giữ, đọc tin nguyên nhân"},
+  {n:"Stablecoin rút 30 ngày (USDT+USDC)",cur:4.46,th:5,f:"%",dir:"up",act:"Risk-off mạnh → khách hoãn dự án"},
+  {n:"Brent",cur:92.45,th:105,f:"$",dir:"up",act:"Đổ đầy xăng trước 15h thứ Năm"},
+  {n:"Hormuz bình thường lại trước 31/12",cur:3.15,th:30,f:"%",dir:"up",act:"Dầu có thể giảm sâu → hưởng lợi giá xăng"},
+  {n:"Chênh lệch vàng (20/11)",cur:19.25,th:8,f:"tr",dir:"down",act:"Hợp lý nếu cần mua vàng"},
+  {n:"Tiếp dầu quân sự Trung Đông (adsb.lol – không đo được)",cur:0,th:2,f:"σ",dir:"up",act:"Dấu hiệu chuẩn bị không kích"},
+  {n:"AQI Hà Nội (PM2.5, 04h 20/11)",cur:11,th:150,f:"",dir:"up",act:"Khẩu trang N95, máy lọc không khí"},
+  {n:"Bão cách VN (JMA: không có)",cur:9999,th:600,f:"km",dir:"down",act:"Chuẩn bị bão"}
  ],
  career:{level:82,
-  sig:[["b","Jensen Huang từ chức CEO Nvidia; Nvidia báo cáo quý tuần sau → ngân sách AI của khách bị soi kỹ"],["b","Microsoft 365/Azure gián đoạn 12–13/11 + CVE Aspire.Dashboard – cơ hội thể hiện năng lực vận hành với khách EU"],["b","Indeed Đức IT 48,6 (−15%/năm), Pháp −7% – nhu cầu ở thị trường khách chính chưa hồi"],["w","HN: Humble Bundle ‘mất bảo mật vì vibecoding’ – khách sẽ đòi bằng chứng chất lượng code AI"],["g","Anthropic IPO định giá ~1.400 tỷ $; Gemini 4 Hydrogen ra mắt – công cụ AI tiếp tục mạnh lên"]],
-  plan:[["Hôm nay","Kiểm tra Azure/M365 của khách, vá Aspire; gửi ghi chú sự cố (d1)"],["T1","Ghi số giờ tiết kiệm + chi phí token + tỷ lệ lỗi/rollback của code AI ở 5 tác vụ gần nhất"],["T2","Gửi quản lý 1 trang số liệu năng suất AI kèm chỉ số chất lượng (trước 20/11, trước báo cáo Nvidia)"],["T3–T4","Đề xuất vai trò AI delivery lead + quy trình vá lỗ hổng/sự cố cloud nhanh cho khách EU"]]},
- calcs:{dep:{amount:200,rate:6.0,cut:0.5},usd:{need:2000,now:25870,base:26300,bad:27000},gold:{qty:1,dom:139.5,world:3983,fair:8},fuel:{liters:40}},
+  sig:[["b","3 lỗ hổng critical NuGet ở Refitter (thực thi mã từ file OpenAPI) – rủi ro trực tiếp cho dự án .NET của khách"],["b","Microsoft đề nghị 60.000 nhân viên nghỉ (TechCrunch 18/11) – tín hiệu tái cơ cấu lao động phần mềm quy mô lớn"],["b","Khối ngoại bán FPT 272 tỷ phiên 19/11, bán ròng 126.000 tỷ cả thị trường từ đầu năm – outsourcing VN bị định giá thấp"],["w","FPT nhắm doanh thu dịch vụ AI-first 27% → ≥40% năm 2027: giá trị dịch chuyển sang ‘AI + kiểm chứng’"],["w","Ruby2Shell, Java4Shell, TeamCity RCE: nhu cầu vá khẩn và bảo mật chuỗi cung ứng tăng"],["n","Indeed IT Đức/Pháp/Anh/Mỹ: không đọc được (file chỉ tới 05/2022, không có Software Development); số cũ 48,6 (#11)"]],
+  plan:[["Hôm nay","Nhắc người thân miền Trung (d1); rà Refitter/Refit trong repo của mình và khách (d2)"],["T1","Gửi khách EU bản tin bảo mật: Refitter, Java4Shell, TeamCity, Rails – kèm gói vá cố định giá"],["T2","Cập nhật hồ sơ năng lực: case study review code AI, SBOM, ký gói NuGet, kiểm soát quyền agent (d4)"],["T3–T4","Đề xuất gói ‘AI code review & supply chain’ cho 1 khách Đức/Pháp; chuẩn bị số liệu bảo vệ đơn giá 2027"]]},
+ calcs:{dep:{amount:200,rate:6.0,cut:0.5},usd:{need:2000,now:25920,base:26300,bad:27000},gold:{qty:1,dom:134.2,world:3600,fair:8},fuel:{liters:40}},
  feed:[
-  {cat:"So với #10",tier:1,early:"trong ngày",t:"Brent bật 91,3 → 96,1; tiền cược hoà dịu Iran tụt; Huang từ chức; lũ rút",y:"không tích xăng; mua USD; kiểm tra Azure",imp:4,lead:3,conf:4,h:"0–7 ngày",c:"i",
-   what:"So với #10 (12/11): Brent 91,3 → 96,1 (+5,2%). Polymarket ngừng bắn Mỹ–Iran trước 15/11 41,5% (−8,5), Israel–Iran giữ tới 31/12 69,5 → 64,5. Fed T12 85,5 → 88,5%; Kalshi T1/2027 51 → 61%. VCB 25.850 → 25.870. BTC 73.709 → 70.213. Stablecoin 30N −4,40 → −4,72%. Lũ Thu Bồn 6.011 → 3.672 m³/s. AQI HN đỉnh 155 → 162. ADS-B ME 2 → 0. Indeed cập nhật tới 06/11.",you:"Môi trường chuyển từ ‘dịu’ sang ‘căng lại’ trong 1 ngày: xăng có thể tăng lại, USD tiếp tục nhích.",act:"d1 Azure + Aspire; d2 USD hôm nay; d3 theo dõi Brent 100 trước 19/11.",
-   src:[["oilprice.com","https://oilprice.com/"],["Polymarket","https://polymarket.com/market/us-x-iran-effective-ceasefire-by-november-15-20261108"]]},
-  {cat:"Địa chính trị – lời nói ≠ tiền",tier:2,early:"trước báo Việt",t:"Trump ‘không cần thoả thuận Iran’ → tiền cược đình chiến rút, Brent +3,6%",y:"xăng 19/11 nghiêng tăng",imp:4,lead:4,conf:4,h:"0–3 tuần",c:"b",
-   what:"oilprice.com: Brent ~96$ sau phát biểu của Trump. Polymarket: ngừng bắn Mỹ–Iran trước 15/11 41,5% (−8,5), Israel–Iran giữ tới 15/12 70,5% (−9), hết phong toả trước 31/12 27,15% (−6,2), Hormuz bình thường 6,5%. Al Jazeera: Houthi đánh cơ sở năng lượng Saudi. gCaptain: tàu dầu tiếp tục cháy ở Hormuz. ADS-B ME không có tiếp dầu – chưa có dấu hiệu không kích ngay.",you:"Xăng vừa về mức trước chiến sự có thể tăng lại từ 19/11; giá vận tải, thực phẩm nhập khẩu theo sau.",act:"Không tích thêm xăng; nếu Brent ≥100 trước 19/11 thì đổ đầy trước 15h thứ Năm.",
-   src:[["oilprice.com","https://oilprice.com/"],["Al Jazeera","https://www.aljazeera.com/news"],["gCaptain","https://gcaptain.com/"]]},
-  {cat:"Dự án khách",tier:4,early:"vài giờ",t:"Microsoft 365/Azure gián đoạn; CVE Aspire.Dashboard",y:"kiểm tra, vá, báo khách",imp:4,lead:4,conf:4,h:"0–3 ngày",c:"b",
-   what:"HN: ‘Service degradation on Microsoft 365’ (553 điểm), ‘Ask HN: Microsoft/Azure Outage?’ (401). Al Jazeera: sự cố ảnh hưởng hàng chục nghìn người. GitHub Advisory GHSA-4g86-54fm-h9h8 (CVE-2026-118740): Aspire.Dashboard.Sdk linux-x64/arm64/musl – bỏ qua tính năng bảo mật.",you:"Khách EU dùng Azure/M365 sẽ hỏi tác động; dự án .NET Aspire cần nâng phiên bản.",act:"Kiểm tra status.cloud.microsoft, ghi nhận tác động, nâng Aspire trước 14/11.",
-   src:[["Microsoft status","https://status.cloud.microsoft/"],["GitHub Advisory","https://github.com/advisories/GHSA-4g86-54fm-h9h8"]]},
-  {cat:"Ví tiền – USD/Fed",tier:2,early:"1–3 ngày",t:"Kalshi Fed T1/2027 nhảy 51 → 61%; lợi suất 2 năm +13bp",y:"mua USD hôm nay",imp:4,lead:3,conf:4,h:"1–8 tuần",c:"b",
-   what:"Kalshi T12: tăng 0,25% 86%, >0,25% 11%; T1/2027: tăng 61%, giữ 38%. Polymarket T12 88,5%. Treasury 12/11: 2 năm 4,86%, 10 năm 5,10%. EUR/USD 1,1081. VCB 25.870, đi lên 5 phiên liền.",you:"USD mạnh kéo dài sang 2027 → VND chịu sức ép, hàng nhập đắt hơn.",act:"Mua nốt USD cần dùng 3–6 tháng trong hôm nay.",
-   src:[["Kalshi","https://kalshi.com/markets/kxfeddecision"],["VCB","https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"]]},
-  {cat:"Nghề nghiệp",tier:4,early:"trong ngày",t:"Jensen Huang từ chức, Colette Kress kế nhiệm",y:"ngân sách AI bị soi kỹ",imp:3,lead:3,conf:4,h:"1–3 th",c:"w",
-   what:"Al Jazeera/AP: Huang từ chức sau các cáo buộc về đời tư và an ninh; Colette Kress kế nhiệm. HN 3.049 điểm. Polymarket ‘Ian Buck làm CEO’ −9 điểm. Coinpedia: BTC xuống dưới 72k cùng nhịp bán tháo công nghệ. Nvidia báo cáo quý tuần sau.",you:"Khách EU có thể tạm dừng dự án ‘thử nghiệm AI’ chưa có ROI.",act:"Chuẩn bị 1 trang ROI AI trước 20/11.",
-   src:[["Al Jazeera","https://www.aljazeera.com/news"],["AP","https://apnews.com/article/nvidia-megaspeed-china-singapore-huang-5403f152a601cf82ce939f1d24fffa0f"]]},
-  {cat:"Tiền mã hoá",tier:1,early:"vài giờ",t:"313 triệu USDT trả về Tether, 104 triệu USDC bị đốt; stablecoin −4,72%/30N",y:"risk-off, không hack",imp:2,lead:4,conf:4,h:"0–2 tuần",c:"w",
-   what:"Whale Alert: 212 + 101 triệu USDT Bitfinex → Tether Treasury, 104 triệu USDC đốt. Lỗ thực hiện −0,51 tỷ $/24h, BTC 70.273 (−4,74%). DefiLlama: tổng stablecoin 244,9 tỷ $. Hack mới chỉ Edel 0,3 triệu $. DOJ: hacker Triều Tiên lấy >400 triệu $ bằng cuộc gọi video deepfake AI.",you:"Không nắm crypto; nhưng cảnh giác cuộc gọi video deepfake giả khách/sếp yêu cầu chuyển tiền, cấp quyền.",act:"Xác minh qua kênh thứ hai mọi yêu cầu chuyển tiền/cấp quyền qua video call.",
-   src:[["Whale Alert","https://whale-alert.io/"],["DefiLlama","https://defillama.com/stablecoins"]]},
-  {cat:"Thời tiết – sức khoẻ",tier:1,early:"24–48h",t:"AQI Hà Nội đỉnh 162; lũ Thu Bồn rút còn 3.672 m³/s",y:"N95 13–14/11; miền Trung từ 17/11",imp:3,lead:4,conf:4,h:"0–7 ngày",c:"b",
-   what:"Open-Meteo AQ: Hà Nội đỉnh 162 trong 48h (hiện 91). GloFAS: Thu Bồn 3.672 m³/s (từ 6.011), Hương ×6,1. Đà Nẵng 18mm/7 ngày, Huế 8mm. Hà Nội mưa 67mm/7 ngày, đỉnh 49mm ngày 18/11. JMA không có bão.",you:"Sức khoẻ hô hấp ở Hà Nội; đi lại miền Trung sắp an toàn.",act:"N95 khi ra ngoài 13–14/11; dời chuyến miền Trung sang ≥17/11.",
-   src:[["Open-Meteo","https://open-meteo.com"]]},
-  {cat:"Việc làm IT",tier:1,early:"1–3 tháng",t:"Indeed: Đức IT 48,6 (−15%/năm), Pháp −7%, Mỹ +24%",y:"thị trường khách chính chưa hồi",imp:3,lead:4,conf:4,h:"1–3 th",c:"w",
-   what:"Indeed Hiring Lab, Software Development, total postings, 06/11: DE 48,6 (30N 47,8; 1 năm 57,2), FR 51,1 (51,9; 55,1), GB 60,9 (60,1; 59,0), US 81,4 (78,2; 65,9). layoffs.fyi không có mục mới.",you:"Khách Đức/Pháp tiếp tục ưu tiên cắt chi phí → outsource giá tốt có lợi, nhưng sẽ bị ép giá.",act:"Nhấn mạnh năng suất AI + chất lượng khi đàm phán.",
-   src:[["Indeed Hiring Lab","https://github.com/hiring-lab/job_postings_tracker"]]},
-  {cat:"Dự báo kiểm chứng",tier:2,early:"—",t:"Chấm #10: lũ rút ĐÚNG hướng · xăng 19/11 đổi dự báo",y:"đo độ tin cậy",imp:3,lead:3,conf:4,h:"≤ 20/11",c:"n",
-   what:"Đang đúng: Thu Bồn <3.000 trước 16/11 (3.672, đang rút); AQI HN ≥150 (162). Chờ: VCB ≥25.900 trước 20/11 (25.870 – còn 30đ); vàng TG <3.950 trước 20/11 (chưa có số mới); Fed T1/2027 ≥60% (Kalshi 61% – ĐẠT, Polymarket chưa đọc); không ngừng bắn năng lượng Nga–Ukraine trước 15/11 (sẽ đúng). Sửa: #10 ‘E5 19/11 trong ±500đ: 60%’ → mới: (1) E5 kỳ 19/11 TĂNG: 60%; (2) Brent ≥100$ trước 20/11: 30%; (3) Polymarket ngừng bắn Mỹ–Iran 15/11 kết thúc NO: 65%; (4) stablecoin 30N chạm −5% trước 18/11: 55%.",you:"Brent bật đổi hướng dự báo xăng trong 1 ngày – mô hình cần trọng số tin Iran.",act:"Chấm lại ở #12–#14.",
+  {cat:"Miền Trung",tier:3,early:"1–3 ngày",t:"NCHMF cảnh báo lũ Huế BĐ1–BĐ2 đến 22/11; Đà Nẵng mưa ~115mm trong 22 giờ",y:"🔔 gần ngưỡng BĐ2",imp:4,lead:4,conf:4,h:"0–3 ngày",c:"b",
+   what:"NCHMF 15h30 19/11: từ đêm 19/11 đến 22/11 có 1 đợt lũ trên sông từ Nam Quảng Trị đến Quảng Ngãi; đỉnh ở Huế BĐ1–BĐ2, nơi khác quanh BĐ1; rủi ro cấp 1; nguy cơ cao ngập vùng trũng, lũ quét, sạt lở. met.no 08h16 20/11: Đà Nẵng ~61mm (8h–24h 20/11) + ~55mm (0h–6h 21/11); 25/11 ~75mm; 27–28/11 ~70mm.",you:"Người thân/kế hoạch đi Đà Nẵng, Quảng Nam, Huế: ngập cục bộ, sạt lở đèo trong 48 giờ tới; mưa còn 2 đợt nữa trong tuần sau.",act:"Gọi người thân trưa nay (d1); hoãn đi lại vùng trũng/đèo đến sau 22/11.",
+   src:[["NCHMF","https://www.nchmf.gov.vn/kttv/vi-VN/1/tin-canh-bao-lu-tren-cac-song-tu-quang-tri-den-quang-ngai-post55308.html"],["met.no","https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=16.05&lon=108.20"]]},
+  {cat:"Địa chính trị",tier:2,early:"1–3 tuần",t:"Polymarket: Hormuz bình thường lại trước 31/12 rơi 11,5% → 3,15%; Houthi đánh Riyadh",y:"thị trường bỏ kịch bản dịu",imp:5,lead:4,conf:4,h:"1–8 tuần",c:"b",
+   what:"Polymarket 20/11: ‘Strait of Hormuz traffic returns to normal by December 31?’ 0,0315 (19/11: 0,115); by 31/1/2027 0,065; by 30/6/2027 0,27. Al Jazeera 19/11: tháp ở trung tâm tài chính Riyadh trúng đòn Houthi, liên quân Saudi đánh Yemen, tàu cháy ở Hormuz. Brent 92,45$ (+0,5%).",you:"Giá dầu đang thấp hơn rủi ro thực; nếu hạ tầng dầu Saudi bị đánh, Brent có thể vượt 100$ → xăng, lạm phát, USD tăng.",act:"Theo dõi Brent mỗi sáng; đổ đầy xăng trước kỳ 26/11 nếu Brent ≥98$.",
+   src:[["Polymarket","https://polymarket.com/"],["Al Jazeera","https://www.aljazeera.com/news/liveblog/2026/11/19/iran-war-live-saudi-led-coalition-strikes-yemen-ships-on-fire-in-hormuz"]]},
+  {cat:"Nghề nghiệp – bảo mật",tier:3,early:"vài giờ",t:"Refitter (NuGet): 3 lỗ hổng critical thực thi mã từ file OpenAPI",y:"ảnh hưởng trực tiếp .NET",imp:4,lead:5,conf:4,h:"0–2 tuần",c:"b",
+   what:"GitHub Advisory critical (≥18/11): ‘Refitter allows arbitrary code execution through unescaped OpenAPI content-type values / header parameter names / paths’ – hệ sinh thái NuGet. Cùng đợt: Etherpad đọc file trước xác thực, Daptin SQLi, Jupyter MCP DNS rebinding. HN: Ruby2Shell – RCE trước xác thực trên Rails mặc định.",you:"Pipeline .NET sinh client Refit từ OpenAPI của bên thứ ba có thể bị chèn mã khi build → rủi ro chuỗi cung ứng cho khách EU.",act:"Rà Refitter trong repo, nâng bản vá, gửi cảnh báo khách trước 21/11 (d2).",
+   src:[["GitHub Advisory","https://github.com/advisories?query=severity%3Acritical+ecosystem%3Anuget"],["Ruby2Shell","https://verialabs.com/ruby2shell/"]]},
+  {cat:"Ví tiền – Fed",tier:2,early:"1–3 tuần",t:"Sau biên bản FOMC, Kalshi vẫn 98% Fed tăng 9/12",y:"🔔 ngưỡng Fed ≥90%",imp:4,lead:3,conf:4,h:"0–8 tuần",c:"b",
+   what:"Kalshi KXFEDDECISION-26DEC sáng 20/11: tăng 25bp 0,91, tăng >25bp 0,07 (từ 0,08), giữ 0,04, cắt 0,01. Tháng 1/2027: tăng 25bp 0,58 (từ 0,63), giữ 0,39. Polymarket ‘không cắt 2026’ 0,9825. Treasury 19/11: 10 năm 5,04%, 2 năm 4,76%.",you:"USD tiếp tục được hỗ trợ; khả năng Fed tăng liên tiếp tháng 1 giảm nhẹ → áp lực tỷ giá trung hạn dịu bớt chút ít.",act:"Chốt phần đầu nhu cầu USD (d3).",
+   src:[["Kalshi","https://kalshi.com/markets/kxfeddecision"],["US Treasury","https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve"]]},
+  {cat:"Nghề nghiệp – AI",tier:4,early:"vài ngày",t:"Microsoft đề nghị 60.000 nhân viên nghỉ; FPT bị bán 272 tỷ",y:"tái cơ cấu lao động phần mềm",imp:4,lead:3,conf:3,h:"1–6 tháng",c:"b",
+   what:"TechCrunch 18/11: ‘Microsoft CEO Satya Nadella explains why he asked 60K employees to quit’; Nadella: nhiều hạ tầng trọng yếu ‘unpatchable’ trước tấn công AI; dự báo AI agent định hình lại kinh tế web. CafeF 19–20/11: FPT bị khối ngoại bán ròng mạnh, sở hữu ngoại còn 25,38%; Vietcap: FPT nhắm doanh thu AI-first ≥40% năm 2027. HN: ‘AI biến việc làm thành gig work trả thấp’.",you:"Khách EU có thêm lý do ép giá ‘viết code’; giá trị chuyển sang kiểm chứng, bảo mật, tích hợp Azure có kiểm soát.",act:"Cập nhật hồ sơ năng lực AI-first trước 27/11 (d4).",
+   src:[["TechCrunch","https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/"],["CafeF","https://cafef.vn/co-phieu-fpt-pha-day-hon-3-nam-vietcap-he-lo-loat-thong-tin-dang-chu-y-188261119115559771.chn"]]},
+  {cat:"Ví tiền – thị trường",tier:5,early:"trong ngày",t:"VN-Index mất 1.700; khối ngoại bán 126.000 tỷ từ đầu năm; vàng −2 tr",y:"risk-off lan rộng",imp:3,lead:2,conf:5,h:"0–4 tuần",c:"w",
+   what:"VN-Index 1.689,62 (−0,79%), thấp nhất 1 tháng; GTGD 15.580 tỷ (−15,8%); khối ngoại bán ~1.000 tỷ. Phố Wall 19/11: S&P −1,09%, Nasdaq −1,58%, VIX 28,4. Vàng SJC 131,2–134,2 tr (−2 tr), thế giới ~3.600$, chênh 19,25 tr. USD VCB 25.920 (+40đ).",you:"Tài sản rủi ro trong nước và quốc tế cùng giảm; mua vàng miếng lúc này trả dư ~19 tr/lượng.",act:"Không mua vàng miếng khi chênh >8 tr; giữ tiền mặt dự phòng.",
+   src:[["CafeF","https://cafef.vn/vn-index-mat-moc-1700-diem-thanh-khoan-xuong-thap-188261119175602007.chn"],["CafeF vàng","https://cafef.vn/du-lieu/gia-vang-hom-nay/trong-nuoc.chn"]]},
+  {cat:"Danh mục TPB",tier:1,early:"trong ngày",t:"TPB 12.350 (0,00%) giữ đáy mới; không có CBTT mới",y:"không có 🔔 hôm nay",imp:2,lead:3,conf:5,h:"0–4 tuần",c:"w",
+   what:"Đóng cửa 13.100 (12/11) → 12.350 (18/11) → 12.350 (19/11, KL 7,26 tr). 5 phiên −5,7%. CBTT gần nhất 17/11 (PGD Bình Tân). Không có dữ liệu khối ngoại riêng TPB.",you:"Lực bán chững lại nhưng nhóm ngân hàng còn yếu (CTG, ACB, TCB, MBB, VPB giảm 19/11).",act:"Theo dõi phiên 20–21/11; nếu −7%/5 phiên (≈12.180 so với 13.100) thì rà lại luận điểm. Tham khảo, không phải lời khuyên đầu tư.",
+   src:[["CafeF","https://cafef.vn/du-lieu/hose/tpb-ngan-hang-thuong-mai-co-phan-tien-phong.chn"],["CafeF CBTT","https://cafef.vn/du-lieu/tin-doanh-nghiep/tpb/event.chn"]]},
+  {cat:"Thu nhập – thuế",tier:3,early:"1–2 ngày",t:"Quốc hội 20–21/11 biểu quyết luật thuế TNCN, TNDN, thuế đất phi nông nghiệp",y:"ảnh hưởng lương 2027",imp:3,lead:3,conf:4,h:"1–12 tháng",c:"w",
+   what:"CafeF 20/11: đợt 2 kỳ họp thứ Hai Quốc hội khoá XVI (20–21/11) dự kiến biểu quyết nhiều luật, nghị quyết về thuế sử dụng đất phi nông nghiệp, thuế TNCN, doanh nghiệp…",you:"Thu nhập VND từ dịch vụ IT có thể đổi mức thuế/giảm trừ từ 2027; ảnh hưởng cách định giá hợp đồng với khách EU.",act:"Đọc kết quả biểu quyết tối 21/11; tính lại lương thực nhận.",
+   src:[["CafeF","https://cafef.vn/bat-dau-tu-hom-nay-20-11-quoc-hoi-se-bieu-quyet-thong-qua-nhieu-luat-nghi-quyet-ve-thue-su-dung-dat-phi-nong-nghiep-thue-tncn-doanh-nghiep-188261119223842643.chn"]]},
+  {cat:"So với #15 trước",tier:0,early:"—",t:"So với bản #15 (09h12 19/11): Hormuz xấu đi mạnh, lũ miền Trung lên mức cảnh báo, USD nhích lại",y:"không có đính chính",imp:2,lead:2,conf:4,h:"—",c:"n",
+   what:"Polymarket Hormuz 31/12: 11,5% → 3,15%. NCHMF: ‘không có tin lũ mới’ → cảnh báo lũ BĐ1–BĐ2 (Huế). USD VCB 25.880 → 25.920. TPB 12.350 → 12.350. Fed T12 98% → 98% (>25bp 8% → 7%); T1/2027 63% → 58%. Brent 92,1 → 92,45. UST 10 năm 5,07 → 5,04. Vàng SJC 137,2 → 134,2 (BTMH), chênh 15,5 → 19,25 tr. Stablecoin −4,60% → −4,46%. AQI HN 13 → 11. VN-Index: chưa có ở #15 → 1.689,6.",you:"Rủi ro chuyển từ tài chính sang thiên tai và năng lượng; nghề nghiệp có tín hiệu tái cơ cấu lớn (Microsoft).",act:"Xem mục Làm ngay.",
+   src:[["Personal Intel","https://votuanphong1983.github.io/News/"]]},
+  {cat:"Dự báo kiểm chứng",tier:0,early:"—",t:"Chấm dự báo #11–#15 và đặt dự báo mới",y:"đo độ tin cậy",imp:2,lead:2,conf:4,h:"≤ 9/12",c:"n",
+   what:"ĐÚNG: #13 HN ≤17°C trước 21/11 (90%) – aqicn 16°C lúc 04h 20/11, NCHMF 15–17°C ✓. #11 Brent ≥100 trước 20/11 (2%) – không xảy ra ✓. Đang theo dõi: #14 Đà Nẵng ≥50mm ngày 20/11 (60%) → nâng 85% (met.no ~61mm từ 8h). #14 Brent ≥95$ trước 25/11 (25%) – giữ 25%. #14 Polymarket Hormuz ≥15% trước 25/11 (15%) → hạ 3% (đi ngược, 3,15%). #13 VCB ≥26.000 trước 21/11 (30%) → 20%. #12 TPB đóng cửa 21/11 trong 12.300–12.900 (50%) → 60%. #12 LNH ≥25.800 trước 21/11 (25%) → 15% (không có số). #11 E5 tăng 19/11 (15%) → không có tin tăng giá ✓. #15 TPB đóng 25/11 ≥12.450 (45%) → 40%; USD VCB ≥26.000 trước 27/11 (35%) → 35%; stablecoin −5%/30N trước 25/11 (35%) → 25%. Mới: Huế đạt BĐ2 trước 23/11: 45%; Kalshi >25bp ≥10% trước 1/12: 20%; VN-Index đóng <1.650 trước 27/11: 30%.",you:"Dự báo thời tiết tiếp tục đúng; dự báo Hormuz ở #14 sai hướng – thị trường xấu đi nhanh hơn dự kiến.",act:"Chấm lại ở #17–#19.",
    src:[["Personal Intel","https://votuanphong1983.github.io/News/"]]}
  ],
- sources:"Nguồn bản #11: collector.js 09h56 13/11 (Polymarket, DefiLlama, US Treasury, ECB, CNN F&G, USGS, Open-Meteo/GloFAS/AQ, JMA, HN, GitHub Advisory) · adsb.lol · Whale Alert · layoffs.fyi · Vietcombank XML 09h19 · Kalshi · OFAC · SafeAirspace · gCaptain · oilprice.com · chinhphu.vn · Indeed Hiring Lab (06/11) · Al Jazeera · TechCrunch AI · VnExpress (vĩ mô, quốc tế, hàng hoá) · Không lấy được: GDACS (lỗi JSON một phần), giá vàng TG/SJC mới (VnExpress chưa có bài 12–13/11, WebSearch bị tắt – giữ 139,5tr/3.983$), Petrolimex, trang VnExpress Thế giới trả bản cũ · nền σ mới có 3 điểm, z-score chỉ tham khảo · bản #11 · 13/11/2026"
+ sources:"Nguồn bản #16: Vietcombank XML (bảng 10h01 19/11) · CafeF (TPB giá/CBTT, ngân hàng, vĩ mô, chứng khoán, VN-Index, khối ngoại, vàng, giá xăng) · oilprice.com · Kalshi (T12, T1) · Polymarket (Fed, Hormuz, Iran, Nga–Ukraine, Đài Loan) · US Treasury (19/11) · Al Jazeera · gCaptain · OFAC (18/11) · DefiLlama (stablecoin; hack chỉ tới 27/10) · Whale Alert (tin) · met.no (Đà Nẵng 20/11, Hà Nội 19/11, TP HCM 19/11) · aqicn Hà Nội · NCHMF (lũ 19/11, bão, thời tiết 20/11) · JMA · Hacker News · GitHub Advisory · TechCrunch · Không lấy được: adsb.lol (lỗi client), aqicn TP HCM (lỗi client), status.cloud.microsoft (cần JavaScript – dùng tin HN/TechCrunch), Indeed DE/FR/GB/US (file bị cắt ở 05/2022, không có Software Development), met.no Huế (trả bản cũ 9/11 – không dùng), layoffs.fyi (bảng Airtable nhúng, không có số), Whale Alert số liệu giao dịch (cần đăng nhập), Polymarket ‘iran ceasefire’ (chỉ trả thị trường cũ đã đóng), Polymarket Nga–Ukraine mốc 2027 (không tách được giá), tỷ giá LNH (không có bài mới), giá xăng kỳ 19/11 (không có bài), VCB chưa cập nhật tỷ giá 20/11 lúc chạy · Tham khảo, không phải lời khuyên đầu tư · bản #16 · 20/11/2026"
 };
 
 /* ===== RENDER ===== */
@@ -305,6 +313,20 @@ const CC={g:"var(--g)",w:"var(--w)",b:"var(--b)",i:"var(--i)",n:"var(--mute)"};
 const store={get(k){try{return JSON.parse(localStorage.getItem("pi_"+k))}catch(e){return null}},set(k,v){try{localStorage.setItem("pi_"+k,JSON.stringify(v))}catch(e){}}};
 $("#who").textContent=DATA.profile;$("#stamp").textContent=`#${DATA.run.id} · ${DATA.run.date} · ${DATA.run.asof}`;$("#next").textContent=DATA.run.next;
 $("#posture").innerHTML=DATA.posture.map(p=>`<div class="pos"><span class="dot" style="background:${CC[p.c]};width:10px;height:10px"></span><div><div class="k">${p.k}</div><div class="v">${p.v}</div><div class="d">${p.d}</div></div></div>`).join("");
+/* holdings */
+if(DATA.holdings&&DATA.holdings.length){$("#holdings").innerHTML=DATA.holdings.map(h=>{const val=h.qty*h.px,dchg=val-val/(1+h.chg/100),col=h.chg>=0?"var(--g)":"var(--b)",sg=h.chg>=0?"+":"−";
+ return `<section class="card"><div class="h"><span>Cổ phiếu theo dõi · ${h.sym}</span><span class="p ${h.c}">${h.name}</span></div>
+ <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:baseline;margin-bottom:6px">
+  <div><div class="sub">Giá</div><b style="font-size:20px">${fmt(h.px)}</b> <b style="color:${col}">${sg}${Math.abs(h.chg).toFixed(2).replace(".",",")}%</b></div>
+  ${h.qty?`<div><div class="sub">Số lượng</div><b style="font-size:15px">${fmt(h.qty)}</b></div>
+  <div><div class="sub">Giá trị</div><b style="font-size:15px">${(val/1e6).toFixed(1).replace(".",",")} tr</b></div>
+  <div><div class="sub">Trong ngày</div><b style="font-size:15px;color:${col}">${sg}${(Math.abs(dchg)/1e6).toFixed(1).replace(".",",")} tr</b></div>
+  <div><div class="sub">±1%</div><b style="font-size:15px">${(val/1e8).toFixed(2).replace(".",",")} tr</b></div>`:""}
+ </div>
+ <div class="sub" style="margin-bottom:6px">${h.asof} · ${h.stance}</div>
+ <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px">${h.watch.map(w=>`<span class="p ${w[0]}">${w[1]}</span>`).join("")}</div>
+ ${h.news.map(n=>`<div style="display:grid;grid-template-columns:44px 12px 1fr auto;gap:8px;align-items:baseline;padding:6px 0;border-top:1px solid var(--line);font-size:12.5px"><span class="sub">${n.d}</span><span class="dot" style="background:${CC[n.c]||CC.n}"></span><span><b>${n.t}</b><div style="color:var(--ink2);font-size:12px">→ ${n.y}</div></span><a href="${n.src[1]}" target="_blank" rel="noopener" style="color:var(--i);text-decoration:none;font-size:11px;white-space:nowrap">${n.src[0]} ↗</a></div>`).join("")}
+ <div class="sub" style="margin-top:6px">Tham khảo, không phải lời khuyên đầu tư.</div></section>`}).join("");}else $("#holdings").style.display="none";
 $("#cal").innerHTML=DATA.cal.map(e=>`<div class="ev"><div class="dt" style="color:${CC[e.c]}">${e.d}</div><div><div class="t">${e.t}</div><div class="x">${e.x}</div></div></div>`).join("");
 $("#tiles").innerHTML=DATA.tiles.map(t=>`<div class="tile"><div class="k">${t.k}</div><div class="v">${t.v}<small> ${t.u||""}</small></div><div class="d ${t.dir}">${t.dir=="dn"?"▼":"▲"} ${t.d}</div></div>`).join("");
 $("#geo").innerHTML=DATA.geo.map(g=>`<div class="card geo"><div class="st"><b>${g.n}</b><span class="p ${g.c}">${g.st}</span></div>
